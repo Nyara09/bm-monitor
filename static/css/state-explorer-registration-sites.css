@@ -1,0 +1,152 @@
+/*
+ * css/state-explorer-registration-sites.css
+ * State explorer: registration sites list and cards.
+ */
+
+#adm .at td:nth-child(2) {
+  min-width: 210px;
+}
+#adm .at th {
+  white-space: nowrap;
+}
+.county-site-list {
+  display: grid;
+  gap: 7px;
+}
+.county-site-group {
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.county-site-group > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 12px;
+}
+.county-site-group > summary::-webkit-details-marker {
+  display: none;
+}
+.county-site-group > summary span {
+  display: grid;
+  gap: 3px;
+}
+.county-site-group > summary small,
+.site-select small {
+  display: block;
+  color: var(--mu);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+.county-site-count {
+  border-radius: 9px;
+  background: rgba(16, 185, 129, 0.13);
+  color: var(--g);
+  padding: 4px 9px;
+}
+.county-site-items {
+  padding: 0 9px 9px;
+}
+.site-select {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 8px;
+  border: 1px solid var(--bd);
+  border-radius: 9px;
+  background: transparent;
+  color: var(--tx);
+  padding: 9px 10px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+.site-select:hover,
+.site-select.selected {
+  border-color: var(--g);
+  background: rgba(16, 185, 129, 0.08);
+}
+.site-select small {
+  margin-top: 3px;
+}
+.site-chevron {
+  font-size: 1.2rem;
+  color: var(--g);
+}
+.story-site-detail {
+  border-top: 1px solid var(--bd);
+  padding: 10px 12px;
+  background: rgba(127, 127, 127, 0.035);
+}
+.story-site-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--bd);
+  margin-bottom: 10px;
+}
+.story-site-tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--mu);
+  padding: 8px 10px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+}
+.story-site-tabs button.active {
+  border-bottom-color: var(--g);
+  color: var(--g);
+  font-weight: 700;
+}
+.story-site-pane h4 {
+  margin: 4px 0 10px;
+  font-size: 0.9rem;
+}
+.story-site-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+.story-site-metrics > div {
+  display: grid;
+  gap: 4px;
+  background: rgba(127, 127, 127, 0.08);
+  padding: 8px;
+  border-radius: 8px;
+  min-width: 0;
+}
+.story-site-metrics small {
+  color: var(--mu);
+  font-size: 0.67rem;
+}
+.story-site-metrics b {
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+.story-reg-table-wrap {
+  overflow: auto;
+}
+.story-reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+.story-reg-table th,
+.story-reg-table td {
+  text-align: left;
+  padding: 7px;
+  border-bottom: 1px solid var(--bd);
+}
+.story-reg-table th {
+  color: var(--mu);
+}
+.county-empty {
+  font-size: 0.75rem;
+  padding: 3px 2px;
+}

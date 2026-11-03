@@ -1,0 +1,49 @@
+{% extends "core/base.html" %} {% block content %}
+<div class="card tw">
+  <form method="get" class="flt mb-3">
+    <label>
+      Search
+      <input
+        type="search"
+        name="search"
+        value="{{ search }}"
+        placeholder="MDA name"
+      />
+    </label>
+    <button class="btn pri" type="submit">Filter</button>
+    <a class="btn" href="{% url 'registry:mda_list' %}">Reset</a>
+    {% if can_edit %}<a class="btn pri" href="{% url 'registry:mda_create' %}"
+      >Add MDA</a
+    >{% endif %}
+  </form>
+  <div class="table-responsive">
+    <table class="text-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>MDA</th>
+          <th>Sites</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mda in page %}
+        <tr>
+          <td>{{ page.start_index|add:forloop.counter0 }}</td>
+          <td>{{ mda.name }}</td>
+          <td>{{ mda.sites.count }}</td>
+          <td>
+            {% url 'registry:mda_edit' mda.pk as edit_url %} {% url 'registry:mda_delete' mda.pk as delete_url %} {% include "core/_row_actions.html" with name=mda.name %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">No MDAs found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include "core/_pagination.html" %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+/*
+ * css/analytics-embedded.css
+ * Analytics page when embedded in the admin panel.
+ */
+
+#ana.emb {
+  position: static !important;
+  display: block !important;
+  height: auto !important;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent !important;
+}
+#ana.emb #ana-x,
+#ana.emb .ant {
+  display: none;
+}
+#ana.emb .anh {
+  padding: 0 0 10px;
+  border: 0;
+  background: transparent;
+}
+#ana.emb #ana-tabs {
+  padding: 0;
+  background: transparent;
+  margin-bottom: 12px;
+}
+#ana.emb #ana-body {
+  overflow: visible;
+  padding: 0;
+}

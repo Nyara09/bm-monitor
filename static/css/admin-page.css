@@ -1,0 +1,14 @@
+/*
+ * css/admin-page.css
+ * Admin page only (admin.html): hides the map and shows the admin app full width.
+ */
+
+body.page-admin > nav.top,
+body.page-admin > #overview,
+body.page-admin > #kpis,
+body.page-admin > #mapsec,
+body.page-admin > #story,
+body.page-admin > footer.foot,
+body.page-admin > #gate {
+  display: none !important;
+}

@@ -1,0 +1,497 @@
+/*
+ * css/map-layout-v7-full-height.css
+ * Map layout version 7: full-height map. Overrides v4 and v5.
+ */
+
+.mapbox {
+  height: calc(100vh - 84px);
+  min-height: 660px;
+}
+.mapbox > .mtabs {
+  position: static;
+  transform: none;
+  align-self: center;
+  margin: 10px auto 10px;
+  flex: none;
+  left: auto;
+  top: auto;
+}
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+.stage > svg#map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.stage .tools {
+  top: 14px;
+  right: 14px;
+}
+.stage .mchip {
+  top: 14px;
+  left: 14px;
+}
+.stage .tbn {
+  top: 14px;
+  right: 70px;
+  left: 14px;
+}
+.stage .cmp {
+  bottom: 14px;
+  left: 14px;
+}
+#gm {
+  inset: 0;
+  border-radius: 0;
+}
+.gsb {
+  padding: 10px 12px;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.glwrap {
+  position: relative;
+}
+.glm {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 30;
+  width: 230px;
+  max-height: 340px;
+  overflow: auto;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(47, 53, 59, 0.98);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+.glm[hidden] {
+  display: none;
+}
+.glm button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mu);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.glm button:hover {
+  background: rgba(197, 160, 89, 0.18);
+  color: var(--tx);
+}
+.glm button i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cl);
+  opacity: 0.35;
+  flex: none;
+}
+.glm button.on {
+  color: var(--tx);
+  font-weight: 600;
+}
+.glm button.on i {
+  opacity: 1;
+}
+.glm button span {
+  margin-left: auto;
+  color: var(--mu);
+  font-weight: 400;
+}
+.glm #gview {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 8px 8px;
+  color: var(--c);
+}
+.gkey {
+  position: absolute;
+  right: 12px;
+  top: 62px;
+  z-index: 28;
+  width: min(480px, calc(100% - 24px));
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(47, 53, 59, 0.98);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.gkey[hidden] {
+  display: none;
+}
+.gkey input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.8rem;
+}
+.gkey small {
+  flex-basis: 100%;
+  color: var(--mu);
+  font-size: 0.7rem;
+}
+.gsl {
+  left: 12px;
+  bottom: 12px;
+  width: min(290px, 70%);
+  padding: 6px;
+  max-height: 50%;
+}
+.gsl .gsh {
+  font-weight: 600;
+  color: var(--tx);
+}
+.gsl.open {
+  padding: 6px;
+}
+.tools button {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.tools svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.tools {
+  flex-wrap: wrap-reverse;
+  max-height: calc(100% - 28px);
+  align-content: flex-start;
+}
+.tools hr {
+  width: 100%;
+}
+.amenu {
+  top: auto;
+}
+.links a.on {
+  color: var(--tx);
+  background: rgba(197, 160, 89, 0.2);
+}
+.lgpage {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: var(--bg);
+  color: var(--tx);
+}
+.lgpage[hidden] {
+  display: none;
+}
+.lg-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 6vw;
+  background: radial-gradient(700px 500px at 20% 10%, rgba(197, 160, 89, 0.35), transparent 60%),
+    radial-gradient(700px 500px at 90% 90%, rgba(47, 53, 59, 0.25), transparent 60%), #141619;
+  color: #ffffff;
+}
+.lg-side h1 {
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  letter-spacing: -0.02em;
+  margin: 6px 0 0;
+  background: none;
+  -webkit-text-fill-color: #fff;
+}
+.lg-side p {
+  color: #c1bbdb;
+}
+.lg-side ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.lg-side li {
+  padding-left: 22px;
+  position: relative;
+  color: #e6e4f0;
+  font-size: 0.92rem;
+}
+.lg-side li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c5a059, #c9744a);
+}
+.lg-side .logo {
+  width: 46px;
+  height: 46px;
+}
+.lg-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: min(420px, 88%);
+  margin: auto;
+  padding: 20px 0;
+}
+.lg-card h2 {
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+  text-transform: none;
+  color: var(--tx);
+}
+.lg-card p {
+  color: var(--mu);
+  font-size: 0.88rem;
+  margin: 0 0 14px;
+}
+.lg-card label {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--mu);
+  margin-bottom: 12px;
+}
+.lg-card input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.95rem;
+}
+.lg-card input:focus {
+  outline: 2px solid var(--c);
+  outline-offset: 1px;
+}
+.lg-card .lg-sh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tx);
+  font-size: 0.8rem;
+}
+.lg-go {
+  width: 100%;
+  padding: 12px;
+  font-size: 0.92rem;
+  margin: 8px 0 6px;
+  text-align: center;
+}
+.lg-back {
+  border: 0;
+  background: transparent;
+  color: var(--c);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
+}
+.lg-back:hover {
+  text-decoration: underline;
+}
+.at th.sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.at th.sortable:hover {
+  color: var(--tx);
+}
+.at th .ar {
+  margin-left: 5px;
+  opacity: 0.35;
+  font-size: 0.62rem;
+}
+.at th.sorted {
+  color: var(--tx);
+}
+.at th.sorted .ar {
+  opacity: 1;
+  color: var(--c);
+}
+@media (max-width: 900px) {
+  .lgpage {
+    grid-template-columns: 1fr;
+  }
+  .lg-side {
+    display: none;
+  }
+  .lg-card {
+    width: min(420px, 90%);
+  }
+  .stage .tools button {
+    width: 34px;
+    height: 34px;
+  }
+  .stage .tools {
+    gap: 5px;
+  }
+  .stage .cmp b {
+    display: none;
+  }
+  .stage .cmp {
+    padding: 4px;
+  }
+  .stage .cmp svg {
+    width: 38px;
+    height: 38px;
+  }
+  .stage .mchip {
+    max-width: calc(100% - 64px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.72rem;
+  }
+  .stage .tbn {
+    left: 10px;
+    right: 56px;
+    top: 54px;
+  }
+  .mapbox {
+    height: 78vh;
+    min-height: 520px;
+  }
+  .gsb {
+    padding: 8px;
+  }
+  .gsearch {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 560px) {
+  .mapbox > .mtabs button {
+    padding: 7px 12px;
+    font-size: 0.72rem;
+  }
+  .mapbox .legend {
+    font-size: 0.68rem;
+    gap: 8px 10px;
+    max-height: 64px;
+    overflow: auto;
+  }
+  .glm {
+    right: auto;
+    left: 0;
+  }
+}
+/* light theme: readable tabs, buttons, nav, chips */
+[data-theme="light"] .links a:hover,
+[data-theme="light"] .links a.on {
+  color: var(--tx);
+  background: rgba(197, 160, 89, 0.13);
+}
+[data-theme="light"] .chips button.on,
+[data-theme="light"] .chips button:hover {
+  background: linear-gradient(95deg, var(--v), var(--c));
+  color: #000000;
+  border-color: transparent;
+}
+[data-theme="light"] .btn.on,
+[data-theme="light"] .mtabs button.on,
+[data-theme="light"] .cta .p,
+[data-theme="light"] .tools button.on {
+  color: #000000 !important;
+  background: linear-gradient(95deg, var(--v), var(--c));
+}
+[data-theme="light"] .mtabs button {
+  color: var(--mu);
+}
+[data-theme="light"] .mtabs button:not(.on):hover {
+  color: var(--tx);
+  background: rgba(197, 160, 89, 0.1);
+}
+[data-theme="light"] .cta .g {
+  background: rgba(255, 255, 255, 0.7);
+}
+[data-theme="light"] .tools button {
+  color: var(--tx);
+  border-color: rgba(47, 53, 59, 0.3);
+}
+[data-theme="light"] .tools button:hover {
+  background: rgba(197, 160, 89, 0.15);
+}
+[data-theme="light"] .glm,
+[data-theme="light"] .gkey {
+  background: rgba(255, 255, 255, 0.99);
+  box-shadow: 0 16px 40px rgba(47, 53, 59, 0.22);
+}
+[data-theme="light"] .gkey input {
+  background: #fff;
+}
+[data-theme="light"] .glm button {
+  color: var(--mu);
+}
+[data-theme="light"] .glm button.on {
+  color: var(--tx);
+}
+[data-theme="light"] .stage {
+  border-top-color: rgba(47, 53, 59, 0.22);
+}
+[data-theme="light"] .gsl {
+  background: rgba(255, 255, 255, 0.98);
+}
+[data-theme="light"] .legend,
+[data-theme="light"] .legend label {
+  color: var(--mu);
+}
+[data-theme="light"] .lg-card input:not([type="checkbox"]) {
+  background: #fff;
+}
+[data-theme="light"] .at th.sortable:hover {
+  color: var(--tx);
+}
+[data-theme="light"] .eyebrow {
+  background: rgba(47, 53, 59, 0.1);
+  border-color: rgba(47, 53, 59, 0.35);
+}
+[data-theme="light"] .tag {
+  background: rgba(197, 160, 89, 0.1);
+  border-color: rgba(197, 160, 89, 0.25);
+}
+[data-theme="light"] .live {
+  color: var(--mu);
+}
+[data-theme="light"] .kpi .ic {
+  background: rgba(197, 160, 89, 0.12);
+}

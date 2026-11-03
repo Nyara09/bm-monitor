@@ -1,0 +1,65 @@
+{% extends "core/base.html" %} {% block content %}
+<div class="card tw">
+  <form method="get" class="flt mb-3">
+    <label>
+      Search
+      <input
+        type="search"
+        name="search"
+        value="{{ search }}"
+        placeholder="Site or supervisor"
+      />
+    </label>
+    <button class="btn pri" type="submit">Filter</button>
+    <a class="btn" href="{% url 'registry:target_list' %}">Reset</a>
+    {% if can_edit %}<a
+      class="btn pri"
+      href="{% url 'registry:target_create' %}"
+      >Add site target</a
+    >{% endif %}
+  </form>
+  <div class="table-responsive">
+    <table class="text-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Site</th>
+          <th>State</th>
+          <th>MDA</th>
+          <th>Target</th>
+          <th>Registered</th>
+          <th>Opens</th>
+          <th>Closes</th>
+          <th>Supervisor</th>
+          <th>DCAs</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for site in page %}
+        <tr>
+          <td>{{ page.start_index|add:forloop.counter0 }}</td>
+          <td>{{ site.name }}</td>
+          <td>{{ site.state.name }}</td>
+          <td>{{ site.mda.name }}</td>
+          <td>{{ site.target_total }}</td>
+          <td>{{ site.registered_total }}</td>
+          <td>{{ site.opening_date|date:"Y-m-d" }}</td>
+          <td>{{ site.closing_date|date:"Y-m-d" }}</td>
+          <td>{{ site.supervisor_name }}</td>
+          <td>{{ site.dcas_planned }}</td>
+          <td>
+            {% url 'registry:target_edit' site.pk as edit_url %} {% url 'registry:target_delete' site.pk as delete_url %} {% include "core/_row_actions.html" with name=site.name %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="11">No site targets found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include "core/_pagination.html" %}
+</div>
+{% endblock %}

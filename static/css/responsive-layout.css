@@ -1,0 +1,167 @@
+/*
+ * css/responsive-layout.css
+ * Responsive rules: Security x Access matrix font sizes, mobile wizard, table-responsive text-nowrap. Loaded last so it wins.
+ */
+
+body .hm,
+#ana .hm {
+  container-type: inline-size;
+  gap: clamp(2px, 0.8cqw, 4px);
+}
+body .hm .r,
+#ana .hm .r {
+  gap: clamp(2px, 0.8cqw, 4px);
+}
+body .hm .hd,
+#ana .hm .hd {
+  font-size: clamp(0.45rem, 2cqw, 0.66rem);
+  letter-spacing: 0;
+  padding: 2px;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-height: 1.2;
+}
+body .hm .rl,
+#ana .hm .rl {
+  font-size: clamp(0.58rem, 2.6cqw, 0.82rem);
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+}
+body .hm .rl small,
+#ana .hm .rl small {
+  font-size: clamp(0.46rem, 1.9cqw, 0.68rem);
+}
+body .hm .cl,
+#ana .hm .cl {
+  padding: clamp(5px, 1.8cqw, 12px) clamp(1px, 0.6cqw, 6px);
+  border-radius: clamp(5px, 1.4cqw, 9px);
+  min-width: 0;
+  overflow: hidden;
+}
+body .hm .cl b,
+#ana .hm .cl b {
+  font-size: clamp(0.5rem, 2.7cqw, 1.02rem);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+body .hm .cl small,
+#ana .hm .cl small {
+  font-size: clamp(0.4rem, 1.7cqw, 0.66rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+body .hm .cl.tt b,
+#ana .hm .cl.tt b {
+  font-size: clamp(0.5rem, 2.5cqw, 0.86rem);
+}
+body .hm .r > .cl:last-child b,
+#ana .hm .r > .cl:last-child b {
+  white-space: nowrap;
+}
+@container (min-width:480px) {
+  body .hm .cl b,
+  #ana .hm .cl b {
+    font-size: clamp(0.9rem, 3cqw, 1.02rem);
+  }
+  body .hm .cl.tt b,
+  #ana .hm .cl.tt b {
+    font-size: clamp(0.78rem, 2.6cqw, 0.86rem);
+  }
+}
+@container (max-width:380px) {
+  body .hm .cl small,
+  #ana .hm .cl small {
+    display: none;
+  }
+  body .hm .cl,
+  #ana .hm .cl {
+    padding: 8px 1px;
+  }
+}
+
+@media (max-width: 640px) {
+  body .wz-nav {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 0;
+  }
+  body .wz-nav .btn {
+    flex: 1 1 30%;
+    min-width: 0;
+    padding: 7px 8px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  body .wz-nav [data-w="prev"],
+  body .wz-nav [data-w="next"] {
+    flex: 1 1 45%;
+    order: 1;
+    font-size: 0.85rem;
+  }
+  body .wz-nav [data-w="reset"],
+  body .wz-nav [data-w="cancel"],
+  body .wz-nav [data-w="dsave"] {
+    order: 2;
+  }
+  body .wz-nav .wz-sp,
+  body .wz-nav #wdt {
+    display: none;
+  }
+}
+body #wz {
+  max-width: 100%;
+  overflow-x: clip;
+}
+body #wz .flt label,
+body #wz select,
+body #wz input {
+  max-width: 100%;
+}
+body #abody table.text-nowrap {
+  width: auto !important;
+  min-width: 100%;
+  table-layout: auto;
+}
+body #abody table.text-nowrap th,
+body #abody table.text-nowrap td,
+body #abody table.text-nowrap td * {
+  white-space: nowrap !important;
+}
+body #abody .table-responsive {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---- pages/<screen>.html: <main class="pg"> wraps the screen heading and the screen content (#abody) ---- */
+#adm.sn .sn-main > main.pg {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+body main.pg > .pg-head {
+  display: block;
+  padding: 14px 22px 0;
+}
+body main.pg > .pg-head h1 {
+  margin: 0;
+  font-size: 1.35rem !important;
+  line-height: 1.3 !important;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  color: inherit;
+  letter-spacing: normal;
+}
+body main.pg > .pg-head p {
+  margin: 2px 0 0;
+  color: var(--mu);
+  font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+  body main.pg > .pg-head {
+    padding: 10px 12px 0;
+  }
+}

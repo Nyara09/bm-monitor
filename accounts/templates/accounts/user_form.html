@@ -1,0 +1,62 @@
+{% extends "core/base.html" %} {% block content %}
+<form method="post" novalidate>
+  {% csrf_token %}
+  <div class="card tw mb-3">
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <div class="row g-3">
+      {% for field in form.main_fields %}
+      <div class="col-md-6">
+        {% if field.field.widget.input_type == "checkbox" %}
+        <div class="form-check mt-4">
+          {{ field }}
+          <label class="form-check-label" for="{{ field.id_for_label }}"
+            >{{ field.label }}</label
+          >
+        </div>
+        {% else %}
+        <label class="form-label" for="{{ field.id_for_label }}"
+          >{{ field.label }}</label
+        >
+        {{ field }} {% endif %} {% if field.help_text %}<small
+          class="text-muted"
+          >{{ field.help_text }}</small
+        >{% endif %} {% for error in field.errors %}
+        <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="card tw mb-3">
+    <h6>Page permissions (used when "Choose pages by hand" is on)</h6>
+    <div class="table-responsive">
+      <table class="text-nowrap">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for label, view_box, edit_box, delete_box in form.permission_rows %}
+          <tr>
+            <td>{{ label }}</td>
+            <td>{{ view_box }}</td>
+            <td>{{ edit_box }}</td>
+            <td>{{ delete_box }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    <button class="btn pri" type="submit">Save</button>
+    <a class="btn" href="{{ cancel_url }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "core/base.html" %}
+{% block content %}
+  <div class="card tw">
+    <form method="get" class="flt mb-3">
+      <label>
+        Search
+        <input type="search" name="search" value="{{ search }}" placeholder="Item, serial, tag or person" />
+      </label>
+      <label>
+        Category
+        <select name="category">
+          <option value="">All</option>
+          {% for category in categories %}
+            <option value="{{ category.pk }}" {% if category_id == category.pk|stringformat:"s" %}selected{% endif %}>{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>
+        Status
+        <select name="status">
+          <option value="">All</option>
+          {% for value, label in statuses %}
+            <option value="{{ value }}" {% if status == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button class="btn pri" type="submit">Filter</button>
+      <a class="btn" href="{% url 'inventory:item_list' %}">Reset</a>
+      <a class="btn" href="{% url 'inventory:category_list' %}">Categories</a>
+      {% if can_edit %}<a class="btn pri" href="{% url 'inventory:item_create' %}">Add item</a>{% endif %}
+    </form>
+    <div class="table-responsive">
+      <table class="text-nowrap">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Serial number</th>
+            <th>Asset tag</th>
+            <th>Company tag</th>
+            <th>Status</th>
+            <th>Assigned to</th>
+            <th>Received</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in page %}
+            <tr>
+              <td>{{ page.start_index|add:forloop.counter0 }}</td>
+              <td>{{ item.category.name }}</td>
+              <td>{{ item.description }}</td>
+              <td>{{ item.serial_number }}</td>
+              <td>{{ item.asset_tag }}</td>
+              <td>{{ item.company_tag }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ item.assigned_to }}</td>
+              <td>{{ item.date_received|date:"Y-m-d" }}</td>
+              <td>
+                {% url 'inventory:item_edit' item.pk as edit_url %}
+                {% url 'inventory:item_delete' item.pk as delete_url %}
+                {% include "core/_row_actions.html" with name=item.description %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="10">No inventory items found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "core/_pagination.html" %}
+  </div>
+{% endblock %}

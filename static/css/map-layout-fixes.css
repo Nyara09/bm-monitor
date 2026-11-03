@@ -1,0 +1,192 @@
+/*
+ * css/map-layout-fixes.css
+ * Small map layout fixes requested after v7.
+ */
+
+/* Map layout: give the map more room and keep controls clear of the search bar. */
+.mapbox {
+  height: clamp(680px, 88vh, 1100px);
+  min-height: 680px;
+}
+.mapbox > .mtabs {
+  margin: 12px auto 14px;
+  position: relative;
+  z-index: 12;
+}
+.stage {
+  min-height: 0;
+  isolation: isolate;
+}
+#gm {
+  z-index: 8;
+}
+.gsb {
+  padding: 12px 14px 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.gsearch {
+  min-width: min(260px, 100%);
+}
+.gsearch input {
+  min-height: 42px;
+}
+.gkey {
+  padding: 10px 14px;
+}
+#gmsg:empty {
+  display: none;
+}
+.gsl:empty {
+  display: none;
+}
+.cmp {
+  left: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 54px;
+  max-width: calc(100% - 100px);
+  padding: 4px 10px 4px 4px;
+}
+.cmp svg {
+  display: block;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+}
+.cmp b {
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.stage .tools {
+  display: flex;
+  align-items: center;
+}
+.stage .tools button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  height: 38px;
+  line-height: 1;
+  padding: 0;
+}
+.mtaps button {
+  white-space: nowrap;
+}
+[data-theme="light"] .mtabs button {
+  color: #45415f;
+}
+[data-theme="light"] .mtabs button.on {
+  color: #000000;
+  background: #c5a059;
+}
+[data-theme="light"] .chips button {
+  color: #45415f;
+  border-color: #d1d5da;
+}
+[data-theme="light"] .chips button.on,
+[data-theme="light"] .chips button:hover {
+  color: #000000;
+  background: #c5a059;
+}
+[data-theme="light"] .legend span,
+[data-theme="light"] .legend label {
+  color: #232644;
+  background: #f9fafb;
+  border-color: #dce0e3;
+}
+[data-theme="light"] #atabs button.on {
+  color: #2f353b;
+  border-bottom-color: #c5a059;
+}
+[data-theme="light"] .at th {
+  background: #f7f8f8;
+  color: #45415f;
+}
+[data-theme="light"] .gsl,
+[data-theme="light"] .glm,
+[data-theme="light"] .gres {
+  color: #2f353b;
+}
+[data-theme="light"] .gsl button,
+[data-theme="light"] .glm button,
+[data-theme="light"] .gres button {
+  color: #2f353b;
+}
+[data-theme="light"] .gsearch input {
+  color: #2f353b;
+  border-color: #b5b8d7;
+}
+#overview,
+#mapsec,
+#story {
+  scroll-margin-top: 100px;
+}
+.links a.on {
+  color: var(--tx);
+  background: rgba(197, 160, 89, 0.13);
+}
+@media (max-width: 1000px) {
+  .mapbox {
+    height: 82vh;
+    min-height: 620px;
+  }
+  .stage .cmp {
+    max-width: calc(100% - 70px);
+  }
+}
+@media (max-width: 600px) {
+  body {
+    padding: 10px 12px 28px;
+  }
+  .mapbox {
+    height: 78vh;
+    min-height: 570px;
+  }
+  .mapbox > .mtabs {
+    max-width: calc(100% - 20px);
+    gap: 3px;
+  }
+  .mapbox > .mtabs button {
+    padding: 8px 11px;
+    font-size: 0.72rem;
+  }
+  .gsb {
+    padding: 10px;
+    gap: 8px;
+  }
+  .gsearch {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  .gsearch input {
+    min-height: 42px;
+  }
+  .stage .tools {
+    right: 8px;
+    top: 8px;
+    gap: 5px;
+  }
+  .stage .tools button {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+  }
+  .stage .cmp {
+    left: 8px;
+    bottom: 8px;
+    max-width: calc(100% - 55px);
+    min-height: 44px;
+  }
+  .stage .cmp svg {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+  }
+  .stage .cmp b {
+    font-size: 0.68rem;
+    max-width: 180px;
+  }
+}

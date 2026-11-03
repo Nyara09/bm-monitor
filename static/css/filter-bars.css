@@ -1,0 +1,30 @@
+/*
+ * css/filter-bars.css
+ * Filter bars with Reset buttons used above tables.
+ */
+
+.sfbar {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px !important;
+  align-items: end;
+  margin: 12px 0;
+}
+.sfbar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-width: 0;
+}
+.sfbar input,
+.sfbar select,
+.sfbar .ss-btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100%;
+}
+.sfbar .btn {
+  width: 100%;
+}

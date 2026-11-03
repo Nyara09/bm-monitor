@@ -1,0 +1,89 @@
+{% load static %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      {% block title %}{{ page_title }}{% endblock %} · BM Monitor
+    </title>
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("bioreg.theme2") || "light";
+      } catch (error) {}
+    </script>
+    {% include "core/_styles.html" %} {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <div id="adm" class="sn">
+      <aside class="sn-menu">
+        <div class="sn-brand">
+          <span class="logo"></span>
+          <div>
+            <b>{{ company.company_name|default:"BM Monitor" }}</b>
+            <small>Registration control</small>
+          </div>
+        </div>
+        <div id="atabs">
+          {% for group in sidebar_groups %}
+          <span class="ag">{{ group.name }}</span>
+          {% for item in group.items %}
+          <a
+            href="{{ item.url }}"
+            class="{% if item.active %}on{% endif %}"
+            title="{{ item.label }}"
+          >
+            <span class="ti bx {{ item.icon }}"></span>
+            <span class="tl">{{ item.label }}</span>
+            {% if item.count is not None %}<small>{{ item.count }}</small>{% endif %}
+          </a>
+          {% endfor %} {% endfor %}
+        </div>
+      </aside>
+      <div class="sn-bd" id="snbd"></div>
+      <div class="sn-main">
+        <header class="sn-nav">
+          <button
+            class="sn-ib"
+            id="snt"
+            title="Show / hide menu"
+            aria-label="Show or hide the menu"
+          >
+            <span class="bx bx-menu"></span>
+          </button>
+          <b class="sn-t">{{ page_title }}</b>
+          <div class="sn-r">
+            <button
+              class="sn-ib"
+              id="snth"
+              title="Light / dark mode"
+              aria-label="Toggle light or dark mode"
+            >
+              <span class="bx bx-adjust"></span>
+            </button>
+            <span class="am">{{ request.user.get_username }}</span>
+            <form
+              method="post"
+              action="{% url 'accounts:sign_out' %}"
+              class="d-inline"
+            >
+              {% csrf_token %}
+              <button class="btn" type="submit">Log out</button>
+            </form>
+          </div>
+        </header>
+        <div id="abody">
+          {% if messages %} {% for message in messages %}
+          <div class="alert alert-{{ message.tags|default:'info' }} mb-3">
+            {{ message }}
+          </div>
+          {% endfor %} {% endif %} {% block content %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/loading-spinner.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.js' %}"></script>
+    <script src="{% static 'js/screen-shell.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

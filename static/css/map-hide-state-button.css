@@ -1,0 +1,8 @@
+/*
+ * css/map-hide-state-button.css
+ * Button that hides the state panel on the map.
+ */
+
+#sbt {
+  display: none !important;
+}

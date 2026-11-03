@@ -1,0 +1,29 @@
+{% load static %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign in · BM Monitor</title>
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("bioreg.theme2") || "light";
+      } catch (error) {}
+    </script>
+    {% include "core/_styles.html" %}
+  </head>
+  <body>
+    <div class="container" style="max-width: 420px; padding-top: 12vh">
+      <div class="signin-card">
+        <h4 class="mb-3">Sign in</h4>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          {% include "core/_form_fields.html" %}
+          <button class="btn pri mt-3" type="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+    <script src="{% static 'js/loading-spinner.js' %}"></script>
+  </body>
+</html>

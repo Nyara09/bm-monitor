@@ -1,0 +1,64 @@
+/*
+ * css/daily-analysis.css
+ * Daily analysis page: panels, bands, bars and matrix.
+ */
+
+.an-bar {
+  display: inline-block;
+  vertical-align: middle;
+  width: 64px;
+  height: 7px;
+  border-radius: 4px;
+  background: #ebe9f3;
+  overflow: hidden;
+}
+.an-bar i {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+}
+.an-sc {
+  white-space: nowrap;
+}
+.an-sc .an-bar {
+  width: 70px;
+  margin-right: 6px;
+}
+.an-note {
+  font-size: 0.72rem;
+  margin: 6px 0 10px;
+}
+.an-sec .r-t {
+  width: 100%;
+}
+#rep .an-sec .r-dn svg {
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+}
+#rep .an-sec .r-dn svg.an-g {
+  max-width: 230px;
+}
+.an-lg {
+  margin-top: 4px;
+}
+.an-mx td.n {
+  white-space: nowrap;
+}
+.an-sec .r-dn {
+  justify-content: flex-start;
+}
+#anOpen {
+  margin-top: 10px;
+  width: 100%;
+}
+@media print {
+  .an-bar {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .an-bar i {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

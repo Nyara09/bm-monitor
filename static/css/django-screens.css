@@ -1,0 +1,159 @@
+/*
+ * css/django-screens.css
+ * Look of the server-rendered screens (core/base.html): cards, filter bar, tables, buttons, forms.
+ * Everything is scoped to #abody so the JavaScript screens are not affected.
+ */
+
+#abody .card.tw {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+  color: var(--tx);
+}
+
+#abody .flt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+#abody .flt label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--mu);
+}
+
+#abody table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#abody th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mu);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+}
+#abody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+#abody tbody tr:hover {
+  background: rgba(127, 127, 160, 0.1);
+}
+
+#abody .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--tx);
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+#abody .btn:hover {
+  border-color: var(--v);
+}
+#abody .btn.pri {
+  background: var(--v);
+  border-color: var(--v);
+  color: #000;
+}
+#abody .btn.dng {
+  color: var(--r);
+  border-color: var(--r);
+}
+
+#abody .form-control,
+#abody .form-select {
+  background: transparent;
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+#abody .form-label {
+  font-size: 0.8rem;
+  color: var(--mu);
+}
+#abody .pagination .page-link {
+  background: transparent;
+  color: var(--tx);
+  border-color: var(--line);
+}
+#abody .alert {
+  border-radius: 10px;
+}
+#abody .col-md-6 .form-control,
+#abody .col-md-6 .form-select,
+#abody .col-12 .form-control {
+  width: 100%;
+}
+
+/* Sign-in page: same card look as the screens, without the sidebar. */
+.signin-card {
+  max-width: 420px;
+  margin: 0 auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+}
+.signin-card h4 {
+  font-family: var(--ffh);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.signin-card label,
+.signin-card .form-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--mu);
+  margin-bottom: 4px;
+}
+.signin-card input[type="text"],
+.signin-card input[type="password"] {
+  width: 100%;
+  background: transparent;
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 12px;
+  margin-bottom: 12px;
+}
+.signin-card input:focus {
+  outline: 2px solid var(--v);
+  border-color: var(--v);
+}
+.signin-card .btn.pri {
+  width: 100%;
+  background: var(--v);
+  border: 1px solid var(--v);
+  color: #000;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+}
+.signin-card .errorlist,
+.signin-card .invalid-feedback {
+  color: var(--r);
+  font-size: 0.85rem;
+  list-style: none;
+  padding: 0;
+}
+
+.signin-card .row > * {
+  flex: 0 0 100%;
+  max-width: 100%;
+}

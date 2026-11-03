@@ -1,0 +1,50 @@
+/*
+ * css/map-states-counties.css
+ * Map, state tiles, state panel and county list styles.
+ */
+
+#gy .cty {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 0.5;
+}
+#map.zs #gy .cty {
+  stroke: rgba(255, 255, 255, 0.65);
+  stroke-width: 0.7;
+}
+#gy .cty.p1 {
+  fill: rgba(52, 211, 153, 0.13);
+}
+#gy .cty.p2 {
+  fill: rgba(251, 191, 36, 0.13);
+}
+#gy .cty.p3 {
+  fill: rgba(248, 113, 113, 0.16);
+}
+#gy .cty.p0 {
+  fill: rgba(160, 160, 180, 0.1);
+}
+#map #gy .cty:hover,
+#map #gy .cty.on {
+  fill: rgba(94, 231, 255, 0.28);
+  stroke: #c9744a;
+  stroke-width: 1.4;
+}
+#map #gy .cty.off,
+#gcl .cdot.off {
+  display: none;
+}
+#gcl .cdot {
+  fill: #c9744a;
+  stroke: #000000;
+  stroke-width: 0.4;
+  pointer-events: none;
+}
+#gcl .ccl {
+  font-weight: 600;
+  fill: #e9fbff;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #000000;
+  pointer-events: none;
+  opacity: 0;
+}

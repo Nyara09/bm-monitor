@@ -1,0 +1,32 @@
+{% comment %} Page links under a table. Needs: page (a Page), filter_query (see
+core.pagination). {% endcomment %} {% if page.paginator.num_pages > 1 %}
+<nav
+  class="d-flex justify-content-between align-items-center mt-3"
+  aria-label="Pages"
+>
+  <small
+    >Page {{ page.number }} of {{ page.paginator.num_pages }} · {{ page.paginator.count }} rows</small
+  >
+  <ul class="pagination mb-0">
+    {% if page.has_previous %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="?{{ filter_query }}&page={{ page.previous_page_number }}"
+        >Previous</a
+      >
+    </li>
+    {% endif %} {% if page.has_next %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="?{{ filter_query }}&page={{ page.next_page_number }}"
+        >Next</a
+      >
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% else %}
+<small>{{ page.paginator.count }} rows</small>
+{% endif %}

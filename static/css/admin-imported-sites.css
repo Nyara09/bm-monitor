@@ -1,0 +1,16 @@
+/*
+ * css/admin-imported-sites.css
+ * Style for sites imported from Excel in the admin panels.
+ */
+
+.adm-imported-sites {
+  margin-top: 24px;
+}
+.adm-imported-sites h3 {
+  margin: 0 0 6px;
+}
+.adm-imported-sites p {
+  color: var(--mu);
+  font-size: 0.85rem;
+  margin: 0 0 12px;
+}

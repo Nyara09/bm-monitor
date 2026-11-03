@@ -1,0 +1,59 @@
+{% extends "core/base.html" %}
+{% load map_links %}
+{% block content %}
+  <div class="card tw">
+    <form method="get" class="flt mb-3">
+      <label>
+        Search
+        <input type="search" name="search" value="{{ search }}" placeholder="Airport name" />
+      </label>
+      <label>
+        State
+        <select name="state">
+          <option value="">All</option>
+          {% for state in states %}
+            <option value="{{ state.pk }}" {% if state_id == state.pk|stringformat:"s" %}selected{% endif %}>{{ state.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button class="btn pri" type="submit">Filter</button>
+      <a class="btn" href="{% url 'geography:airport_list' %}">Reset</a>
+      {% if can_edit %}<a class="btn pri" href="{% url 'geography:airport_create' %}">Add airport</a>{% map_link "add" kind="airport" as add_map_url %}<a class="btn" href="{{ add_map_url }}"><span class="bx bx-map-pin"></span>Add on map</a>{% endif %}
+    </form>
+    <div class="table-responsive">
+      <table class="text-nowrap">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Airport</th>
+            <th>State</th>
+            <th>County</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in page %}
+            <tr>
+              <td>{{ page.start_index|add:forloop.counter0 }}</td>
+              <td>{{ row.name }}</td>
+              <td>{{ row.state.name }}</td>
+              <td>{{ row.county.name }}</td>
+              <td>{{ row.longitude }}</td>
+              <td>{{ row.latitude }}</td>
+              <td>
+                {% url 'geography:airport_edit' row.pk as edit_url %}
+                {% url 'geography:airport_delete' row.pk as delete_url %}
+                {% map_link "locate" lon=row.longitude lat=row.latitude as map_url %} {% include "core/_row_actions.html" with name=row.name map_label="Show on map" %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="7">No airports found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "core/_pagination.html" %}
+  </div>
+{% endblock %}

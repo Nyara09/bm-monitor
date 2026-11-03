@@ -1,0 +1,37 @@
+/*
+ * css/report-airport-bullet-fix.css
+ * Airport report bullet list fix (final version, overrides the one before).
+ */
+
+/* Keep airport bullets visible in the on-screen report and printed/PDF output. */
+#rep .r-2 .r-ul,
+#rep .r-2 .r-ul.sm {
+  display: block !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0.35rem 0 6px !important;
+  text-align: left !important;
+}
+#rep .r-2 .r-ul > li {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: flex-start !important;
+  gap: 0.45rem !important;
+  list-style: none !important;
+  text-align: left !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+}
+#rep .r-2 .r-ul > li::before {
+  content: "•" !important;
+  display: inline-block !important;
+  flex: 0 0 0.65rem !important;
+  width: 0.65rem !important;
+  color: #352e5a !important;
+  font-weight: 700 !important;
+}
+@media print {
+  #rep .r-2 .r-ul > li::before {
+    color: #161325 !important;
+  }
+}

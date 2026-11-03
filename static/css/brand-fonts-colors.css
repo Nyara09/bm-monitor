@@ -1,0 +1,101 @@
+/*
+ * css/brand-fonts-colors.css
+ * BRAND: fonts Roboto (body, UI) and Montserrat (headings). Colours: black #000000, white #FFFFFF,
+ * Horizon Gold #C5A059, Earth Terracotta #A0522D, Steel Slate #2F353B.
+ */
+
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/_gLVWfON.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/M2yyvW3-.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/5g40GsTe.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/TMdbMr8u.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/D5eYzSrA.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/t7xxUGEf.woff2) format("woff2");
+}
+
+:root {
+  --ff: Roboto, "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --ffh: Montserrat, Roboto, "Segoe UI", system-ui, sans-serif;
+}
+[data-theme="light"] {
+  --bg: #f4f3f0;
+  --panel: rgba(255, 255, 255, 0.85);
+  --line: rgba(47, 53, 59, 0.22);
+  --tx: #000000;
+  --mu: #4a5158;
+  --g: #2e7d57;
+  --a: #8c6a2b;
+  --r: #b3261e;
+  --b: #2f353b;
+  --c: #a0522d;
+  --v: #c5a059;
+  --vt: #a0522d; /* terracotta reads better than gold as text on light pages */
+}
+html body,
+html body button,
+html body input,
+html body select,
+html body textarea,
+html body table,
+html body .btn {
+  font-family: var(--ff);
+}
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+.brand b,
+.brand strong,
+.sn-main header h1,
+#snT,
+.kp b,
+.kpi b,
+.kpi .v,
+.ag .kpi strong,
+.wz-c b,
+.modal-title,
+.ag h2,
+.ag h3,
+.card > h3,
+.rdlg h3,
+.lgpage h1,
+.lgpage h2 {
+  font-family: var(--ffh) !important;
+  font-weight: 600;
+}

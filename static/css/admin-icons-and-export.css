@@ -1,0 +1,117 @@
+/*
+ * css/admin-icons-and-export.css
+ * Icons and export buttons on the admin screens.
+ */
+
+/* Keep administrator location-pin icon visible in both themes. */
+#adm .ib.loc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#adm .ib.loc-icon svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Keep administrator action icons visible in both themes. */
+#adm .ib {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 30px;
+  line-height: 1;
+  vertical-align: middle;
+}
+#adm .ib svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 1;
+}
+:root[data-theme="light"] #adm .ib svg {
+  stroke: currentColor;
+}
+#adm .ab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+#adm .ab .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  white-space: nowrap;
+}
+#adm .ah {
+  align-items: flex-start;
+}
+#adm .at {
+  flex: 0 1 250px;
+  min-width: 180px;
+}
+#adm .aq {
+  flex: 1 1 220px;
+}
+#adm .ab {
+  flex: 1 1 100%;
+  justify-content: flex-start;
+}
+#adm #aex {
+  border-color: var(--c);
+  color: var(--c);
+}
+:root[data-theme="light"] #adm #aex {
+  background: #e9f8fb;
+  color: #075e72;
+  border-color: #9ddbe6;
+}
+#adm #aim {
+  display: none;
+}
+#adm .at th.ac,
+#adm .at td.ac {
+  min-width: 92px;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  #adm .ah {
+    padding: 12px;
+    gap: 10px;
+  }
+  #adm .at {
+    flex: 1 1 100%;
+  }
+  #adm .aq {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  #adm .ab {
+    gap: 6px;
+  }
+  #adm .ab .btn {
+    flex: 1 1 auto;
+  }
+  #abody {
+    padding: 10px 12px 30px;
+  }
+  #adm .ib {
+    min-width: 34px;
+    min-height: 34px;
+  }
+}

@@ -1,0 +1,23 @@
+/*
+ * css/deployment-plan-grid.css
+ * Deployment plan grid layout.
+ */
+
+.dg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 10px 0;
+}
+@media (max-width: 767px) {
+  .dg-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.dg-grid .dg .flt {
+  flex-wrap: wrap;
+}
+.dg-grid .dg .flt > label {
+  flex: 1 1 160px;
+  min-width: 0;
+}

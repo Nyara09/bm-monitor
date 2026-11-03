@@ -1,0 +1,651 @@
+/*
+ * css/bootstrap-theme-overrides.css
+ * Bootstrap 5 overrides so it matches the BioReg look.
+ */
+
+/* ===== Bootstrap 5 buttons, themed with the system colours ===== */
+.btn {
+  --bs-btn-font-size: 0.78rem;
+  --bs-btn-padding-y: 0.4rem;
+  --bs-btn-padding-x: 0.85rem;
+  --bs-btn-border-radius: 0.6rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-line-height: 1.35;
+  --bs-btn-disabled-opacity: 0.5;
+  font-family: inherit;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.btn-sm {
+  --bs-btn-padding-y: 0.2rem;
+  --bs-btn-padding-x: 0.5rem;
+  --bs-btn-font-size: 0.72rem;
+  --bs-btn-border-radius: 0.45rem;
+}
+.btn .bx {
+  font-size: 1.15em;
+  line-height: 1;
+}
+.btn-primary {
+  --bs-btn-color: #000000;
+  --bs-btn-bg: var(--v);
+  --bs-btn-border-color: var(--v);
+  --bs-btn-hover-color: #000000;
+  --bs-btn-hover-bg: color-mix(in srgb, var(--v) 82%, #fff);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--v) 82%, #fff);
+  --bs-btn-active-color: #000000;
+  --bs-btn-active-bg: color-mix(in srgb, var(--v) 70%, #fff);
+  --bs-btn-active-border-color: var(--v);
+  --bs-btn-disabled-color: #000000;
+  --bs-btn-disabled-bg: var(--v);
+  --bs-btn-disabled-border-color: var(--v);
+  --bs-btn-focus-shadow-rgb: 167, 139, 250;
+}
+[data-theme="light"] .btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-hover-bg: color-mix(in srgb, var(--v) 85%, #000);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--v) 85%, #000);
+  --bs-btn-active-bg: color-mix(in srgb, var(--v) 72%, #000);
+}
+.btn-outline-secondary {
+  --bs-btn-color: var(--tx);
+  --bs-btn-border-color: var(--line);
+  --bs-btn-hover-color: var(--tx);
+  --bs-btn-hover-bg: rgba(197, 160, 89, 0.2);
+  --bs-btn-hover-border-color: var(--v);
+  --bs-btn-active-color: var(--tx);
+  --bs-btn-active-bg: rgba(197, 160, 89, 0.32);
+  --bs-btn-active-border-color: var(--v);
+  --bs-btn-disabled-color: var(--mu);
+  --bs-btn-disabled-border-color: var(--line);
+  --bs-btn-focus-shadow-rgb: 167, 139, 250;
+  background-color: rgba(197, 160, 89, 0.08);
+}
+.btn-outline-danger {
+  --bs-btn-color: var(--r);
+  --bs-btn-border-color: color-mix(in srgb, var(--r) 55%, transparent);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--r);
+  --bs-btn-hover-border-color: var(--r);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--r);
+  --bs-btn-active-border-color: var(--r);
+  --bs-btn-disabled-color: var(--r);
+  --bs-btn-focus-shadow-rgb: 255, 107, 139;
+}
+.btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--r);
+  --bs-btn-border-color: var(--r);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: color-mix(in srgb, var(--r) 85%, #000);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--r) 85%, #000);
+  --bs-btn-active-bg: color-mix(in srgb, var(--r) 72%, #000);
+  --bs-btn-active-border-color: var(--r);
+  --bs-btn-focus-shadow-rgb: 255, 107, 139;
+}
+.btn.on {
+  background: var(--v) !important;
+  border-color: var(--v) !important;
+  color: #000000 !important;
+}
+[data-theme="light"] .btn.on {
+  color: #fff !important;
+}
+.btn.lg-go {
+  --bs-btn-padding-y: 0.7rem;
+  --bs-btn-font-size: 0.92rem;
+  width: 100%;
+}
+.sn-ib,
+.thm,
+#thm {
+  --bs-btn-padding-x: 0;
+  --bs-btn-padding-y: 0;
+  --bs-btn-border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.sn-ib .bx {
+  font-size: 1.35rem;
+}
+.thm .bx,
+#thm .bx {
+  font-size: 1.3rem;
+}
+.ib {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 0.35rem;
+}
+.ib .bx {
+  font-size: 1.15rem;
+}
+.ib.loc-icon {
+  --bs-btn-color: var(--c);
+}
+.tools button .bx {
+  font-size: 1.15rem;
+}
+.pi {
+  font-size: 1rem;
+  vertical-align: -2px;
+}
+.kpi .ic .bx {
+  font-size: 1.2rem;
+}
+.pf-i .bx,
+.top .links a .bx {
+  font-size: 1.15rem;
+}
+.gres button span .bx {
+  font-size: 1.1rem;
+}
+.at th .bx,
+.dt-container .bx {
+  vertical-align: -2px;
+}
+/* ===== Bootstrap 5 modals ===== */
+.modal {
+  --bs-modal-bg: var(--bg);
+  --bs-modal-color: var(--tx);
+  --bs-modal-border-color: var(--line);
+  --bs-modal-border-radius: 16px;
+  --bs-modal-inner-border-radius: 15px;
+  --bs-modal-header-border-color: var(--line);
+  --bs-modal-footer-border-color: var(--line);
+  --bs-modal-width: 560px;
+  --bs-modal-padding: 1.1rem;
+  --bs-modal-zindex: 1055;
+  --bs-modal-box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+}
+.modal.rdlg,
+.modal.pf-wrap {
+  background: none !important;
+  backdrop-filter: none !important;
+  display: none;
+  place-items: initial;
+}
+.modal.rdlg.show {
+  display: block;
+}
+.modal-sm {
+  --bs-modal-width: 400px;
+}
+.modal-backdrop {
+  --bs-backdrop-bg: #07060c;
+}
+.modal-backdrop.show {
+  --bs-backdrop-opacity: 0.7;
+}
+.modal-header {
+  padding: 0.85rem 1.1rem;
+}
+.modal-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+}
+.modal-body {
+  font-size: 0.85rem;
+}
+.modal-body > p:first-child {
+  margin-top: 0;
+}
+.modal-footer {
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.modal-footer > * {
+  margin: 0;
+}
+.modal-footer .sp,
+.modal-footer span[style*="flex:1"] {
+  flex: 1;
+}
+.modal-content {
+  max-height: 100%;
+}
+.btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+  opacity: 0.7;
+}
+.btn-close:hover {
+  opacity: 1;
+}
+[data-theme="light"] .btn-close {
+  filter: none;
+}
+.modal-body .row2,
+.modal-body .pre2 {
+  margin-top: 0;
+}
+#prof .pf-bx .modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tooltip {
+  --bs-tooltip-bg: var(--tx);
+  --bs-tooltip-color: var(--bg);
+  --bs-tooltip-font-size: 0.72rem;
+  --bs-tooltip-zindex: 2000;
+}
+/* ===== date range picker ===== */
+.drp-box {
+  position: relative;
+  display: block;
+}
+.drp-box > .bx {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: var(--mu);
+  pointer-events: none;
+}
+.drp-box input {
+  padding-left: 30px !important;
+  min-width: 230px;
+  cursor: pointer;
+}
+input.drp-in {
+  cursor: pointer;
+  min-width: 140px;
+}
+.daterangepicker {
+  background: var(--bg) !important;
+  color: var(--tx);
+  border: 1px solid var(--line) !important;
+  font-family: inherit;
+  font-size: 0.78rem;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  border-radius: 14px;
+  z-index: 3000;
+}
+.daterangepicker:before {
+  border-bottom-color: var(--line) !important;
+}
+.daterangepicker:after {
+  border-bottom-color: var(--bg) !important;
+}
+.daterangepicker .calendar-table {
+  background: transparent !important;
+  border: 0 !important;
+}
+.daterangepicker .calendar-table th,
+.daterangepicker .calendar-table td {
+  color: var(--tx);
+  border-radius: 8px !important;
+  min-width: 30px;
+  width: 30px;
+  height: 28px;
+  line-height: 28px;
+}
+.daterangepicker .calendar-table th {
+  color: var(--mu);
+}
+.daterangepicker td.available:hover,
+.daterangepicker th.available:hover {
+  background: rgba(197, 160, 89, 0.28) !important;
+  color: var(--tx);
+}
+.daterangepicker td.off,
+.daterangepicker td.off.in-range,
+.daterangepicker td.off.start-date,
+.daterangepicker td.off.end-date {
+  background: transparent !important;
+  color: var(--mu) !important;
+  opacity: 0.5;
+}
+.daterangepicker td.disabled,
+.daterangepicker option.disabled {
+  color: var(--mu) !important;
+  opacity: 0.35;
+  text-decoration: none;
+}
+.daterangepicker td.in-range {
+  background: rgba(197, 160, 89, 0.2) !important;
+  color: var(--tx) !important;
+}
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+  background: var(--v) !important;
+  color: #000000 !important;
+}
+[data-theme="light"] .daterangepicker td.active,
+[data-theme="light"] .daterangepicker td.active:hover {
+  color: #fff !important;
+}
+.daterangepicker .calendar-table .next span,
+.daterangepicker .calendar-table .prev span {
+  border-color: var(--tx) !important;
+}
+.daterangepicker select.monthselect,
+.daterangepicker select.yearselect,
+.daterangepicker select.hourselect,
+.daterangepicker select.minuteselect {
+  background: rgba(127, 127, 160, 0.14);
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 0.74rem;
+  height: auto;
+  width: auto;
+}
+.daterangepicker select option {
+  color: #111;
+}
+.daterangepicker .ranges li {
+  color: var(--tx);
+  border-radius: 8px;
+  margin: 2px 6px;
+  padding: 7px 10px;
+  font-size: 0.78rem;
+}
+.daterangepicker .ranges li:hover {
+  background: rgba(197, 160, 89, 0.2);
+}
+.daterangepicker .ranges li.active {
+  background: var(--v);
+  color: #000000;
+}
+[data-theme="light"] .daterangepicker .ranges li.active {
+  color: #fff;
+}
+.daterangepicker .drp-buttons {
+  border-top: 1px solid var(--line) !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.daterangepicker .drp-buttons .drp-selected {
+  color: var(--mu);
+  margin-right: auto;
+  font-size: 0.72rem;
+}
+.daterangepicker .drp-buttons .btn {
+  margin: 0;
+  font-weight: 500;
+}
+.daterangepicker.show-calendar .ranges {
+  margin-top: 6px;
+}
+/* ===== DataTables ===== */
+.dt-container {
+  color: var(--tx);
+  font-size: 0.78rem;
+}
+.dt-container .dt-layout-row {
+  margin: 0.5rem 0;
+  gap: 0.6rem;
+  align-items: center;
+}
+.dt-container .dt-search input,
+.dt-container .dt-length select {
+  background: rgba(127, 127, 160, 0.12);
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  padding: 0.3rem 0.6rem;
+  font: inherit;
+  font-size: 0.76rem;
+}
+.dt-container .dt-search input {
+  min-width: 200px;
+}
+.dt-container .dt-length select option {
+  color: #111;
+}
+.dt-container .dt-search label,
+.dt-container .dt-length label {
+  color: var(--mu);
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.74rem;
+}
+.dt-container .dt-paging .dt-paging-button {
+  color: var(--tx) !important;
+  border: 1px solid transparent !important;
+  border-radius: 0.5rem !important;
+  padding: 0.25rem 0.65rem !important;
+  background: none !important;
+  font-size: 0.76rem;
+}
+.dt-container .dt-paging .dt-paging-button.current,
+.dt-container .dt-paging .dt-paging-button.current:hover {
+  background: var(--v) !important;
+  color: #000000 !important;
+  border-color: var(--v) !important;
+}
+[data-theme="light"] .dt-container .dt-paging .dt-paging-button.current {
+  color: #fff !important;
+}
+.dt-container .dt-paging .dt-paging-button:hover:not(.current):not(.disabled) {
+  background: rgba(197, 160, 89, 0.22) !important;
+  border-color: var(--line) !important;
+  color: var(--tx) !important;
+}
+.dt-container .dt-paging .dt-paging-button.disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.dt-container .dt-info {
+  color: var(--mu);
+}
+table.dataTable {
+  width: 100% !important;
+  color: var(--tx);
+}
+table.dataTable > thead > tr > th,
+table.dataTable > thead > tr > td {
+  border-bottom: 1px solid var(--line) !important;
+  padding: 0.55rem 0.5rem !important;
+  font-size: 0.68rem;
+}
+table.dataTable > tbody > tr {
+  background: transparent !important;
+}
+table.dataTable > tbody > tr > td {
+  border-bottom: 1px solid rgba(197, 160, 89, 0.12) !important;
+  padding: 0.45rem 0.5rem;
+}
+table.dataTable.hover > tbody > tr:hover > *,
+table.dataTable > tbody > tr:hover > * {
+  box-shadow: inset 0 0 0 9999px rgba(197, 160, 89, 0.09) !important;
+}
+table.dataTable > tfoot > tr > * {
+  border-top: 1px solid var(--line) !important;
+  padding: 0.55rem 0.5rem !important;
+  background: rgba(143, 162, 255, 0.16);
+  font-weight: 800;
+  color: var(--tx);
+}
+table.dataTable th.dt-type-numeric,
+table.dataTable td.dt-type-numeric {
+  text-align: right;
+}
+table.dataTable thead > tr > th.dt-orderable-asc:hover,
+table.dataTable thead > tr > th.dt-orderable-desc:hover {
+  outline: none;
+  background: rgba(197, 160, 89, 0.12);
+}
+table.dataTable thead .dt-column-order:before {
+  content: "\ea32" !important;
+  font-family: boxicons !important;
+  font-size: 0.85rem !important;
+  line-height: 0.6 !important;
+}
+table.dataTable thead .dt-column-order:after {
+  content: "\ea29" !important;
+  font-family: boxicons !important;
+  font-size: 0.85rem !important;
+  line-height: 0.6 !important;
+}
+@media (max-width: 640px) {
+  .dt-container .dt-search input {
+    min-width: 120px;
+  }
+}
+
+select.ss-h {
+  display: none !important;
+}
+.ss-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: auto;
+  min-width: 180px;
+  max-width: 100%;
+  min-width: 0;
+  text-align: left;
+  cursor: pointer;
+  padding: 7px 9px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+.ss-btn span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ss-btn.ss-ph span {
+  color: var(--mu);
+}
+.ss-btn i {
+  font-size: 1.1rem;
+  color: var(--mu);
+}
+.ss-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+[data-theme="light"] .ss-btn {
+  background: #fff;
+}
+#adm .ss-btn {
+  padding: 6px 8px;
+  font-size: 0.78rem;
+  border-radius: 8px;
+}
+.flt .ss-btn,
+.fr .ss-btn {
+  margin-top: 3px;
+}
+.aadd .ss-btn,
+.fr .flt label .ss-btn {
+  min-width: 150px;
+}
+.ss-panel {
+  position: fixed;
+  z-index: 1200;
+  background: var(--panel, #fff);
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  padding: 8px;
+  max-height: min(340px, 50vh);
+  display: flex;
+  flex-direction: column;
+}
+.ss-panel[hidden] {
+  display: none;
+}
+[data-theme="light"] .ss-panel {
+  background: #fff;
+}
+.ss-q {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(127, 127, 160, 0.08);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+}
+.ss-l {
+  overflow: auto;
+  flex: 1;
+}
+.ss-o {
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.ss-o.hl,
+.ss-o:hover {
+  background: rgba(197, 160, 89, 0.16);
+}
+.ss-o.on {
+  font-weight: 700;
+  color: var(--vt, var(--v));
+}
+.ss-o.ss-ph {
+  color: var(--mu);
+}
+.ss-none {
+  padding: 12px;
+  text-align: center;
+  color: var(--mu);
+  font-size: 0.8rem;
+}
+.aq .ss-btn,
+.sn-nav .ss-btn {
+  width: 230px;
+  flex: none;
+}
+.at td .ss-btn {
+  min-width: 120px;
+}
+label > .ss-btn,
+.rdlg .ss-btn,
+.pop .ss-btn,
+.modal .ss-btn,
+.flt label .ss-btn {
+  display: flex;
+  width: 100%;
+}
+#ana .ss-btn {
+  width: auto;
+  min-width: 220px;
+  max-width: 320px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+.wz-sc .flt .ss-btn,
+.fr .flt .ss-btn {
+  max-width: 100%;
+}
+table.dataTable th.dt-type-date,
+table.dataTable td.dt-type-date,
+table.dataTable th.dt-right.dt-type-date {
+  text-align: left !important;
+}

@@ -1,0 +1,73 @@
+{% extends "core/base.html" %} {% block content %}
+<div class="card tw">
+  <form method="get" class="flt mb-3">
+    <label>
+      Search
+      <input
+        type="search"
+        name="search"
+        value="{{ search }}"
+        placeholder="Username, name or phone"
+      />
+    </label>
+    <label>
+      Role
+      <select name="role">
+        <option value="">All</option>
+        {% for value, label in roles %}
+        <option
+          value="{{ value }}"
+          {% if role == value %}selected{% endif %}
+        >
+          {{ label }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+    <button class="btn pri" type="submit">Filter</button>
+    <a class="btn" href="{% url 'accounts:user_list' %}">Reset</a>
+    {% if can_edit %}<a class="btn pri" href="{% url 'accounts:user_create' %}"
+      >Add user</a
+    >{% endif %}
+  </form>
+  <div class="table-responsive">
+    <table class="text-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Pages</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for person in page %}
+        <tr>
+          <td>{{ page.start_index|add:forloop.counter0 }}</td>
+          <td>{{ person.username }}</td>
+          <td>{{ person.get_full_name }}</td>
+          <td>{{ person.profile.phone }}</td>
+          <td>{{ person.profile.get_role_display }}</td>
+          <td>{{ person.profile.status }}</td>
+          <td>
+            {% if person.profile.page_permissions.exists %}Chosen by hand{% else %}Role default{% endif %}
+          </td>
+          <td>
+            {% url 'accounts:user_edit' person.pk as edit_url %} {% url 'accounts:user_delete' person.pk as delete_url %} {% include "core/_row_actions.html" with name=person.username %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="8">No users found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include "core/_pagination.html" %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{# Buttons for one table row. Needs: edit_url, delete_url, name, can_edit, can_delete. Optional: map_url, map_label (a link to the map page, see {% map_link %}). #}
+<div class="d-flex gap-2 align-items-center">
+  {% if map_url %}<a class="btn" href="{{ map_url }}"><span class="bx bx-map-pin"></span>{{ map_label|default:"Show on map" }}</a>{% endif %}
+  {% if can_edit %}<a class="btn" href="{{ edit_url }}">Edit</a>{% endif %}
+  {% if can_delete %}
+    <form method="post" action="{{ delete_url }}" class="m-0" data-confirm="Delete {{ name }}?">
+      {% csrf_token %}
+      <button class="btn dng" type="submit">Delete</button>
+    </form>
+  {% endif %}
+</div>

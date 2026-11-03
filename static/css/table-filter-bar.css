@@ -1,0 +1,15 @@
+/*
+ * css/table-filter-bar.css
+ * Search and filter bar that sits on top of tables.
+ */
+
+.tfbar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px !important;
+  margin-bottom: 14px;
+}
+:root:not([data-theme="light"]) .tfbar {
+  background: var(--panel);
+}

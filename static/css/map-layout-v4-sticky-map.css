@@ -1,0 +1,172 @@
+/*
+ * css/map-layout-v4-sticky-map.css
+ * Map layout version 4: sticky map beside the side panel.
+ */
+
+.main {
+  align-items: start;
+}
+.mapbox {
+  position: sticky;
+  top: 76px;
+  height: calc(100vh - 92px);
+  min-height: 540px;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.mapbox > svg#map {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+.mapbox > .legend {
+  flex: none;
+  padding: 8px 14px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 1000px) {
+  .mapbox {
+    position: relative;
+    top: 0;
+    height: 74vh;
+    min-height: 440px;
+  }
+}
+.tools button {
+  position: relative;
+}
+.tools button.lock::after {
+  content: "\eb4a";
+  font-family: boxicons;
+  font-weight: 400;
+  position: absolute;
+  right: 1px;
+  bottom: -1px;
+  font-size: 0.55rem;
+}
+#nAdm.lock::after {
+  content: " \eb4a";
+  font-family: boxicons;
+  font-weight: 400;
+  font-size: 0.7em;
+}
+#login,
+#acct {
+  z-index: 140;
+}
+#amod {
+  z-index: 130;
+}
+.lg-e {
+  color: var(--r);
+  font-size: 0.78rem;
+  min-height: 1.2em;
+  margin: 2px 0 4px;
+}
+.rdlg textarea {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  padding: 7px 9px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.82rem;
+  resize: vertical;
+}
+[data-theme="light"] .rdlg textarea {
+  background: #fff;
+}
+#amod .box {
+  width: min(640px, 95vw);
+}
+#amod h3 {
+  margin-bottom: 12px;
+}
+.mg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 14px;
+}
+.mg .w2 {
+  grid-column: 1/-1;
+}
+.mg .ck {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tx);
+  font-size: 0.82rem;
+  margin: 2px 0 8px;
+}
+#amod .pm,
+#login .pm {
+  color: var(--mu);
+  font-size: 0.76rem;
+  min-height: 1.2em;
+  margin: 4px 0;
+}
+.row2.sp {
+  align-items: center;
+  flex-wrap: wrap;
+}
+.row2 .btn {
+  margin: 0;
+}
+.at td.n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.at tr.clk {
+  cursor: pointer;
+}
+.at td.tr {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.at td.mono {
+  font-variant-numeric: tabular-nums;
+  color: var(--mu);
+}
+.at td {
+  padding: 7px 9px;
+}
+.pp {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pp.p0 {
+  background: rgba(127, 139, 150, 0.25);
+  color: var(--mu);
+}
+.pp.p1,
+.pp.st-active {
+  background: rgba(62, 240, 176, 0.18);
+  color: var(--g);
+}
+.pp.p2,
+.pp.st-planned {
+  background: rgba(255, 200, 97, 0.2);
+  color: var(--a);
+}
+.pp.p3 {
+  background: rgba(255, 107, 139, 0.2);
+  color: var(--r);
+}
+.pp.st-closed {
+  background: rgba(127, 139, 150, 0.25);
+  color: var(--mu);
+}
+#adm .ab {
+  align-items: center;
+}

@@ -1,0 +1,409 @@
+/*
+ * css/admin-shell-theme.css
+ * Admin shell theme (cards, topbar, tabs).
+ */
+
+.av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(127, 127, 160, 0.25);
+  font-size: 0.72rem;
+  font-weight: 600;
+  flex: none;
+}
+.bx {
+  vertical-align: -2px;
+}
+.sn-ib {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.top .links a .bx {
+  margin-right: 5px;
+  font-size: 1.05rem;
+}
+body.sb-off .main {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+body.sb-off .main > .side {
+  display: none;
+}
+/* profile dropdown */
+.pf-slot {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+.pf-wrap {
+  position: relative;
+}
+.pf-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  border: 0;
+  color: var(--tx);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 12px;
+  font: inherit;
+}
+.pf-btn:hover {
+  background: rgba(197, 160, 89, 0.14);
+}
+.pf-n {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+.pf-n b {
+  font-size: 0.8rem;
+}
+.pf-n small {
+  font-size: 0.66rem;
+  color: var(--mu);
+}
+.pf-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 240px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  display: none;
+  z-index: 200;
+}
+.pf-menu.show {
+  display: block;
+}
+.pf-h {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+}
+.pf-h small {
+  display: block;
+  color: var(--mu);
+  font-size: 0.7rem;
+}
+.pf-sep {
+  height: 1px;
+  background: var(--line);
+  margin: 6px 0;
+}
+.pf-i {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  background: none;
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+.pf-i:hover {
+  background: rgba(197, 160, 89, 0.14);
+}
+.pf-i.dg {
+  color: var(--r);
+}
+.pf-i .bx {
+  font-size: 1.2rem;
+}
+.sn-in {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (max-width: 640px) {
+  .pf-n,
+  .pf-btn > .bx {
+    display: none;
+  }
+  .top .live {
+    display: none;
+  }
+}
+/* Sneat-style admin shell */
+#adm.sn:not([hidden]) {
+  display: flex !important;
+  flex-direction: row;
+  background: var(--bg);
+}
+#adm.sn .sn-menu {
+  width: 260px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  transition: margin 0.25s;
+}
+#adm.sn.menu-off .sn-menu {
+  margin-left: -260px;
+}
+#adm.sn .sn-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 20px 10px;
+}
+#adm.sn .sn-brand b {
+  display: block;
+  font-size: 1.1rem;
+}
+#adm.sn .sn-brand small {
+  color: var(--mu);
+  font-size: 0.7rem;
+}
+#adm.sn #atabs {
+  display: block !important;
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 0;
+  padding: 4px 14px 20px;
+  background: transparent;
+}
+#adm.sn #atabs .ag {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mu);
+  opacity: 0.85;
+  padding: 16px 10px 6px;
+}
+#adm.sn #atabs button {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 2px 0;
+  padding: 9px 12px;
+  border: 0 !important;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mu);
+  font-size: 0.9rem;
+  text-align: left;
+}
+#adm.sn #atabs a {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 2px 0;
+  padding: 9px 12px;
+  border: 0 !important;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mu);
+  font-size: 0.9rem;
+  text-align: left;
+}
+#adm.sn #atabs button .ti {
+  display: inline-block !important;
+  width: auto;
+  font-size: 1.3rem;
+  flex: none;
+}
+#adm.sn #atabs a .ti {
+  display: inline-block !important;
+  width: auto;
+  font-size: 1.3rem;
+  flex: none;
+}
+#adm.sn #atabs button:hover {
+  background: rgba(197, 160, 89, 0.14);
+  color: var(--tx);
+}
+#adm.sn #atabs a:hover {
+  background: rgba(197, 160, 89, 0.14);
+  color: var(--tx);
+}
+#adm.sn #atabs button.on,
+[data-theme="light"] #adm.sn #atabs button.on {
+  background: linear-gradient(72deg, var(--v), color-mix(in srgb, var(--v) 62%, transparent));
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--v) 50%, transparent);
+}
+#adm.sn #atabs a.on,
+[data-theme="light"] #adm.sn #atabs a.on {
+  background: linear-gradient(72deg, var(--v), color-mix(in srgb, var(--v) 62%, transparent));
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--v) 50%, transparent);
+}
+#adm.sn #atabs button.on i {
+  background: rgba(0, 0, 0, 0.12);
+  color: #000000;
+}
+#adm.sn #atabs a.on i {
+  background: rgba(0, 0, 0, 0.12);
+  color: #000000;
+}
+#adm.sn .sn-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+#adm.sn .sn-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 22px 0;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+#adm.sn .sn-t {
+  font-size: 1rem;
+  white-space: nowrap;
+}
+#adm.sn .aq {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  max-width: 520px;
+}
+#adm.sn .aq .bx {
+  font-size: 1.2rem;
+  color: var(--mu);
+}
+#adm.sn .aq input {
+  flex: 1;
+}
+#adm.sn .sn-r {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+#adm.sn .sn-r .btn {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+#adm.sn #abody {
+  grid-column: auto;
+  grid-row: auto;
+  flex: 1;
+  min-height: 0;
+}
+#adm.sn .sn-bd,
+#adm.sn .sn-leg {
+  display: none !important;
+}
+@media (max-width: 991px) {
+  #adm.sn .sn-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 6;
+    margin-left: 0 !important;
+    transform: translateX(-103%);
+    transition: transform 0.25s;
+  }
+  #adm.sn.menu-open .sn-menu {
+    transform: none;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+  #adm.sn.menu-open .sn-bd {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  #adm.sn .sn-nav {
+    margin: 10px 12px 0;
+    flex-wrap: wrap;
+  }
+  #adm.sn .sn-t {
+    display: none;
+  }
+  #adm.sn .aq {
+    order: 5;
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
+/* profile modal */
+#prof[hidden] {
+  display: none;
+}
+
+.pf-bx label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--mu);
+}
+.pf-bx input {
+  background: rgba(127, 127, 160, 0.12);
+  color: var(--tx);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 0.85rem;
+}
+.pf-bx input:disabled {
+  opacity: 0.6;
+}
+.pf-bx .pm {
+  color: var(--r);
+  font-size: 0.76rem;
+  min-height: 1.1em;
+}
+.pf-ft {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.pf-ft .btn {
+  margin: 0;
+}
+.pf-bx .av {
+  width: 56px;
+  height: 56px;
+  font-size: 1rem;
+}
+
+/* Sidebar items of the Django pages are links: no underline */
+#adm.sn #atabs a {
+  text-decoration: none;
+}

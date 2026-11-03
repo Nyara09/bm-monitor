@@ -1,0 +1,54 @@
+/*
+ * css/hero-title-and-icons.css
+ * Page title banner and icon sizing.
+ */
+
+/* UI polish: prevent descenders clipping in the hero title and use crisp control icons */
+.hero h1 {
+  display: block;
+  overflow: visible;
+  line-height: 1.22;
+  padding: 0.04em 0 0.12em;
+  margin-top: 0.16em;
+  margin-bottom: 0.28em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.hero {
+  overflow: visible;
+}
+#thm {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  line-height: 1;
+}
+#thm svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.ib {
+  display: inline-grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  line-height: 1;
+}
+.ib svg,
+.tools button svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tools button {
+  display: inline-grid;
+  place-items: center;
+}

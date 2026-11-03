@@ -1,0 +1,167 @@
+/*
+ * css/map-road-lines.css
+ * Road line visibility and colours on the map.
+ */
+
+/* Road styling refinement: lighter, dashed lines at overview and state level */
+#map .rd.t-main:not(.un),
+#map #grd .rd.t-main:not(.un) {
+  stroke-width: 0.85 !important;
+  stroke-dasharray: 5 4 !important;
+  opacity: 0.68 !important;
+}
+#map .rd.t-secondary {
+  stroke-width: 0.65 !important;
+  stroke-dasharray: 3 4 !important;
+  opacity: 0.52 !important;
+}
+#map .rd.t-track {
+  stroke-width: 0.55 !important;
+  stroke-dasharray: 2 4 !important;
+  opacity: 0.42 !important;
+}
+#map .rdh-c {
+  stroke-width: 1.7 !important;
+  opacity: 0.38 !important;
+}
+#map .rdh {
+  stroke-width: 1.15 !important;
+  stroke-dasharray: 5 4 !important;
+  opacity: 0.82 !important;
+  filter: none !important;
+}
+#map .rdh.t-secondary {
+  stroke-dasharray: 3 4 !important;
+}
+#map .rdh.t-track {
+  stroke-dasharray: 2 4 !important;
+}
+#map.zs .rd.t-main:not(.un) {
+  stroke-width: 0.8 !important;
+  opacity: 0.58 !important;
+}
+#map.zs .rdh-c {
+  stroke-width: 1.5 !important;
+  opacity: 0.32 !important;
+}
+#map.zs .rdh {
+  stroke-width: 1.05 !important;
+}
+[data-theme="light"] #map .rdh-c {
+  stroke: #fff !important;
+  opacity: 0.7 !important;
+}
+#story .sm svg .sl {
+  pointer-events: none;
+}
+/* Responsive state-explorer alignment fix */
+#story .stick {
+  min-width: 0;
+  align-items: stretch;
+}
+#dv,
+#dv > div,
+.fg,
+.fg div {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+#dv > div:first-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+#dv > div:first-child h2 {
+  flex: 1 1 180px;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+#dv > div:first-child .badge {
+  float: none;
+  flex: 0 0 auto;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.fg {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  align-items: stretch;
+}
+.fg div {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.fg b {
+  display: block;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+@media (max-width: 700px) {
+  #story .stick {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 12px;
+    min-height: 0;
+    padding: 0;
+  }
+  #story .stick > * {
+    width: 100%;
+    min-width: 0;
+  }
+  #story .sc {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+  }
+  #story .sm {
+    min-height: 300px;
+    width: 100%;
+    min-width: 0;
+  }
+  #story .sm svg {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+  #dv {
+    width: 100%;
+    min-width: 0;
+  }
+  .fg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .fg div {
+    padding: 9px;
+    min-width: 0;
+  }
+}
+
+/* analytics: no empty space inside cards */
+.ag.kg > .ak {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ag.c2 > .panel {
+  align-self: start;
+}
+.ag.c3 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+.ag.c3 > .panel:nth-child(3) {
+  grid-column: 1/-1;
+}
+@media (max-width: 900px) {
+  .ag.c3 {
+    grid-template-columns: 1fr;
+  }
+}

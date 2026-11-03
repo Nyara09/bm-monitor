@@ -1,0 +1,70 @@
+{% extends "core/base.html" %} {% block content %}
+<div class="card tw">
+  <form method="get" class="flt mb-3">
+    <label>
+      Search
+      <input
+        type="search"
+        name="search"
+        value="{{ search }}"
+        placeholder="Name or phone"
+      />
+    </label>
+    <label>
+      Status
+      <select name="status">
+        <option value="">All</option>
+        <option value="Active" {% if status == "Active" %}selected{% endif %}>
+          Active
+        </option>
+        <option
+          value="Inactive"
+          {% if status == "Inactive" %}selected{% endif %}
+        >
+          Inactive
+        </option>
+      </select>
+    </label>
+    <button class="btn pri" type="submit">Filter</button>
+    <a class="btn" href="{% url 'registry:collector_list' %}">Reset</a>
+    {% if can_edit %}<a
+      class="btn pri"
+      href="{% url 'registry:collector_create' %}"
+      >Add data collector</a
+    >{% endif %}
+  </form>
+  <div class="table-responsive">
+    <table class="text-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Status</th>
+          <th>Sites</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for collector in page %}
+        <tr>
+          <td>{{ page.start_index|add:forloop.counter0 }}</td>
+          <td>{{ collector.name }}</td>
+          <td>{{ collector.phone }}</td>
+          <td>{{ collector.status }}</td>
+          <td>{{ collector.sites.count }}</td>
+          <td>
+            {% url 'registry:collector_edit' collector.pk as edit_url %} {% url 'registry:collector_delete' collector.pk as delete_url %} {% include "core/_row_actions.html" with name=collector.name %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6">No data collectors found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include "core/_pagination.html" %}
+</div>
+{% endblock %}

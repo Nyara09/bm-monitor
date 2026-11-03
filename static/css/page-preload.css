@@ -1,0 +1,16 @@
+/*
+ * css/page-preload.css
+ * Hides the page until styles are loaded (avoids flash).
+ */
+
+html.gp body > *:not(#login):not(#gate) {
+  visibility: hidden !important;
+}
+html.gp {
+  background: #f4f3f0;
+}
+@media (prefers-color-scheme: dark) {
+  html.gp:not([data-theme="light"]) {
+    background: #000000;
+  }
+}

@@ -1,0 +1,878 @@
+{% load static %}<!doctype html>
+<!--
+  BM Monitor - South Sudan biometric registration dashboard
+  Folder map:
+    css/            app styles. Files have NO numbers: the LOAD ORDER is the order of the <link> tags below
+    css/vendor/     Boxicons, Bootstrap 5, DataTables, Date range picker, ApexCharts (third-party)
+    js/             app scripts, also loaded in the order of the <script> tags below
+    js/vendor/      jQuery, Moment, Date range picker, DataTables, Bootstrap 5, ApexCharts (third-party)
+    fonts/          icon and brand font files
+    screens/        one Django template per view (served by pages/views.py)
+  Keep the order of the <link> and <script> tags below: later files override earlier ones.
+-->
+<html lang="en">
+  <head>
+    <script>
+      window.URLS = {
+        map: "{{ urls.map }}",
+        admin: "{{ urls.admin }}",
+        screens: "{{ urls.screens }}",
+        signIn: "{{ urls.sign_in }}",
+        signOut: "{{ urls.sign_out }}",
+        session: "{{ urls.session }}",
+        data: "{{ urls.data }}",
+        dataSave: "{{ urls.data_save }}",
+      };
+    </script>
+    <script src="{% static 'js/django-storage.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/loading-spinner.css' %}" />
+    <script src="{% static 'js/loading-spinner.js' %}"></script>
+    <script>
+      window.PAGE = "admin";
+      window.SCREEN = "admin";
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Administrator · BM Monitor</title>
+    <link rel="stylesheet" href="{% static 'css/base-theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/map-states-counties.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/map-controls-and-panels.css' %}" id="addon-css" />
+    <link rel="stylesheet" href="{% static 'css/map-performance.css' %}" id="perf-css" />
+    <link rel="stylesheet" href="{% static 'css/map-layout-v4-sticky-map.css' %}" id="v4-css" />
+    <link rel="stylesheet" href="{% static 'css/map-google-tab-v5.css' %}" id="v5-css" />
+    <link rel="stylesheet" href="{% static 'css/map-layout-v7-full-height.css' %}" id="v7-css" />
+
+    <link rel="stylesheet" href="{% static 'css/map-layout-fixes.css' %}" id="user-fixes" />
+    <link rel="stylesheet" href="{% static 'css/map-road-lines.css' %}" id="road-visibility-fixes" />
+    <link rel="stylesheet" href="{% static 'css/hero-title-and-icons.css' %}" id="ui-icon-title-fixes" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/admin-icons-and-export.css' %}"
+      id="admin-visibility-export-fix"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/report-preview-buttons.css' %}" id="report-review-fixes" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/report-airport-bullets.css' %}"
+      id="airport-report-bullets-fix"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/report-airport-bullet-fix.css' %}"
+      id="airport-report-bullet-fix"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/admin-imported-sites.css' %}" id="admin-imported-sites-style" />
+    <link
+      rel="stylesheet"
+      href="{% static 'css/state-explorer-registration-sites.css' %}"
+      id="merged-registration-sites-css"
+    />
+    <link rel="stylesheet" href="{% static 'css/daily-analysis.css' %}" id="analysis-css" />
+    <link rel="stylesheet" href="{% static 'css/report-print-tables.css' %}" id="report-pdf-alignment" />
+    <link rel="stylesheet" href="{% static 'css/analytics-page.css' %}" id="analytics-page-css" />
+    <link rel="stylesheet" href="{% static 'css/field-reports-forms.css' %}" id="fr-css" />
+    <link rel="stylesheet" href="{% static 'css/admin-sidebar-layout.css' %}" id="admin-sidebar-css" />
+
+    <link rel="stylesheet" href="{% static 'css/admin-shell-theme.css' %}" id="sneat-css" />
+    <link rel="stylesheet" href="{% static 'css/vendor/boxicons.css' %}" id="v-boxicons" />
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.css' %}" id="v-bootstrap" />
+    <link rel="stylesheet" href="{% static 'css/vendor/datatables.css' %}" id="v-datatables" />
+    <link rel="stylesheet" href="{% static 'css/vendor/daterangepicker.css' %}" id="v-daterangepicker" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme-overrides.css' %}" id="ui-overrides" />
+    <link rel="stylesheet" href="{% static 'css/map-hide-state-button.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/map-cards-and-admin-panels.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/filter-bars.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/table-filter-bar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/page-preload.css' %}" />
+    <script src="{% static 'js/preload-guard.js' %}"></script>
+    <script src="{% static 'js/template-engine.js' %}"></script>
+    <!-- ===== ADMIN PAGE ONLY ===== -->
+    <link rel="stylesheet" href="{% static 'css/admin-page.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/left-navigation.css' %}" id="leftnav" />
+    <link rel="stylesheet" href="{% static 'css/deployment-plan-grid.css' %}" id="dpgcss" />
+    <link rel="stylesheet" href="{% static 'css/notifications.css' %}" id="ntfcss" />
+    <link rel="stylesheet" href="{% static 'css/analytics-embedded.css' %}" id="anlcss" />
+    <link rel="stylesheet" href="{% static 'css/brand-fonts-colors.css' %}" id="brand" />
+    <link rel="stylesheet" href="{% static 'css/hide-top-nav-links.css' %}" id="navhide" />
+    <link rel="stylesheet" href="{% static 'css/responsive-layout.css' %}" id="hm-responsive" />
+  </head>
+  <body class="page-admin">
+    <nav class="top">
+      <button
+        class="sn-ib"
+        id="sbt"
+        title="Show / hide sidebar"
+        aria-label="Show or hide the sidebar"
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+      >
+        <span class="bx bx-menu"></span>
+      </button>
+      <div class="brand">
+        <span class="logo"></span>
+        <div>
+          <b>BM Monitor</b>
+          <small>South Sudan · National registration</small>
+        </div>
+      </div>
+      <div class="links">
+        <a href="#overview">
+          <span class="bx bx-home-alt"></span>
+          Overview
+        </a>
+        <a href="#mapsec">
+          <span class="bx bx-map-alt"></span>
+          Map
+        </a>
+        <a href="#story">
+          <span class="bx bx-compass"></span>
+          State explorer
+        </a>
+        <a href="#" id="nAna">
+          <span class="bx bx-line-chart"></span>
+          Analytics
+        </a>
+        <a href="#" id="nAdm">
+          <span class="bx bx-cog"></span>
+          Admin
+        </a>
+        <a href="#" id="nFr">
+          <span class="bx bx-calendar-check"></span>
+          Daily Reports
+        </a>
+        <a href="#" id="nRep">
+          <span class="bx bx-file"></span>
+          Report
+        </a>
+        <a href="#switch" id="nSw">
+          <span class="bx bx-grid-alt"></span>
+          Switch view
+        </a>
+        <a href="#" id="nbell">
+          <span class="bx bx-bell"></span>
+          Notifications
+          <b class="nbadge" hidden></b>
+        </a>
+      </div>
+      <button class="thm" id="thm" aria-label="Toggle dark / light mode"></button>
+      <div class="live">
+        <b>
+          <span class="dot"></span>
+          LIVE MONITORING
+        </b>
+        <br />
+        Last Updated:
+        <span id="clock">--:--:--</span>
+      </div>
+      <div class="pf-slot"></div>
+    </nav>
+    <section class="hero" id="overview" style="scroll-margin-top: 90px">
+      <span class="eyebrow">
+        <span class="dot" style="margin: 0"></span>
+        Deployment &amp; security overview
+      </span>
+      <h1>National biometric registration, at a glance.</h1>
+      <span id="hN" hidden>106</span>
+    </section>
+    <section class="kpis" id="kpis" style="scroll-margin-top: 90px"></section>
+    <div class="main" id="mapsec" style="scroll-margin-top: 90px">
+      <div class="panel mapbox">
+        <div class="mtabs">
+          <button class="on" data-m="s">Schematic</button>
+          <button data-m="g">Google Maps · online</button>
+        </div>
+        <div class="stage">
+          <div id="gm" hidden>
+            <div class="gsb">
+              <div class="gsearch">
+                <input
+                  id="gq"
+                  placeholder="Search counties, towns, cities, airports or registration sites…"
+                  autocomplete="off"
+                />
+                <div id="gres" class="gres" hidden></div>
+              </div>
+              <div class="glwrap">
+                <button class="btn" id="glb" style="margin: 0">
+                  Layers
+                  <i class="bx bx-chevron-down"></i>
+                </button>
+                <div class="glm" id="glay" hidden></div>
+              </div>
+              <button
+                class="btn pri"
+                id="gadd"
+                style="margin: 0"
+                title="Pin a registration site on the Google map"
+              >
+                + Pin a site
+              </button>
+              <button class="btn" id="gkt" style="margin: 0" title="Google Maps API key">
+                Key
+              </button>
+            </div>
+            <div class="gkey" id="gkey" hidden>
+              <input
+                id="gki"
+                type="password"
+                placeholder="Paste your Google Maps API key"
+                autocomplete="off"
+              />
+              <button class="btn pri" id="gkb" style="margin: 0">Load Google Maps</button>
+              <small>
+                Enable
+                <b>Maps JavaScript API</b>
+                and
+                <b>Places API (New)</b>
+                for the key and restrict it to this site. With a key every county and registration
+                site is pinned at once.
+              </small>
+            </div>
+            <div id="gmsg"></div>
+            <div id="gcan" hidden></div>
+            <div class="gsl" id="gsl" hidden></div>
+            <iframe
+              id="gif"
+              title="Google Maps"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div class="mchip" id="mchip">Hover a state · click to zoom</div>
+          <div class="tools">
+            <button id="zi" title="Zoom in" aria-label="Zoom in"><i class="bx bx-plus"></i></button>
+            <button id="zo" title="Zoom out" aria-label="Zoom out">
+              <i class="bx bx-minus"></i>
+            </button>
+            <button id="zr" title="Reset view" aria-label="Reset view">
+              <i class="bx bx-fullscreen"></i>
+            </button>
+            <hr />
+            <button id="tEd" title="Edit mode: drag points, rename, delete">
+              <i class="bx bx-edit-alt"></i>
+            </button>
+            <button id="tRd" title="Compass: draw a road between cities, towns or counties">
+              <i class="bx bx-compass"></i>
+            </button>
+            <button id="tAd" title="Add city, town, airport, registration site or county">
+              <i class="bx bx-map-pin"></i>
+            </button>
+            <button id="tAm" title="Administrator page"><i class="bx bx-cog"></i></button>
+            <button id="tRp" title="Report / print to PDF"><i class="bx bx-printer"></i></button>
+          </div>
+          <div class="tbn" id="tbn" hidden></div>
+          <div class="amenu" id="amenu" hidden>
+            <button data-t="c">City</button>
+            <button data-t="t">Town</button>
+            <button data-t="a">Airport</button>
+            <button data-t="s">Registration site</button>
+            <button data-t="cty">County</button>
+          </div>
+          <div class="cmp" id="cmp">
+            <svg viewBox="-25 -25 50 50">
+              <circle r="22" fill="none" stroke="currentColor" opacity=".35" />
+              <g id="cmn">
+                <polygon points="0,-19 4,0 -4,0" fill="#e5594f" />
+                <polygon points="0,19 4,0 -4,0" fill="#aab2ba" />
+              </g>
+              <text y="-9" x="0" font-size="0"></text>
+            </svg>
+            <b id="cmb">N</b>
+          </div>
+          <svg id="map" viewBox="0 0 600 470" role="img" aria-label="Map of South Sudan">
+            <defs>
+              <radialGradient id="rg">
+                <stop offset="0" stop-color="#7f8b96" stop-opacity=".18" />
+                <stop offset="1" stop-color="#7f8b96" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="sg" x1="0" x2="1">
+                <stop offset="0" stop-color="#7f8b96" stop-opacity="0" />
+                <stop offset="1" stop-color="#7f8b96" stop-opacity=".35" />
+              </linearGradient>
+            </defs>
+            <circle cx="300" cy="250" r="230" fill="url(#rg)" stroke="rgba(197, 160, 89,.22)" />
+            <circle cx="300" cy="250" r="150" fill="none" stroke="rgba(197, 160, 89,.12)" />
+            <path class="sweep" d="M300 250 L530 250 A230 230 0 0 0 480 108Z" fill="url(#sg)" />
+            <g id="regs"></g>
+            <g id="gm"></g>
+            <g id="gy"></g>
+            <g id="grh"></g>
+            <g id="gcl"></g>
+            <g id="marks"></g>
+            <g id="gt"></g>
+            <g id="gc"></g>
+            <g id="ga"></g>
+            <g id="gs"></g>
+            <g id="gfl"></g>
+            <g id="ged"></g>
+          </svg>
+        </div>
+        <div class="legend">
+          <span>
+            <i style="background: var(--g)"></i>
+            Phase 1 · Low risk
+          </span>
+          <span>
+            <i style="background: var(--a)"></i>
+            Phase 2 · Risk
+          </span>
+          <span>
+            <i style="background: var(--r)"></i>
+            Phase 3 · High risk
+          </span>
+          <span>
+            <i style="background: none; border: 1px dashed var(--b)"></i>
+            Administrative area
+          </span>
+          <label>
+            <input type="checkbox" checked data-g="gc" />
+            Cities
+          </label>
+          <label>
+            <input type="checkbox" data-g="gt" />
+            Towns (zoom in)
+          </label>
+          <label>
+            <input type="checkbox" checked data-g="ga" />
+            Airports
+          </label>
+          <label>
+            <input type="checkbox" checked data-g="gy" />
+            Counties
+          </label>
+          <span>Scroll to zoom · drag to pan · double-click to reset</span>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="panel">
+          <h2>
+            States &amp; administrative areas
+            <span style="color: var(--mu); font-weight: 400; font-size: 0.75rem">
+              by govt employees
+            </span>
+          </h2>
+          <div class="chips" id="chips">
+            <button class="on" data-f="all">All</button>
+            <button data-f="state">States</button>
+            <button data-f="admin">Admin areas</button>
+            <button data-f="high">High risk</button>
+          </div>
+          <div id="list"></div>
+        </div>
+        <div class="panel">
+          <h2>
+            <i class="bx bxs-magic-wand"></i>
+            AI Insights
+          </h2>
+          <div id="ai" style="font-size: 0.8rem; line-height: 1.55; color: var(--mu)"></div>
+          <button class="btn" id="anOpen" hidden></button>
+        </div>
+        <div class="panel">
+          <h2>
+            Counties
+            <span id="cn" style="color: var(--mu); font-weight: 400"></span>
+          </h2>
+          <button class="btn" id="bk" hidden>
+            <i class="bx bx-left-arrow-alt"></i>
+            All states
+          </button>
+          <button class="btn" id="dd2" hidden>
+            Deep dive
+            <i class="bx bx-down-arrow-alt"></i>
+          </button>
+          <button class="btn pri" id="rpt">Report / PDF</button>
+          <label class="btn">
+            Load county boundaries (GeoJSON)
+            <input type="file" id="gj" accept=".json,.geojson" hidden />
+          </label>
+          <div id="cl"></div>
+        </div>
+        <div class="panel">
+          <h2 id="dn">Region Details</h2>
+          <div class="det" id="dd"></div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="story" tabindex="-1" style="scroll-margin-top: 90px; outline: none">
+      <div class="sechead">
+        <span class="eyebrow">State explorer</span>
+        <h2 class="s2">Dig deeper into each state</h2>
+        <p>
+          Choose a state below, click it on the map, or use the left and right arrow keys.
+          Everything here works offline.
+        </p>
+      </div>
+      <div class="chips sbar" id="sbar"></div>
+      <div class="stick">
+        <div class="panel sc">
+          <div class="navb">
+            <button class="btn" id="sp1">
+              <i class="bx bx-left-arrow-alt"></i>
+              Prev
+            </button>
+            <button class="btn" id="sn1">
+              Next
+              <i class="bx bx-right-arrow-alt"></i>
+            </button>
+          </div>
+          <h2 id="sn"></h2>
+          <div class="big" id="sp"></div>
+          <div class="k" id="sk"></div>
+        </div>
+        <div class="sm">
+          <svg
+            id="smap"
+            viewBox="0 0 600 470"
+            role="img"
+            aria-label="Zoomable map of South Sudan"
+          ></svg>
+        </div>
+        <div class="panel" id="dv"></div>
+      </div>
+    </section>
+    <footer class="foot">
+      <span>
+        Data: Distribution of States and Administrative Areas by Regions. Map: UN Geospatial No.
+        4450 (Jul 2020). Boundaries are indicative and do not imply official endorsement.
+      </span>
+      <span>Rivers, roads and outlines traced from the UN map.</span>
+    </footer>
+    <div id="pop" class="rdlg" hidden></div>
+    <div id="toast" class="toast"></div>
+    <div id="adm" class="sn" hidden>
+      <aside class="sn-menu">
+        <div class="sn-brand">
+          <span class="logo"></span>
+          <div>
+            <b>BM Monitor</b>
+            <small>Registration control</small>
+          </div>
+        </div>
+        <div id="atabs"></div>
+      </aside>
+      <div class="sn-bd" id="snbd"></div>
+      <div class="sn-main">
+        <header class="sn-nav">
+          <button
+            class="sn-ib"
+            id="snt"
+            title="Show / hide menu"
+            aria-label="Show or hide the menu"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+          >
+            <span class="bx bx-menu"></span>
+          </button>
+          <b class="sn-t" id="snT">Administrator</b>
+          <div class="aq">
+            <span class="bx bx-search"></span>
+            <input id="aqs" placeholder="Search by name…" />
+            <select id="aqst"></select>
+          </div>
+          <div class="sn-r">
+            <button class="sn-ib" id="snbell" title="Notifications" aria-label="Notifications">
+              <span class="bx bx-bell"></span>
+              <b class="nbadge" hidden></b>
+            </button>
+            <button
+              class="sn-ib"
+              id="snth"
+              title="Light / dark mode"
+              aria-label="Toggle light or dark mode"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+            >
+              <span class="bx bx-adjust"></span>
+            </button>
+            <button class="btn pri" id="acl">
+              <span class="bx bx-x"></span>
+              Close
+            </button>
+            <div class="pf-slot"></div>
+          </div>
+        </header>
+        <main class="pg" data-screen="admin">
+          <header class="pg-head">
+            <h1>Administrator</h1>
+            <p>Administrator home: the daily dashboard and every admin tab.</p>
+          </header>
+          <div id="abody"></div>
+
+          <!--
+          SCREEN MARKUP. Each block below is the HTML of one part of this screen (card, filter bar, table, row).
+          Edit the HTML freely. {% templatetag openvariable %}s1: ...}} marks where data is inserted: keep the marker (the text after the colon is only a hint).
+          The code for each marker is in the JavaScript file, next to the same template name.
+        -->
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="actCtl.1">
+<div class="card fcard actc"><div class="flt"><b style="align-self:center">Activity through the year</b><label>Year<select id="ay">{% templatetag openvariable %}s1: optionsHtml( ys.map(…)}}</select></label><label>Colour the calendar by<select id="acm">{% templatetag openvariable %}s2: optionsHtml( [ ['n', 'Registratio…}}</select></label></div></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="avatarHtml.2">
+<span class="av">{% templatetag openvariable %}s1: escapeHtml( (n || '?') .trim() .s…}}</span>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="calendarSvg.1">
+<svg viewBox="0 0 {% templatetag openvariable %}s1: W}} {% templatetag openvariable %}s2: H}}" class="cal" role="img" aria-label="Activity calendar {% templatetag openvariable %}s3: y}}">
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="calendarSvg.2">
+<text x="{% templatetag openvariable %}s1: left + wk * step}}" y="12" class="cal-t">{% templatetag openvariable %}s2: MONTH_NAMES[m]}}</text>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="calendarSvg.3">
+<text x="0" y="{% templatetag openvariable %}s1: top + i * 2 * step + cell - 2}}" class="cal-t">{% templatetag openvariable %}s2: t}}</text>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="calendarSvg.4">
+<rect x="{% templatetag openvariable %}s1: left + wk * step}}" y="{% templatetag openvariable %}s2: top + dow * step}}" width="{% templatetag openvariable %}s3: cell}}" height="{% templatetag openvariable %}s4: cell}}" rx="3" style="fill:{% templatetag openvariable %}s5: fut ? 'var(--cal0)' : col(val)}}"{% templatetag openvariable %}s6: fut ? ' opacity='.35'' : ''}}><title>{% templatetag openvariable %}s7: k}}{% templatetag openvariable %}s8: v ? ': ' + formatNumber(v.n) + '…}}</title></rect>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="edB.1">
+<button type="button" class="btn btn-sm btn-outline-primary" data-fa="eds" data-i="{% templatetag openvariable %}s1: escapeHtml(d.id)}}"><i class="bx bx-edit"></i> Edit</button>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="edB.2">
+<button type="button" class="btn btn-sm btn-outline-primary" data-fa="eus" data-i="{% templatetag openvariable %}s1: escapeHtml(u.id)}}"><i class="bx bx-edit"></i> Edit</button>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="exportButtonsHtml.1">
+<span class="xpb"><button type="button" class="btn btn-sm btn-outline-success" data-fa="xp" data-kd="{% templatetag openvariable %}s1: kd}}" data-t="{% templatetag openvariable %}s2: t}}" data-f="xls"><i class="bx bxs-file-export"></i> Excel</button><button type="button" class="btn btn-sm btn-outline-secondary" data-fa="xp" data-kd="{% templatetag openvariable %}s3: kd}}" data-t="{% templatetag openvariable %}s4: t}}" data-f="csv"><i class="bx bx-export"></i> CSV</button><button type="button" class="btn btn-sm btn-outline-secondary" data-fa="xp" data-kd="{% templatetag openvariable %}s5: kd}}" data-t="{% templatetag openvariable %}s6: t}}" data-f="print"><i class="bx bx-printer"></i> Print</button></span>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="filt.3">
+<label>Supervisor<select id="fp">{% templatetag openvariable %}s1: optionsHtml(supList(), pageFilter…}}</select></label>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="filt.4">
+<div class="card fcard"><div class="flt"><label>Date range<span class="drp-box"><i class="bx bx-calendar"></i><input id="fdr" type="text" readonly autocomplete="off" {% templatetag openvariable %}s1: dis}}></span></label><button type="button" class="btn" data-fa="frst" title="Reset the dates to the last 30 days" {% templatetag openvariable %}s2: dis}}><i class="bx bx-reset"></i> Reset dates</button><button type="button" class="btn" data-fa="fall" title="Clear the dates and every filter"><i class="bx bx-reset"></i> Reset filters</button>{% templatetag openvariable %}s3: pe ? …}}<label>State<select id="fs">{% templatetag openvariable %}s4: optionsHtml(states(), pageFilters…}}</select></label><label>County<select id="fc">{% templatetag openvariable %}s5: optionsHtml(pageFilters.state ? c…}}</select></label><label>Registration site<select id="fi">{% templatetag openvariable %}s6: optionsHtml( (pageFilters.state ?…}}</select></label>{% templatetag openvariable %}s7: ADM.tab == 'dcar' ? …}}<button class="btn" data-fa="csv">Export CSV</button></div>{% templatetag openvariable %}s8: open ? '' : ' /div '}}
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="hbRows.1">
+<div class="hb"><span title="{% templatetag openvariable %}s1: escapeHtml(x[0])}}">{% templatetag openvariable %}s2: escapeHtml(x[0])}}</span><u><i style="width:{% templatetag openvariable %}s3: (x[1] / m) * 100}}%"></i></u><b>{% templatetag openvariable %}s4: formatNumber(x[1])}}</b></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="horizontalBars.1">
+<div class="hb" title="{% templatetag openvariable %}s1: escapeHtml(x[0])}}: {% templatetag openvariable %}s2: formatNumber(x[1])}}"><span>{% templatetag openvariable %}s3: escapeHtml(x[0])}}</span><u><i style="width:{% templatetag openvariable %}s4: (x[1] / m) * 100}}%"></i></u><b>{% templatetag openvariable %}s5: formatNumber(x[1])}}</b></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="kp.4">
+<div><small>{% templatetag openvariable %}s1: l}}</small><b>{% templatetag openvariable %}s2: v}}</b></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="oc.1">
+<div class="pfoc" data-tip="{% templatetag openvariable %}s1: l}}: {% templatetag openvariable %}s2: formatNumber(v)}} transaction{% templatetag openvariable %}s3: v == 1 ? '' : 's'}} ({% templatetag openvariable %}s4: T ? Math.round((v / T) * 100) : 0}}% of {% templatetag openvariable %}s5: formatNumber(T)}})"><b>{% templatetag openvariable %}s6: formatNumber(v)}}</b><i style="height:{% templatetag openvariable %}s7: Math.max(3, (v / om) * 100)}}%;background:{% templatetag openvariable %}s8: c}}"></i><span>{% templatetag openvariable %}s9: l}}</span></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="optionsHtml.1">
+<option value="">{% templatetag openvariable %}s1: all}}</option>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="optionsHtml.2">
+<option value="{% templatetag openvariable %}s1: escapeHtml(k)}}"{% templatetag openvariable %}s2: k == v ? ' selected' : ''}}>{% templatetag openvariable %}s3: escapeHtml(l)}}</option>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="registrationStatusCard.1">
+<div class="card pgcard"><h3>Pending &amp; failed transactions <small style="color:var(--mu)">(selected dates)</small></h3><div class="pfk">{% templatetag openvariable %}s1: t('Complete', ok, '#198754', 'bx-…}}{% templatetag openvariable %}s2: t('Pending', pe, '#e0a100', 'bx-t…}}{% templatetag openvariable %}s3: t('Failed', fa, '#dc3545', 'bx-x-…}}</div><div class="pfov">{% templatetag openvariable %}s4: oc('Complete', ok, '#198754')}}{% templatetag openvariable %}s5: oc('Pending', pe, '#e0a100')}}{% templatetag openvariable %}s6: oc('Failed', fa, '#dc3545')}}</div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderActivityView.1">
+<td>{% templatetag openvariable %}s1: avatarHtml(dpp(e.name).photo, e.n…}}</td>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderActivityView.2">
+<td>{% templatetag openvariable %}s1: edB(e)}}</td>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderActivityView.3">
+<tr{% templatetag openvariable %}s1: e.key == sel ? ' class='sel'' : ''}}><td>{% templatetag openvariable %}s2: i + 1}}</td>{% templatetag openvariable %}s3: kind == 'dca' ? …}}<td><button type="button" class="btn btn-sm btn-link p-0" data-fa="asel" data-kd="{% templatetag openvariable %}s4: kind}}" data-k="{% templatetag openvariable %}s5: escapeHtml(e.key)}}">{% templatetag openvariable %}s6: escapeHtml(e.name)}}</button></td><td class="n">{% templatetag openvariable %}s7: ds.length}}</td><td class="n">{% templatetag openvariable %}s8: Math.round((ds.length / yd) * 100)}}%</td><td class="n">{% templatetag openvariable %}s9: reportingStreak(ds)}}</td><td class="n">{% templatetag openvariable %}s10: e.rep}}</td><td class="n">{% templatetag openvariable %}s11: e.sites.size}}</td><td class="n"><b>{% templatetag openvariable %}s12: formatNumber(e.n)}}</b></td><td class="n">{% templatetag openvariable %}s13: formatNumber(Math.round(e.n / Mat…}}</td><td>{% templatetag openvariable %}s14: e.first}}</td><td>{% templatetag openvariable %}s15: e.last}}</td>{% templatetag openvariable %}s16: edC ? …}}</tr>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderActivityView.4">
+<table><thead><tr><th>#</th>{% templatetag openvariable %}s1: kind == 'dca' ? ' th /th ' : ''}}<th>{% templatetag openvariable %}s2: nm}}</th><th class="n">Active days</th><th class="n">{% templatetag openvariable %}s3: rg ? '% of selected days' : '% of…}}</th><th class="n">Longest streak</th><th class="n">Reports</th><th class="n">Sites</th><th class="n">Registered</th><th class="n">Avg / active day</th><th>First</th><th>Last</th>{% templatetag openvariable %}s4: edC ? ' th /th ' : ''}}</tr></thead><tbody>{% templatetag openvariable %}s5: L0.map(…)}}</tbody></table>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderActivityView.5">
+<i style="background:var(--cal{% templatetag openvariable %}s1: i}})"></i>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderActivityView.6">
+<div class="card actc"><div class="wz-sh"><i class="bx {% templatetag openvariable %}s1: IC}}"></i><div><b>{% templatetag openvariable %}s2: nm}} report · {% templatetag openvariable %}s3: activityFilters.yr}}</b><small>{% templatetag openvariable %}s4: sel ? escapeHtml((L0.find((e) = e…}} — how actively {% templatetag openvariable %}s5: PL}} worked through the year</small></div><label class="actsel"><select id="a{% templatetag openvariable %}s6: sup: 'sp', dca: 'dc', mda: 'md',…}}">{% templatetag openvariable %}s7: optionsHtml([['', 'All ' + PL + '…}}</select></label></div>
+<div class="kp">{% templatetag openvariable %}s8: kp('Active days', dk.length + ' /…}}{% templatetag openvariable %}s9: kp('Longest streak', reportingStr…}}{% templatetag openvariable %}s10: kp('Reports', formatNumber(REP))}}{% templatetag openvariable %}s11: kp('Registered', formatNumber(N))}}{% templatetag openvariable %}s12: kp('Avg per active day', formatNu…}}{% templatetag openvariable %}s13: kp(sel ? 'Best day' : 'Active ' +…}}</div>
+<h4 class="acth">Activity calendar — whole of {% templatetag openvariable %}s14: activityFilters.yr}}{% templatetag openvariable %}s15: rg ? ' (the dates you chose apply…}}</h4><div class="calw">{% templatetag openvariable %}s16: calendarSvg(cdays, activityFilter…}}<div class="cal-lg">Less {% templatetag openvariable %}s17: [0, 1, 2, 3, 4].map(…)}} More <span>· hover a square for the day's numbers</span></div></div>
+<div class="g2"><div class="card"><h3>Registrations per month</h3>{% templatetag openvariable %}s18: monthBarsHtml(mon, 'bar1')}}</div><div class="card"><h3>Active days per month</h3>{% templatetag openvariable %}s19: monthBarsHtml(amon, 'bar2')}}</div>
+<div class="card"><h3>{% templatetag openvariable %}s20: sup ? 'Registrations by superviso…}}</h3>{% templatetag openvariable %}s21: horizontalBars( L0.map(…)}}</div><div class="card"><h3>Days active by {% templatetag openvariable %}s22: SG}}</h3>{% templatetag openvariable %}s23: horizontalBars( L0.map(…)}}</div></div>
+<div class="card tw"><h3 style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center"><span>{% templatetag openvariable %}s24: nm}} activity table <small style="color:var(--mu)">(click a name to see their calendar)</small></span>{% templatetag openvariable %}s25: exportButtonsHtml(kind, 'act')}}</h3>{% templatetag openvariable %}s26: tbl}}</div></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="renderDashboardView.1">
+<div class="kp"><div><small>Registered (selected dates)</small><b>{% templatetag openvariable %}s1: formatNumber(sum)}}</b></div><div><small>Reports submitted</small><b>{% templatetag openvariable %}s2: formatNumber(R.length)}}</b></div><div><small>Sites reporting</small><b>{% templatetag openvariable %}s3: Object.keys(sc).length}}</b></div><div><small>DCAs active</small><b>{% templatetag openvariable %}s4: Object.keys(dc).length}}</b></div><div><small>Avg per reporting day</small><b>{% templatetag openvariable %}s5: formatNumber(dk.length ? Math.rou…}}</b></div><div><small>Target progress (all time)</small><b>{% templatetag openvariable %}s6: tg ? Math.round((dn / tg) * 100)…}}%</b></div></div>
+<div class="g2"><div class="card"><h3 style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">{% templatetag openvariable %}s7: dashboardPeriod.wk == 'w' ? 'Regi…}}<select id="dwk" class="form-select form-select-sm" style="width:auto"><option value="w"{% templatetag openvariable %}s8: dashboardPeriod.wk == 'w' ? ' sel…}}>Per week</option><option value="d"{% templatetag openvariable %}s9: dashboardPeriod.wk == 'd' ? ' sel…}}>Per day</option></select></h3>{% templatetag openvariable %}s10: dashboardPeriod.wk == 'w' ? wkNav…}}</div>{% templatetag openvariable %}s11: todayCardHtml()}}
+{% templatetag openvariable %}s12: registrationStatusCard(R, nm)}}<div class="card pgcard"><h3>Top DCAs (selected dates) <small style="color:var(--mu)">(top 10)</small></h3>{% templatetag openvariable %}s13: pagerHtml(hbRows(Object.entries(d…}}</div></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="t.1">
+<div class="pft" style="border-color:{% templatetag openvariable %}s1: c}}"><i class="bx {% templatetag openvariable %}s2: ic}}" style="color:{% templatetag openvariable %}s3: c}}"></i><div><small>{% templatetag openvariable %}s4: l}}</small><b>{% templatetag openvariable %}s5: formatNumber(v)}}</b><em>{% templatetag openvariable %}s6: T ? Math.round((v / T) * 100) : 0}}%</em></div></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="todayCardHtml.1">
+<div class="card pgcard"><h3>Today's MDA registrations <small style="color:var(--mu)">({% templatetag openvariable %}s1: T0}})</small></h3><div class="pfk"><div class="pft" style="border-color:var(--v)"><i class="bx bx-user-check" style="color:var(--v)"></i><div><small>Registered today</small><b>{% templatetag openvariable %}s2: formatNumber(tot0)}}</b></div></div><div class="pft" style="border-color:var(--v)"><i class="bx bx-buildings" style="color:var(--v)"></i><div><small>MDAs</small><b>{% templatetag openvariable %}s3: L.length}}</b></div></div><div class="pft" style="border-color:var(--v)"><i class="bx bx-map-pin" style="color:var(--v)"></i><div><small>Sites reporting</small><b>{% templatetag openvariable %}s4: S.size}}</b></div></div></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="todayCardHtml.2">
+<div class="hb"><span title="{% templatetag openvariable %}s1: escapeHtml(k)}}">{% templatetag openvariable %}s2: escapeHtml(k)}}</span><u><i style="width:{% templatetag openvariable %}s3: (v.n / mx) * 100}}%"></i></u><b title="{% templatetag openvariable %}s4: v.ok}} complete · {% templatetag openvariable %}s5: v.p}} pending · {% templatetag openvariable %}s6: v.f}} failed">{% templatetag openvariable %}s7: formatNumber(v.n)}}</b></div>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="wkNav.1">
+<button type="button" class="btn btn-sm" data-fa="wkf">Show this week on the page</button>
+        </script>
+          <!-- prettier-ignore -->
+          <script type="text/html" data-tpl="wkNav.2">
+<div class="wknav" style="display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;margin:2px 0 4px"><button type="button" class="btn btn-sm" data-fa="wkp" title="Previous week"><i class="bx bx-chevron-left"></i></button><b>Week {% templatetag openvariable %}s1: wkNo(m)}}</b><span>{% templatetag openvariable %}s2: wkLb(m, 0)}} to {% templatetag openvariable %}s3: wkLb(m, 6)}} {% templatetag openvariable %}s4: new Date(e + 'T00:00:00').getFull…}}</span><button type="button" class="btn btn-sm" data-fa="wkn" title="Next week"{% templatetag openvariable %}s5: cur ? ' disabled' : ''}}><i class="bx bx-chevron-right"></i></button>{% templatetag openvariable %}s6: wkSelected() ? '' : …}}<small style="color:var(--mu)">{% templatetag openvariable %}s7: wkSelected() ? 'The page shows th…}}</small></div>
+        </script>
+        </main>
+      </div>
+      <div class="ab sn-leg">
+        <span class="am" id="asu"></span>
+        <button class="btn" id="aac">Account</button>
+        <button class="btn" id="alo">Log out</button>
+        <button class="btn" id="aex">Export backup</button>
+        <label class="btn">
+          Import backup
+          <input type="file" id="aim" accept=".json" hidden />
+        </label>
+        <button class="btn dng" id="ars">Reset to original</button>
+      </div>
+    </div>
+    <div id="rdlg" class="rdlg" hidden>
+      <div class="box">
+        <h3>Create a report</h3>
+        <p>
+          A print-ready report with maps, charts and data tables. Use
+          <b>Print / Save as PDF</b>
+          in the preview.
+        </p>
+        <label>
+          Report for
+          <input
+            id="rd-sq"
+            type="search"
+            placeholder="Search state, county or report…"
+            autocomplete="off"
+            aria-label="Search reports"
+          />
+          <select id="rd-sc"></select>
+        </label>
+        <div class="pre2">
+          <button class="btn" data-pre="full">Full report</button>
+          <button class="btn" data-pre="map">Map only</button>
+          <button class="btn" data-pre="data">Data tables only</button>
+          <button class="btn" data-pre="an">Analysis only</button>
+        </div>
+        <div class="cks">
+          <label>
+            <input type="checkbox" class="rs" value="cover" checked />
+            Cover page
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="sum" checked />
+            Executive summary
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="map" checked />
+            Map figure
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="chart" checked />
+            Charts
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="table" checked />
+            County data table
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="infra" checked />
+            Roads &amp; airports
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="sites" />
+            Registration sites
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="analysis" checked />
+            Advanced analysis
+          </label>
+          <label>
+            <input type="checkbox" class="rs" value="notes" checked />
+            Notes &amp; method
+          </label>
+        </div>
+        <div class="g2">
+          <label>
+            Prepared by
+            <input id="rd-by" placeholder="Name" />
+          </label>
+          <label>
+            Organisation
+            <input id="rd-org" placeholder="Organisation" />
+          </label>
+        </div>
+        <div class="g2">
+          <label>
+            Classification
+            <select id="rd-cls">
+              <option>Internal</option>
+              <option>Official use only</option>
+              <option>Confidential</option>
+              <option>Public</option>
+            </select>
+          </label>
+          <label>
+            Custom title (optional)
+            <input id="rd-ti" />
+          </label>
+        </div>
+        <div class="row2">
+          <button class="btn" id="rd-x">Cancel</button>
+          <button class="btn" id="rd-xl">Excel only</button>
+          <button class="btn" id="rd-dx">Word (.docx)</button>
+          <button class="btn pri" id="rd-go">Generate report</button>
+        </div>
+      </div>
+    </div>
+    <div id="cfm" class="rdlg" hidden>
+      <div class="box">
+        <h3>Please confirm</h3>
+        <p id="cfm-m"></p>
+        <div class="row2">
+          <button class="btn" id="cfm-no">Cancel</button>
+          <button class="btn dng" id="cfm-ok">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div id="amod" class="rdlg" hidden><div class="box" id="amb"></div></div>
+    <div id="login" class="lgpage" hidden>
+      <div class="lg-side">
+        <span class="logo"></span>
+        <h1>BM Monitor</h1>
+        <p>South Sudan · National biometric registration</p>
+        <ul>
+          <li>Edit counties, cities, towns and airports</li>
+          <li>Pin registration sites and draw roads</li>
+          <li>Export reports to PDF and Excel</li>
+        </ul>
+      </div>
+      <div class="lg-card">
+        <h2 id="lg-t">Administrator sign in</h2>
+        <p id="lg-p"></p>
+        <label>
+          Username
+          <input id="lg-u" autocomplete="username" />
+        </label>
+        <label>
+          Password
+          <input id="lg-pw" type="password" autocomplete="current-password" />
+        </label>
+        <label id="lg-c" hidden><input id="lg-pw2" type="password" autocomplete="new-password" /></label>
+        <label class="lg-sh">
+          <input type="checkbox" id="lg-show" />
+          Show password
+        </label>
+        <div class="lg-e" id="lg-e"></div>
+        <button class="btn pri lg-go" id="lg-go">Sign in</button>
+        <button class="lg-back" id="lg-x" type="button">
+          <span class="bx bx-left-arrow-alt"></span>
+          Back to dashboard
+        </button>
+      </div>
+    </div>
+    <div id="mre" class="rdlg" hidden>
+      <div class="box">
+        <h3 class="mre-t">Edit reports</h3>
+        <div id="mre-b"></div>
+        <div class="row2"><button type="button" id="mre-x" class="btn">Close</button></div>
+      </div>
+    </div>
+    <div id="acct" class="rdlg" hidden>
+      <div class="box">
+        <h3>Administrator account</h3>
+        <p>
+          Change the username or password. Leave the new password empty to keep the current one.
+        </p>
+        <label>
+          Current password
+          <input id="ac-cur" type="password" autocomplete="current-password" />
+        </label>
+        <label>
+          Username
+          <input id="ac-u" autocomplete="username" />
+        </label>
+        <label>
+          New password
+          <input id="ac-new" type="password" autocomplete="new-password" />
+        </label>
+        <input id="ac-new2" type="hidden" autocomplete="new-password" />
+        <div class="lg-e" id="ac-e"></div>
+        <div class="row2">
+          <button class="btn" id="ac-x">Cancel</button>
+          <button class="btn pri" id="ac-go">Save</button>
+        </div>
+      </div>
+    </div>
+    <div id="rep" hidden></div>
+    <div class="tip" id="tip"></div>
+    <script src="{% static 'js/map-app.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/vendor/apexcharts.css' %}" id="v-apex-css" />
+    <script src="{% static 'js/vendor/apexcharts.js' %}" id="v-apex"></script>
+    <script src="{% static 'js/apex-charts-bridge.js' %}" id="apex-addon"></script>
+    <script src="{% static 'js/daily-analysis.js' %}" id="analysis-addon"></script>
+    <script src="{% static 'js/word-export.js' %}" id="docx-addon"></script>
+    <script src="{% static 'js/report-search.js' %}" id="report-search-addon"></script>
+    <script src="{% static 'js/road-visibility.js' %}" id="road-visibility-behavior"></script>
+
+    <div id="ana" hidden>
+      <div class="anh">
+        <div class="ant">
+          <b>Analytics</b>
+          <small>Readiness, risk and deployment analysis</small>
+        </div>
+        <select id="ana-sc" aria-label="Area"></select>
+        <select id="ana-cty" aria-label="County" title="Filter by county" hidden></select>
+        <div class="anb">
+          <button class="btn pri" id="ana-x">
+            <i class="bx bx-x"></i>
+            Close
+          </button>
+        </div>
+      </div>
+      <div id="ana-tabs"></div>
+      <div id="ana-body"><div id="ana-in"></div></div>
+      <aside id="ana-drw" hidden></aside>
+    </div>
+    <script src="{% static 'js/analytics-page.js' %}" id="analytics-page"></script>
+    <script src="{% static 'js/vendor/jquery.js' %}" id="v-jquery"></script>
+    <script src="{% static 'js/vendor/moment.js' %}" id="v-moment"></script>
+    <script src="{% static 'js/vendor/daterangepicker.js' %}" id="v-drp"></script>
+    <script src="{% static 'js/vendor/datatables.js' %}" id="v-dt"></script>
+    <script src="{% static 'js/vendor/bootstrap.js' %}" id="v-bs"></script>
+    <script src="{% static 'js/form-validation.js' %}" id="fv"></script>
+    <script src="{% static 'js/field-reports-admin.js' %}" id="field-reports"></script>
+    <script src="{% static 'js/logo-and-company-name.js' %}" id="logo-addon"></script>
+    <script src="{% static 'js/activity-log-backups-alerts.js' %}" id="ops-addon"></script>
+    <script src="{% static 'js/chart-hover-tooltips.js' %}" id="hover-addon"></script>
+    <script src="{% static 'js/reset-filters.js' %}" id="reset-addon"></script>
+    <script src="{% static 'js/ui-kit-tables-buttons.js' %}" id="ui-kit"></script>
+
+    <script src="{% static 'js/bootstrap-grid-layout.js' %}" id="bs-layout"></script>
+    <script src="{% static 'js/sign-in-gate-switch-view.js' %}" id="gatejs"></script>
+    <script src="{% static 'js/navigation-menu.js' %}" id="navjs"></script>
+    <script src="{% static 'js/django-sign-in.js' %}" id="django-sign-in"></script>
+    <script src="{% static 'js/page-router.js' %}"></script>
+  </body>
+</html>

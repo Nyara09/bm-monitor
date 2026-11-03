@@ -1,0 +1,706 @@
+/*
+ * css/analytics-page.css
+ * Analytics page: scopes (national, state, county), bands, charts and tables.
+ */
+
+body.noscroll {
+  overflow: hidden;
+}
+#ana {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(900px 600px at 10% 0%, rgba(197, 160, 89, 0.22), transparent 60%),
+    radial-gradient(900px 600px at 95% 100%, rgba(47, 53, 59, 0.12), transparent 60%), var(--bg);
+  color: var(--tx);
+  font-family: Roboto, "Segoe UI", system-ui, sans-serif;
+}
+#ana[hidden] {
+  display: none;
+}
+#ana .anh {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+#ana .ant b {
+  display: block;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+#ana .ant small {
+  color: var(--mu);
+  font-size: 0.72rem;
+}
+#ana select {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.82rem;
+  min-width: 200px;
+}
+#ana select option {
+  color: #111;
+}
+[data-theme="light"] #ana select {
+  background: #fff;
+}
+#ana .anb {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+#ana .anb .btn {
+  margin: 0;
+}
+#ana-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 22px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  background: var(--panel);
+}
+#ana-tabs button {
+  font: inherit;
+  font-size: 0.84rem;
+  padding: 9px 16px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--mu);
+  cursor: pointer;
+  white-space: nowrap;
+}
+#ana-tabs button.on {
+  color: var(--tx);
+  border-bottom-color: var(--c);
+  font-weight: 600;
+}
+#ana-tabs button:hover {
+  color: var(--tx);
+}
+#ana-body {
+  flex: 1;
+  overflow: auto;
+  padding: 18px 22px 60px;
+}
+#ana-in {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+#ana .ag {
+  display: grid;
+  gap: 16px;
+  align-items: stretch;
+}
+#ana .kg {
+  grid-template-columns: 270px repeat(5, minmax(0, 1fr));
+}
+#ana .c3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#ana .c2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+#ana .c21 {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+#ana .panel {
+  padding: 18px;
+  min-width: 0;
+}
+#ana .panel h2 {
+  margin-bottom: 12px;
+}
+#ana .panel h2 small {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-left: 6px;
+}
+#ana .ak small {
+  display: block;
+  color: var(--mu);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+#ana .ak b {
+  display: block;
+  font-size: 1.9rem;
+  letter-spacing: -0.03em;
+  margin: 6px 0 2px;
+  font-variant-numeric: tabular-nums;
+}
+#ana .ak em {
+  font-style: normal;
+  font-size: 0.76rem;
+  color: var(--mu);
+}
+#ana .gp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#ana .gp svg {
+  width: 100%;
+  max-width: 230px;
+}
+#ana .gp small {
+  color: var(--mu);
+  font-size: 0.72rem;
+  margin-top: 4px;
+}
+#ana svg text {
+  fill: var(--tx);
+}
+#ana svg .mu {
+  fill: var(--mu);
+}
+#ana .hb {
+  display: grid;
+  grid-template-columns: minmax(90px, 150px) 1fr 62px;
+  gap: 10px;
+  align-items: center;
+  padding: 5px 6px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+#ana .hb.clk {
+  cursor: pointer;
+}
+#ana .hb.clk:hover {
+  background: rgba(197, 160, 89, 0.14);
+}
+#ana .hb .hl {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#ana .hb .ht {
+  height: 9px;
+  border-radius: 6px;
+  background: rgba(127, 127, 160, 0.2);
+  overflow: hidden;
+}
+#ana .hb .ht i {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.6s;
+}
+#ana .hb b {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+#ana .stk2 {
+  display: flex;
+  height: 12px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: rgba(127, 127, 160, 0.2);
+}
+#ana .stk2 i {
+  display: block;
+  height: 100%;
+}
+#ana .hs {
+  display: grid;
+  grid-template-columns: minmax(90px, 150px) 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 5px 6px;
+  font-size: 0.8rem;
+}
+#ana .lgd {
+  display: flex;
+  gap: 6px 14px;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+  color: var(--mu);
+  margin-top: 8px;
+}
+#ana .lgd i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+#ana ul.al {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 9px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+#ana ul.al li {
+  padding-left: 12px;
+  border-left: 2px solid var(--v);
+  color: var(--mu);
+}
+#ana ul.al li b {
+  color: var(--tx);
+}
+.achip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+#ana .dn {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+#ana .dn svg {
+  width: 150px;
+  height: 150px;
+  flex: none;
+}
+#ana .wv {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+#ana .wc {
+  padding: 18px;
+}
+#ana .wc small {
+  color: var(--mu);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+#ana .wc h3 {
+  font-size: 1rem;
+  margin: 6px 0 10px;
+}
+#ana .wc .big {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+#ana .wc p {
+  color: var(--mu);
+  font-size: 0.78rem;
+  margin: 6px 0 10px;
+}
+#ana .wc .bar {
+  margin-top: 8px;
+}
+#ana table.atb {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+#ana .atb th {
+  text-align: left;
+  padding: 9px 10px;
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--mu);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+}
+#ana .atb th.s {
+  cursor: pointer;
+  user-select: none;
+}
+#ana .atb th.s:hover {
+  color: var(--tx);
+}
+#ana .atb th.on {
+  color: var(--c);
+}
+#ana .atb td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(127, 127, 160, 0.15);
+  vertical-align: middle;
+}
+#ana .atb tr.clk {
+  cursor: pointer;
+}
+#ana .atb tr.clk:hover td {
+  background: rgba(197, 160, 89, 0.12);
+}
+#ana .atb .n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+#ana .atb td.mu {
+  color: var(--mu);
+}
+#ana .mini {
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 7px;
+  border-radius: 5px;
+  background: rgba(127, 127, 160, 0.2);
+  overflow: hidden;
+  margin-right: 8px;
+}
+#ana .mini i {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+}
+#ana .tw3 {
+  overflow: auto;
+  max-height: 640px;
+  border-radius: 12px;
+}
+#ana .fb {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+#ana .fb input {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--tx);
+  font: inherit;
+  font-size: 0.82rem;
+  min-width: 220px;
+}
+[data-theme="light"] #ana .fb input {
+  background: #fff;
+}
+#ana .fb .chips {
+  margin: 0;
+}
+#ana .fb .cnt {
+  margin-left: auto;
+  color: var(--mu);
+  font-size: 0.76rem;
+}
+#ana .hm {
+  display: grid;
+  gap: 4px;
+  font-size: 0.78rem;
+}
+#ana .hm .r {
+  display: grid;
+  gap: 4px;
+  align-items: stretch;
+}
+#ana .hm .cl {
+  padding: 10px 8px;
+  border-radius: 9px;
+  text-align: center;
+  background: rgba(127, 127, 160, 0.1);
+  font-variant-numeric: tabular-nums;
+}
+#ana .hm .cl small {
+  display: block;
+  color: var(--mu);
+  font-size: 0.66rem;
+}
+#ana .hm .hd {
+  color: var(--mu);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 4px;
+}
+#ana .hm .rl {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+#ana-drw {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  z-index: 5;
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+#ana-drw[hidden] {
+  display: none;
+}
+#ana-drw h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+#ana-drw .sub {
+  color: var(--mu);
+  font-size: 0.8rem;
+}
+#ana-drw .fr {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 10px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+#ana-drw .fr .ev {
+  grid-column: 1/-1;
+  color: var(--mu);
+  font-size: 0.72rem;
+}
+#ana-drw .fr .bar {
+  grid-column: 1/-1;
+  margin: 2px 0;
+}
+#ana .em {
+  color: var(--mu);
+  font-size: 0.8rem;
+  padding: 14px;
+  text-align: center;
+}
+@media (max-width: 1200px) {
+  #ana .kg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  #ana .kg .gp {
+    grid-column: 1/-1;
+  }
+  #ana .wv {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  #ana .c3,
+  #ana .c2,
+  #ana .c21 {
+    grid-template-columns: 1fr;
+  }
+  #ana .kg {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  #ana .wv {
+    grid-template-columns: 1fr;
+  }
+  #ana-body {
+    padding: 12px;
+  }
+  #ana .hb {
+    grid-template-columns: 90px 1fr 54px;
+  }
+}
+#ana .cal {
+  padding: 10px 14px;
+  border-left: 3px solid var(--v);
+  background: rgba(127, 127, 160, 0.12);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+#ana .sx {
+  display: grid;
+  grid-template-columns: minmax(80px, 140px) minmax(0, 1fr) 70px 52px;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 9px;
+  font-size: 0.84rem;
+}
+#ana .sx.hd {
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--mu);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding-bottom: 8px;
+  margin-bottom: 2px;
+}
+#ana .sx.clk {
+  cursor: pointer;
+}
+#ana .sx.clk:hover {
+  background: rgba(197, 160, 89, 0.14);
+}
+#ana .sx .sl {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#ana .sx .n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+#ana .stk3 {
+  display: flex;
+  height: 24px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: rgba(127, 127, 160, 0.2);
+}
+#ana .stk3 i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  min-width: 0;
+  overflow: hidden;
+}
+#ana .rt {
+  display: grid;
+  grid-template-columns: 14px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 4px;
+  border-top: 1px solid rgba(127, 127, 160, 0.18);
+}
+#ana .rt > i {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+#ana .rt b {
+  font-size: 0.95rem;
+  display: block;
+}
+#ana .rt small {
+  display: block;
+  color: var(--mu);
+  font-size: 0.72rem;
+}
+#ana .rt .n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+#ana .hm .cl b {
+  display: block;
+  font-size: 1.02rem;
+}
+#ana .hm .cl {
+  padding: 12px 6px;
+}
+#ana .hm .cl.tt {
+  background: transparent;
+  color: var(--mu);
+}
+#ana .hm .cl.tt b {
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+#ana .hm .rl small {
+  display: block;
+  color: var(--mu);
+  font-weight: 400;
+  font-size: 0.68rem;
+}
+@media (max-width: 560px) {
+  #ana .sx {
+    grid-template-columns: 80px 1fr 56px 40px;
+    gap: 8px;
+  }
+}
+#ana .kg2 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+#ana .hb.msel {
+  background: rgba(197, 160, 89, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(197, 160, 89, 0.55);
+}
+#ana .mxs {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+#ana .mxs .r {
+  display: grid;
+  gap: 3px;
+  align-items: stretch;
+  margin-bottom: 3px;
+  min-width: 640px;
+}
+#ana .mxs .hd {
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mu);
+  text-align: center;
+  align-self: end;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 2px 4px;
+}
+#ana .mxs .rl {
+  font-size: 0.76rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 8px;
+}
+#ana .mxs .rl.clk {
+  cursor: pointer;
+}
+#ana .mxs .rl.clk:hover {
+  color: var(--c);
+}
+#ana .mxs .cl {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--tx);
+}
+#ana .mxs .cl.tt {
+  background: rgba(127, 127, 160, 0.15);
+}
+#ana .kg2 .ak em {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 1100px) {
+  #ana .kg2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

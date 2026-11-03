@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Environment Variables and Secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# IDE and Editor
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Testing and Coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary Files
+*.tmp
+*.bak

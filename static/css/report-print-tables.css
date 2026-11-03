@@ -1,0 +1,84 @@
+/*
+ * css/report-print-tables.css
+ * Report tables when printed or saved as PDF.
+ */
+
+/* The story-map rule .sm{display:grid;place-items:center}
+leaked onto report tables: restore normal table layout */
+#rep table.r-t,
+#rep table.r-t.sm {
+  display: table !important;
+  width: 100%;
+  min-height: 0;
+  place-items: normal;
+  table-layout: auto;
+}
+#rep table.r-t thead {
+  display: table-header-group !important;
+}
+#rep table.r-t tbody {
+  display: table-row-group !important;
+}
+#rep table.r-t tfoot {
+  display: table-footer-group !important;
+}
+#rep table.r-t tr {
+  display: table-row !important;
+}
+#rep table.r-t th,
+#rep table.r-t td {
+  display: table-cell !important;
+}
+#rep .r-t th.n,
+#rep .r-t td.n {
+  text-align: right;
+}
+#rep .r-t th {
+  vertical-align: bottom;
+  line-height: 1.25;
+}
+.an-mx td.n,
+.an-mx th.n {
+  white-space: normal;
+}
+.an-pw {
+  max-width: 430px;
+}
+#rep .an-sec .r-t td .an-bar {
+  width: 46px;
+}
+#rep .an-sec .r-t td:last-child {
+  min-width: 30mm;
+}
+.an-keep {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+@media print {
+  .r-foot {
+    display: none !important;
+  }
+  #rep .r-sec h2,
+  #rep .r-sec h3,
+  #rep .r-sec h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  #rep .r-t thead {
+    display: table-header-group !important;
+  }
+  #rep .r-t tfoot {
+    display: table-row-group !important;
+  }
+  #rep .r-fig,
+  #rep .r-k,
+  #rep .r-2 {
+    break-inside: avoid;
+  }
+  #rep .an-sec .r-kg {
+    break-inside: avoid;
+  }
+  #rep table.r-t {
+    break-inside: auto;
+  }
+}

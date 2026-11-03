@@ -1,0 +1,78 @@
+/*
+ * css/report-preview-buttons.css
+ * Report preview, accept/reject buttons and review badges.
+ */
+
+/* Report preview: keep action buttons legible in both themes */
+#rep .rbar {
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 20px;
+}
+#rep .rbar .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 9px;
+  background: #312b52;
+  color: #fff !important;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+#rep .rbar .btn.pri {
+  background: #c5a059;
+  color: #000000 !important;
+  border-color: #c5a059;
+}
+#rep .rbar .btn:hover {
+  filter: brightness(1.12);
+}
+#rep .rbar .btn:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+#rep .r-2 {
+  align-items: start;
+}
+#rep .r-2 > div {
+  min-width: 0;
+  text-align: left;
+}
+#rep .r-ul {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  list-style: none !important;
+  text-align: left !important;
+}
+#rep .r-ul li {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  text-align: left !important;
+  list-style: none !important;
+}
+#rep .r-ul li::marker {
+  content: "";
+}
+@media (max-width: 620px) {
+  #rep .rbar {
+    align-items: stretch;
+    padding: 10px;
+    gap: 7px;
+  }
+  #rep .rbar b {
+    flex-basis: 100%;
+  }
+  #rep .rbar .btn {
+    flex: 1 1 42%;
+    white-space: normal;
+  }
+}
+@media print {
+  #rep .r-ul {
+    padding-left: 0 !important;
+    text-align: left !important;
+  }
+}

@@ -1,0 +1,10 @@
+/*
+ * css/hide-top-nav-links.css
+ * Hides the old top navigation links.
+ */
+
+nav.top .links #nAna,
+nav.top .links #nAdm,
+nav.top .links #nFr {
+  display: none !important;
+}

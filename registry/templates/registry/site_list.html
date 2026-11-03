@@ -1,0 +1,61 @@
+{% extends "core/base.html" %}
+{% load map_links %}
+{% block content %}
+  <div class="card tw">
+    <form method="get" class="flt mb-3">
+      <label>
+        Search
+        <input type="search" name="search" value="{{ search }}" placeholder="Site or MDA" />
+      </label>
+      <label>
+        State
+        <select name="state">
+          <option value="">All</option>
+          {% for state in states %}
+            <option value="{{ state.pk }}" {% if state_id == state.pk|stringformat:"s" %}selected{% endif %}>{{ state.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button class="btn pri" type="submit">Filter</button>
+      <a class="btn" href="{% url 'registry:site_list' %}">Reset</a>
+      {% if can_edit %}<a class="btn pri" href="{% url 'registry:site_create' %}">Add registration site</a>{% map_link "add" kind="site" as add_map_url %}<a class="btn" href="{{ add_map_url }}"><span class="bx bx-map-pin"></span>Add on map</a>{% endif %}
+    </form>
+    <div class="table-responsive">
+      <table class="text-nowrap">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Site</th>
+            <th>State</th>
+            <th>County</th>
+            <th>MDA</th>
+            <th>Status</th>
+            <th>Capacity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for site in page %}
+            <tr>
+              <td>{{ page.start_index|add:forloop.counter0 }}</td>
+              <td>{{ site.name }}</td>
+              <td>{{ site.state.name }}</td>
+              <td>{{ site.county.name }}</td>
+              <td>{{ site.mda.name }}</td>
+              <td>{{ site.status }}</td>
+              <td>{{ site.capacity }}</td>
+              <td>
+                {% url 'registry:site_edit' site.pk as edit_url %}
+                {% url 'registry:site_delete' site.pk as delete_url %}
+                {% map_link "locate" lon=site.longitude lat=site.latitude as map_url %} {% include "core/_row_actions.html" with name=site.name map_label="Show on map" %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="8">No registration sites found.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% include "core/_pagination.html" %}
+  </div>
+{% endblock %}

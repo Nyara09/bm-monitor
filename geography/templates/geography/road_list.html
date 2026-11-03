@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+{% load map_links %} {% block content %}
+<div class="card tw">
+  <form method="get" class="flt mb-3">
+    <label>
+      Search
+      <input
+        type="search"
+        name="search"
+        value="{{ search }}"
+        placeholder="Road, start or end"
+      />
+    </label>
+    <button class="btn pri" type="submit">Filter</button>
+    <a class="btn" href="{% url 'geography:road_list' %}">Reset</a>
+    {% if can_edit %}<a class="btn pri" href="{% url 'geography:road_create' %}"
+      >Add road</a
+    >{% map_link "road" as add_map_url %}<a class="btn" href="{{ add_map_url }}"><span class="bx bx-map-pin"></span>Draw road on map</a>{% endif %}
+  </form>
+  <div class="table-responsive">
+    <table class="text-nowrap">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Road</th>
+          <th>Type</th>
+          <th>Source</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Map points</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in page %}
+        <tr>
+          <td>{{ page.start_index|add:forloop.counter0 }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.road_type }}</td>
+          <td>{{ row.source }}</td>
+          <td>{{ row.start_point }}</td>
+          <td>{{ row.end_point }}</td>
+          <td>{{ row.points|length }}</td>
+          <td>
+            {% url 'geography:road_edit' row.pk as edit_url %} {% url 'geography:road_delete' row.pk as delete_url %} {% map_link "reshape" road=row.code as map_url %} {% include "core/_row_actions.html" with name=row.name map_label="Reshape on map" %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="8">No roads found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include "core/_pagination.html" %}
+</div>
+{% endblock %}
