@@ -2,6 +2,7 @@
 
 import os
 from pathlib import Path
+import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -10,13 +11,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read DJANGO_* values from the .env file next to manage.py (if there is one)
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
-ALLOWED_HOSTS = os.environ.get(
-    "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
-).split(",")
+
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "https://bm-monitor.onrender.com/").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -43,9 +42,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.gzip.GZipMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
+WHITENOISE_MAX_AGE = 3600
 
 TEMPLATES = [
     {
@@ -66,7 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-import dj_database_url
 
 DATABASES = {
     "default": dj_database_url.config(
