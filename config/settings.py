@@ -15,7 +15,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "https://bm-monitor.onrender.com/").split(",")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
