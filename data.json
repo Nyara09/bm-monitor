@@ -1,0 +1,38 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$SbZHhYvZrxnOs66SLRNrJl$gEnSYpIDKZSrd3CiOuDCtd42NfsPJXV5jps8bWdWLyE=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-04T06:41:56.415Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-11-04T06:41:57.398Z",
+    "updated_at": "2026-11-04T06:41:57.398Z",
+    "user": [
+      "admin"
+    ],
+    "role": "admin",
+    "phone": "",
+    "photo_data": "",
+    "status": "Active",
+    "must_change_password": false,
+    "can_open_administrator_card": true,
+    "can_open_map_overview_card": true,
+    "can_open_supervisor_card": true
+  }
+}
+]
