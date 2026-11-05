@@ -11,15 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read DJANGO_* values from the .env file next to manage.py (if there is one)
 load_dotenv(BASE_DIR / ".env")
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "https://bm-monitor.onrender.com/").split(",")
-=======
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
->>>>>>> c4cdeae2b132d3df9582c57b0459dfe974600c15
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1").split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -38,6 +35,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.gzip.GZipMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -46,7 +44,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.middleware.gzip.GZipMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
