@@ -15,7 +15,11 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "https://bm-monitor.onrender.com/").split(",")
+=======
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
+>>>>>>> c4cdeae2b132d3df9582c57b0459dfe974600c15
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -42,9 +46,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.gzip.GZipMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
+WHITENOISE_MAX_AGE = 3600
 
 TEMPLATES = [
     {
