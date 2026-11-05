@@ -2,7 +2,6 @@
 
 import os
 from pathlib import Path
-import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -11,12 +10,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read DJANGO_* values from the .env file next to manage.py (if there is one)
 load_dotenv(BASE_DIR / ".env")
 
+<<<<<<< ours
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
+).split(",")
+=======
 DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 ALLOWED_HOSTS = os.environ.get(
     "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1").split(",")
+>>>>>>> theirs
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -35,7 +44,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.middleware.gzip.GZipMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -47,7 +55,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
-WHITENOISE_MAX_AGE = 3600
 
 TEMPLATES = [
     {
@@ -68,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+import dj_database_url
 
 DATABASES = {
     "default": dj_database_url.config(
@@ -95,10 +103,6 @@ TIME_ZONE = "Africa/Juba"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
 STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
@@ -107,6 +111,12 @@ STORAGES = {
 CSRF_TRUSTED_ORIGINS = [
     "https://" + h for h in ALLOWED_HOSTS if h and h not in ("localhost", "127.0.0.1")
 ]
+
+
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
