@@ -10,7 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read DJANGO_* values from the .env file next to manage.py (if there is one)
 load_dotenv(BASE_DIR / ".env")
 
-<<<<<<< ours
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
