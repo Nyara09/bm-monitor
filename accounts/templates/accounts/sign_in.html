@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Sign in · BM Monitor</title>
+    <title>Sign in · {{ company.company_name|default:"BM Monitor" }}</title>
     <script>
       try {
         document.documentElement.dataset.theme =
@@ -14,17 +14,62 @@
     {% include "core/_styles.html" %}
   </head>
   <body>
-    <div class="container" style="max-width: 420px; padding-top: 12vh">
-      <div class="signin-card">
-        <h4 class="mb-3">Sign in</h4>
-        <form method="post" novalidate>
-          {% csrf_token %}
-          <input type="hidden" name="next" value="{{ next }}" />
-          {% include "core/_form_fields.html" %}
-          <button class="btn pri mt-3" type="submit">Sign in</button>
-        </form>
+    {# Same sign-in screen as the one inside the map page: brand panel on the left, form on the right. #}
+    <div class="lgpage">
+      <div class="lg-side">
+        <span class="logo"></span>
+        <h1>{{ company.company_name|default:"BM Monitor" }}</h1>
+        <p>South Sudan · National biometric registration</p>
+        <ul>
+          <li>Edit counties, cities, towns and airports</li>
+          <li>Pin registration sites and draw roads</li>
+          <li>Export reports to PDF and Excel</li>
+        </ul>
       </div>
+      <form class="lg-card" method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <h2>Sign in</h2>
+        <p>Sign in to continue to {{ company.company_name|default:"BM Monitor" }}.</p>
+        <label>
+          Username
+          <input
+            id="lg-u"
+            name="username"
+            value="{{ form.username.value|default:'' }}"
+            autocomplete="username"
+            placeholder="Username"
+            autofocus
+            required
+          />
+        </label>
+        <label>
+          Password
+          <input
+            id="lg-pw"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+        <label class="lg-sh">
+          <input type="checkbox" id="lg-show" />
+          Show password
+        </label>
+        <div class="lg-e" role="alert">
+          {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+          {% for error in form.username.errors %}{{ error }} {% endfor %}
+          {% for error in form.password.errors %}{{ error }} {% endfor %}
+        </div>
+        <button class="btn pri lg-go" type="submit">Sign in</button>
+      </form>
     </div>
+    <script>
+      document.getElementById("lg-show").addEventListener("change", function (event) {
+        document.getElementById("lg-pw").type = event.target.checked ? "text" : "password";
+      });
+    </script>
     <script src="{% static 'js/loading-spinner.js' %}"></script>
   </body>
 </html>

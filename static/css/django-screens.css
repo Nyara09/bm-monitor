@@ -100,60 +100,14 @@
   width: 100%;
 }
 
-/* Sign-in page: same card look as the screens, without the sidebar. */
-.signin-card {
-  max-width: 420px;
-  margin: 0 auto;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
-}
-.signin-card h4 {
-  font-family: var(--ffh);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.signin-card label,
-.signin-card .form-label {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--mu);
-  margin-bottom: 4px;
-}
-.signin-card input[type="text"],
-.signin-card input[type="password"] {
-  width: 100%;
-  background: transparent;
-  color: var(--tx);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 9px 12px;
-  margin-bottom: 12px;
-}
-.signin-card input:focus {
-  outline: 2px solid var(--v);
-  border-color: var(--v);
-}
-.signin-card .btn.pri {
-  width: 100%;
+/* Sign-in button on the split sign-in screen. */
+.lg-card .btn.pri.lg-go {
   background: var(--v);
   border: 1px solid var(--v);
   color: var(--on-v, #000000);
   font-weight: 600;
-  padding: 10px;
-  border-radius: 10px;
+  border-radius: 0.6rem;
 }
-.signin-card .errorlist,
-.signin-card .invalid-feedback {
-  color: var(--r);
-  font-size: 0.85rem;
-  list-style: none;
-  padding: 0;
-}
-
-.signin-card .row > * {
-  flex: 0 0 100%;
-  max-width: 100%;
+.lg-card .btn.pri.lg-go:hover {
+  filter: brightness(1.08);
 }
