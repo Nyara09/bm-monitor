@@ -11,6 +11,9 @@ import json
 from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import PermissionDenied
 from django.http import Http404, JsonResponse
+from functools import wraps
+from urllib.parse import urlencode
+
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -45,19 +48,39 @@ SCREEN_TITLES = {
 # ---------------------------------------------------------------- page views
 
 
+def sign_in_first(view):
+    """Send people who are not signed in to the sign-in page before any screen is drawn.
+
+    Without this the page (for example the Map Overview) would open for a moment and only then
+    move to the sign-in. After signing in they come back to the page they asked for.
+    """
+
+    @wraps(view)
+    def wrapper(request, *args, **kwargs):
+        if active_user(request) is None:
+            query = urlencode({"next": request.get_full_path()})
+            return redirect(f"{reverse('accounts:sign_in')}?{query}")
+        return view(request, *args, **kwargs)
+
+    return wrapper
+
+
 @ensure_csrf_cookie
+@sign_in_first
 def map_page(request):
     """Sign-in, Switch view, the map and Map Overview."""
     return render(request, "pages/map.html")
 
 
 @ensure_csrf_cookie
+@sign_in_first
 def admin_page(request):
     """Administrator and supervisor screens (opened from the Switch view)."""
     return render(request, "pages/admin.html")
 
 
 @ensure_csrf_cookie
+@sign_in_first
 def screen_page(request, slug):
     """One JavaScript screen on its own URL, e.g. /screens/daily-reports/."""
     if slug not in SCREEN_TITLES:

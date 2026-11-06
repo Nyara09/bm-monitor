@@ -1,0 +1,122 @@
+/*
+ * css/color-theme.css
+ * The colour theme button and its panel (see js/color-theme.js).
+ */
+
+button.pal-btn.pal-inline {
+  margin-left: 8px;
+}
+button.pal-btn.pal-floating {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 9000;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--tx);
+  cursor: pointer;
+}
+#pal-panel {
+  position: fixed;
+  z-index: 10000;
+  width: 290px;
+  max-width: calc(100vw - 16px);
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--tx);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+  font-family: var(--ff, system-ui, sans-serif);
+}
+#pal-panel[hidden] {
+  display: none;
+}
+#pal-panel .pal-title {
+  font-family: var(--ffh, inherit);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+#pal-panel .pal-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 9px 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+#pal-panel .pal-opt.on {
+  border-color: var(--v);
+  box-shadow: 0 0 0 1px var(--v);
+}
+#pal-panel .pal-opt b,
+#pal-panel .pal-opt small {
+  display: block;
+}
+#pal-panel .pal-opt small {
+  color: var(--mu);
+  font-size: 0.75rem;
+}
+#pal-panel .pal-sw {
+  display: inline-flex;
+  flex: none;
+}
+#pal-panel .pal-sw i {
+  display: block;
+  width: 18px;
+  height: 30px;
+  border: 1px solid var(--line);
+}
+#pal-panel .pal-sw i:first-child {
+  border-radius: 8px 0 0 8px;
+}
+#pal-panel .pal-sw i:last-child {
+  border-radius: 0 8px 8px 0;
+}
+#pal-panel .pal-custom {
+  display: none;
+  gap: 10px;
+  margin: 0 0 8px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed var(--line);
+}
+#pal-panel .pal-custom.on {
+  display: grid;
+}
+#pal-panel .pal-custom label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--mu);
+}
+#pal-panel input[type="color"] {
+  width: 46px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+}
+#pal-panel .pal-foot {
+  text-align: right;
+}
+#pal-panel .pal-foot button {
+  border: 0;
+  background: transparent;
+  color: var(--vt, var(--v));
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+}

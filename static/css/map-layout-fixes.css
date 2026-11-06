@@ -79,8 +79,8 @@
   color: #45415f;
 }
 [data-theme="light"] .mtabs button.on {
-  color: #000000;
-  background: #c5a059;
+  color: var(--on-v, #000000);
+  background: var(--v);
 }
 [data-theme="light"] .chips button {
   color: #45415f;
@@ -88,8 +88,8 @@
 }
 [data-theme="light"] .chips button.on,
 [data-theme="light"] .chips button:hover {
-  color: #000000;
-  background: #c5a059;
+  color: var(--on-v, #000000);
+  background: var(--v);
 }
 [data-theme="light"] .legend span,
 [data-theme="light"] .legend label {
@@ -99,7 +99,7 @@
 }
 [data-theme="light"] #atabs button.on {
   color: #2f353b;
-  border-bottom-color: #c5a059;
+  border-bottom-color: var(--v);
 }
 [data-theme="light"] .at th {
   background: #f7f8f8;
@@ -126,7 +126,7 @@
 }
 .links a.on {
   color: var(--tx);
-  background: rgba(197, 160, 89, 0.13);
+  background: rgba(var(--v-rgb), 0.13);
 }
 @media (max-width: 1000px) {
   .mapbox {

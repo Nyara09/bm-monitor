@@ -1,7 +1,7 @@
 /*
  * css/brand-fonts-colors.css
  * BRAND: fonts Roboto (body, UI) and Montserrat (headings). Colours: black #000000, white #FFFFFF,
- * Horizon Gold #C5A059, Earth Terracotta #A0522D, Steel Slate #2F353B.
+ * Horizon Gold var(--v), Earth Terracotta var(--c), Steel Slate #2F353B.
  */
 
 @font-face {
@@ -63,6 +63,7 @@
   --b: #2f353b;
   --c: #a0522d;
   --v: #c5a059;
+  --v-rgb: 197, 160, 89;
   --vt: #a0522d; /* terracotta reads better than gold as text on light pages */
 }
 html body,

@@ -59,7 +59,7 @@ body.sb-off .main > .side {
   font: inherit;
 }
 .pf-btn:hover {
-  background: rgba(197, 160, 89, 0.14);
+  background: rgba(var(--v-rgb), 0.14);
 }
 .pf-n {
   display: flex;
@@ -122,7 +122,7 @@ body.sb-off .main > .side {
   text-align: left;
 }
 .pf-i:hover {
-  background: rgba(197, 160, 89, 0.14);
+  background: rgba(var(--v-rgb), 0.14);
 }
 .pf-i.dg {
   color: var(--r);
@@ -237,24 +237,24 @@ body.sb-off .main > .side {
   flex: none;
 }
 #adm.sn #atabs button:hover {
-  background: rgba(197, 160, 89, 0.14);
+  background: rgba(var(--v-rgb), 0.14);
   color: var(--tx);
 }
 #adm.sn #atabs a:hover {
-  background: rgba(197, 160, 89, 0.14);
+  background: rgba(var(--v-rgb), 0.14);
   color: var(--tx);
 }
 #adm.sn #atabs button.on,
 [data-theme="light"] #adm.sn #atabs button.on {
   background: linear-gradient(72deg, var(--v), color-mix(in srgb, var(--v) 62%, transparent));
-  color: #000000;
+  color: var(--on-v, #000000);
   font-weight: 600;
   box-shadow: 0 2px 8px color-mix(in srgb, var(--v) 50%, transparent);
 }
 #adm.sn #atabs a.on,
 [data-theme="light"] #adm.sn #atabs a.on {
   background: linear-gradient(72deg, var(--v), color-mix(in srgb, var(--v) 62%, transparent));
-  color: #000000;
+  color: var(--on-v, #000000);
   font-weight: 600;
   box-shadow: 0 2px 8px color-mix(in srgb, var(--v) 50%, transparent);
 }

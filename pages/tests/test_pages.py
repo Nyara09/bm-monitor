@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
@@ -5,6 +6,11 @@ from pages.views import SCREEN_TITLES
 
 
 class PageViewTests(TestCase):
+    def setUp(self):
+        self.client.force_login(
+            get_user_model().objects.create_superuser("boss", password="long-password-1")
+        )
+
     def test_map_page_renders_with_static_files(self):
         response = self.client.get(reverse("pages:map"))
         self.assertEqual(response.status_code, 200)
@@ -41,3 +47,28 @@ class PageViewTests(TestCase):
     def test_overview_goes_to_map(self):
         response = self.client.get(reverse("pages:overview"))
         self.assertRedirects(response, "/#overview", fetch_redirect_response=False)
+
+
+class SignedOutTests(TestCase):
+    """Nobody signed in: the sign-in page comes first, so no screen opens and then moves away."""
+
+    def test_pages_redirect_to_sign_in_and_keep_the_address(self):
+        sign_in = reverse("accounts:sign_in")
+        cases = {
+            "/": f"{sign_in}?next=%2F",
+            "/admin/": f"{sign_in}?next=%2Fadmin%2F",
+            "/screens/dashboard/": f"{sign_in}?next=%2Fscreens%2Fdashboard%2F",
+            "/?map=road": f"{sign_in}?next=%2F%3Fmap%3Droad",
+        }
+        for address, expected in cases.items():
+            with self.subTest(address=address):
+                response = self.client.get(address)
+                self.assertRedirects(response, expected, fetch_redirect_response=False)
+
+    def test_sign_in_then_back_to_the_page_asked_for(self):
+        get_user_model().objects.create_superuser("boss", password="long-password-1")
+        response = self.client.post(
+            reverse("accounts:sign_in"),
+            {"username": "boss", "password": "long-password-1", "next": "/screens/dashboard/"},
+        )
+        self.assertRedirects(response, "/screens/dashboard/", fetch_redirect_response=False)

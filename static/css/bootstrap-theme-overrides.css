@@ -58,15 +58,15 @@
   --bs-btn-color: var(--tx);
   --bs-btn-border-color: var(--line);
   --bs-btn-hover-color: var(--tx);
-  --bs-btn-hover-bg: rgba(197, 160, 89, 0.2);
+  --bs-btn-hover-bg: rgba(var(--v-rgb), 0.2);
   --bs-btn-hover-border-color: var(--v);
   --bs-btn-active-color: var(--tx);
-  --bs-btn-active-bg: rgba(197, 160, 89, 0.32);
+  --bs-btn-active-bg: rgba(var(--v-rgb), 0.32);
   --bs-btn-active-border-color: var(--v);
   --bs-btn-disabled-color: var(--mu);
   --bs-btn-disabled-border-color: var(--line);
   --bs-btn-focus-shadow-rgb: 167, 139, 250;
-  background-color: rgba(197, 160, 89, 0.08);
+  background-color: rgba(var(--v-rgb), 0.08);
 }
 .btn-outline-danger {
   --bs-btn-color: var(--r);
@@ -297,7 +297,7 @@ input.drp-in {
 }
 .daterangepicker td.available:hover,
 .daterangepicker th.available:hover {
-  background: rgba(197, 160, 89, 0.28) !important;
+  background: rgba(var(--v-rgb), 0.28) !important;
   color: var(--tx);
 }
 .daterangepicker td.off,
@@ -315,7 +315,7 @@ input.drp-in {
   text-decoration: none;
 }
 .daterangepicker td.in-range {
-  background: rgba(197, 160, 89, 0.2) !important;
+  background: rgba(var(--v-rgb), 0.2) !important;
   color: var(--tx) !important;
 }
 .daterangepicker td.active,
@@ -355,11 +355,11 @@ input.drp-in {
   font-size: 0.78rem;
 }
 .daterangepicker .ranges li:hover {
-  background: rgba(197, 160, 89, 0.2);
+  background: rgba(var(--v-rgb), 0.2);
 }
 .daterangepicker .ranges li.active {
   background: var(--v);
-  color: #000000;
+  color: var(--on-v, #000000);
 }
 [data-theme="light"] .daterangepicker .ranges li.active {
   color: #fff;
@@ -436,7 +436,7 @@ input.drp-in {
   color: #fff !important;
 }
 .dt-container .dt-paging .dt-paging-button:hover:not(.current):not(.disabled) {
-  background: rgba(197, 160, 89, 0.22) !important;
+  background: rgba(var(--v-rgb), 0.22) !important;
   border-color: var(--line) !important;
   color: var(--tx) !important;
 }
@@ -461,12 +461,12 @@ table.dataTable > tbody > tr {
   background: transparent !important;
 }
 table.dataTable > tbody > tr > td {
-  border-bottom: 1px solid rgba(197, 160, 89, 0.12) !important;
+  border-bottom: 1px solid rgba(var(--v-rgb), 0.12) !important;
   padding: 0.45rem 0.5rem;
 }
 table.dataTable.hover > tbody > tr:hover > *,
 table.dataTable > tbody > tr:hover > * {
-  box-shadow: inset 0 0 0 9999px rgba(197, 160, 89, 0.09) !important;
+  box-shadow: inset 0 0 0 9999px rgba(var(--v-rgb), 0.09) !important;
 }
 table.dataTable > tfoot > tr > * {
   border-top: 1px solid var(--line) !important;
@@ -482,7 +482,7 @@ table.dataTable td.dt-type-numeric {
 table.dataTable thead > tr > th.dt-orderable-asc:hover,
 table.dataTable thead > tr > th.dt-orderable-desc:hover {
   outline: none;
-  background: rgba(197, 160, 89, 0.12);
+  background: rgba(var(--v-rgb), 0.12);
 }
 table.dataTable thead .dt-column-order:before {
   content: "\ea32" !important;
@@ -601,7 +601,7 @@ select.ss-h {
 }
 .ss-o.hl,
 .ss-o:hover {
-  background: rgba(197, 160, 89, 0.16);
+  background: rgba(var(--v-rgb), 0.16);
 }
 .ss-o.on {
   font-weight: 700;

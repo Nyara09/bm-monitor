@@ -8,7 +8,7 @@ body.noscroll {
 }
 .btn.on {
   background: linear-gradient(95deg, var(--v), var(--c));
-  color: #000000;
+  color: var(--on-v, #000000);
 }
 .thm {
   width: 38px;
@@ -24,7 +24,7 @@ body.noscroll {
 }
 .tools button.on {
   background: linear-gradient(135deg, var(--v), var(--c));
-  color: #000000;
+  color: var(--on-v, #000000);
   border-color: transparent;
 }
 .tools hr {
@@ -92,7 +92,7 @@ body.noscroll {
   cursor: pointer;
 }
 .amenu button:hover {
-  background: rgba(197, 160, 89, 0.22);
+  background: rgba(var(--v-rgb), 0.22);
 }
 .cmp {
   position: absolute;
@@ -136,7 +136,7 @@ body.noscroll {
 }
 #ged .hnd {
   fill: rgba(94, 231, 255, 0.28);
-  stroke: #c9744a;
+  stroke: var(--c);
   stroke-width: 1.3;
   vector-effect: non-scaling-stroke;
   cursor: move;
@@ -150,7 +150,7 @@ body.noscroll {
   stroke: #d9a441;
 }
 #ged .hnd.cty {
-  stroke: #c5a059;
+  stroke: var(--v);
 }
 #ged .hnd.rv,
 #ged .hnd.rm {
@@ -162,7 +162,7 @@ body.noscroll {
   stroke-dasharray: 2 2;
 }
 #ged .hnd.ring {
-  fill: rgba(197, 160, 89, 0.16);
+  fill: rgba(var(--v-rgb), 0.16);
   stroke-width: 2;
 }
 #ged .rdhit {
@@ -179,7 +179,7 @@ body.noscroll {
 }
 #ged .rdprev {
   fill: none;
-  stroke: #c9744a;
+  stroke: var(--c);
   stroke-width: 2;
   stroke-dasharray: 5 4;
   vector-effect: non-scaling-stroke;
@@ -187,7 +187,7 @@ body.noscroll {
 }
 #ged .dpt {
   fill: #fff;
-  stroke: #c9744a;
+  stroke: var(--c);
   stroke-width: 1.2;
   vector-effect: non-scaling-stroke;
   pointer-events: none;
@@ -494,7 +494,7 @@ body.noscroll {
   font-size: 0.68rem;
   padding: 1px 7px;
   border-radius: 10px;
-  background: rgba(197, 160, 89, 0.2);
+  background: rgba(var(--v-rgb), 0.2);
   margin-left: 4px;
 }
 #abody {
@@ -555,11 +555,11 @@ body.noscroll {
 }
 .at td {
   padding: 4px 5px;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+  border-bottom: 1px solid rgba(var(--v-rgb), 0.1);
   white-space: nowrap;
 }
 .at tr:hover td {
-  background: rgba(197, 160, 89, 0.07);
+  background: rgba(var(--v-rgb), 0.07);
 }
 .at td.fx input {
   width: 170px;
@@ -727,7 +727,7 @@ body.noscroll {
   width: 38px;
   height: 38px;
   border-radius: 12px;
-  background: conic-gradient(from 200deg, #c5a059, #c9744a, #c5a059);
+  background: conic-gradient(from 200deg, var(--v), var(--c), var(--v));
   position: relative;
   display: inline-block;
 }
@@ -746,7 +746,7 @@ body.noscroll {
   padding: 4px 12px;
   border-radius: 20px;
   background: #f2f3f4;
-  color: #c9744a;
+  color: var(--c);
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -799,7 +799,7 @@ body.noscroll {
   margin: 0 0 4px;
   color: #2f353b;
   padding-bottom: 8px;
-  border-bottom: 3px solid #c9744a;
+  border-bottom: 3px solid var(--c);
   -webkit-text-fill-color: #2f353b;
   text-transform: none;
 }
@@ -807,7 +807,7 @@ body.noscroll {
   font-size: 0.78rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #c9744a;
+  color: var(--c);
   margin: 18px 0 8px;
   break-after: avoid;
 }
@@ -1044,10 +1044,11 @@ body.noscroll {
   --b: #2f353b;
   --c: #a0522d;
   --v: #c5a059;
+  --v-rgb: 197, 160, 89;
   --vt: #a0522d; /* terracotta reads better than gold as text on light pages */
 }
 [data-theme="light"] body {
-  background: radial-gradient(900px 600px at 15% 0%, rgba(197, 160, 89, 0.13), transparent 60%),
+  background: radial-gradient(900px 600px at 15% 0%, rgba(var(--v-rgb), 0.13), transparent 60%),
     radial-gradient(900px 600px at 95% 90%, rgba(47, 53, 59, 0.12), transparent 60%), var(--bg);
 }
 [data-theme="light"] .panel {
@@ -1072,11 +1073,11 @@ body.noscroll {
   color: #fff;
 }
 [data-theme="light"] .mapbox {
-  background: radial-gradient(ellipse at 50% 40%, rgba(197, 160, 89, 0.1), transparent 65%),
+  background: radial-gradient(ellipse at 50% 40%, rgba(var(--v-rgb), 0.1), transparent 65%),
     linear-gradient(160deg, #fdfdfd, #eaebf4);
 }
 [data-theme="light"] .mapbox::after {
-  background-image: radial-gradient(rgba(197, 160, 89, 0.2) 1px, transparent 1.2px);
+  background-image: radial-gradient(rgba(var(--v-rgb), 0.2) 1px, transparent 1.2px);
 }
 [data-theme="light"] .tip,
 [data-theme="light"] .pop {
@@ -1088,12 +1089,12 @@ body.noscroll {
 }
 [data-theme="light"] .hero h1,
 [data-theme="light"] h1 {
-  background: linear-gradient(95deg, #000000 10%, #c5a059 55%, #a0522d);
+  background: linear-gradient(95deg, #000000 10%, var(--v) 55%, var(--c));
   -webkit-background-clip: text;
   background-clip: text;
 }
 [data-theme="light"] .kpi .v {
-  background: linear-gradient(120deg, #000000, #c5a059);
+  background: linear-gradient(120deg, #000000, var(--v));
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1144,10 +1145,10 @@ body.noscroll {
 [data-theme="light"] #map #gy .cty:hover,
 [data-theme="light"] #map #gy .cty.on {
   fill: rgba(47, 53, 59, 0.25);
-  stroke: #a0522d;
+  stroke: var(--c);
 }
 [data-theme="light"] .rv {
-  stroke: #a0522d;
+  stroke: var(--c);
 }
 [data-theme="light"] .rd {
   stroke: #a8620a;
@@ -1180,7 +1181,7 @@ body.noscroll {
   stroke: #fff;
 }
 [data-theme="light"] .cdot {
-  fill: #a0522d;
+  fill: var(--c);
   stroke: #fff;
 }
 [data-theme="light"] .bar,
@@ -1199,7 +1200,7 @@ body.noscroll {
   background: var(--bg);
 }
 [data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: rgba(197, 160, 89, 0.35);
+  background: rgba(var(--v-rgb), 0.35);
 }
 [data-theme="light"] #adm input,
 [data-theme="light"] #adm select,
@@ -1211,10 +1212,10 @@ body.noscroll {
 }
 [data-theme="light"] #ged .hnd {
   fill: rgba(47, 53, 59, 0.2);
-  stroke: #a0522d;
+  stroke: var(--c);
 }
 [data-theme="light"] #ged .rdprev {
-  stroke: #a0522d;
+  stroke: var(--c);
 }
 @media (max-width: 1000px) {
   .tbn {

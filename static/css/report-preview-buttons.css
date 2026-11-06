@@ -23,9 +23,9 @@
   white-space: nowrap;
 }
 #rep .rbar .btn.pri {
-  background: #c5a059;
+  background: var(--v);
   color: #000000 !important;
-  border-color: #c5a059;
+  border-color: var(--v);
 }
 #rep .rbar .btn:hover {
   filter: brightness(1.12);

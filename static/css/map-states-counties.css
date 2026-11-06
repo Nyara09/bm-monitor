@@ -26,7 +26,7 @@
 #map #gy .cty:hover,
 #map #gy .cty.on {
   fill: rgba(94, 231, 255, 0.28);
-  stroke: #c9744a;
+  stroke: var(--c);
   stroke-width: 1.4;
 }
 #map #gy .cty.off,
@@ -34,7 +34,7 @@
   display: none;
 }
 #gcl .cdot {
-  fill: #c9744a;
+  fill: var(--c);
   stroke: #000000;
   stroke-width: 0.4;
   pointer-events: none;

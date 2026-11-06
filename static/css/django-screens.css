@@ -68,7 +68,7 @@
 #abody .btn.pri {
   background: var(--v);
   border-color: var(--v);
-  color: #000;
+  color: var(--on-v, #000000);
 }
 #abody .btn.dng {
   color: var(--r);
@@ -140,7 +140,7 @@
   width: 100%;
   background: var(--v);
   border: 1px solid var(--v);
-  color: #000;
+  color: var(--on-v, #000000);
   font-weight: 600;
   padding: 10px;
   border-radius: 10px;

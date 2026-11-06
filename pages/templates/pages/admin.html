@@ -26,6 +26,7 @@
     </script>
     <script src="{% static 'js/django-storage.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/loading-spinner.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/color-theme.css' %}" />
     <script src="{% static 'js/loading-spinner.js' %}"></script>
     <script>
       window.PAGE = "admin";
@@ -80,6 +81,7 @@
     <link rel="stylesheet" href="{% static 'css/filter-bars.css' %}" />
     <link rel="stylesheet" href="{% static 'css/table-filter-bar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/page-preload.css' %}" />
+    <script src="{% static 'js/color-theme.js' %}"></script>
     <script src="{% static 'js/preload-guard.js' %}"></script>
     <script src="{% static 'js/template-engine.js' %}"></script>
     <!-- ===== ADMIN PAGE ONLY ===== -->
@@ -625,7 +627,7 @@
         <p id="lg-p"></p>
         <label>
           Username
-          <input id="lg-u" autocomplete="username" />
+          <input id="lg-u" autocomplete="username" placeholder="Username" />
         </label>
         <label>
           Password
