@@ -17,6 +17,7 @@
   function apply() {
     var d = get(),
       st = document.getElementById("logo-css");
+    document.documentElement.classList.toggle("has-logo", !!d);
     if (!st) {
       st = document.createElement("style");
       st.id = "logo-css";
@@ -86,7 +87,9 @@
     };
     r.onload = function () {
       if (f.type === "image/svg+xml")
-        return r.result.length < 400000 ? save(r.result) : toast("That SVG is too large");
+        return r.result.length < 400000
+          ? save(r.result)
+          : toast("That SVG is too large");
       var im = new Image();
       im.onerror = function () {
         toast("That image could not be opened");
@@ -105,7 +108,8 @@
     r.readAsDataURL(f);
   }
   document.addEventListener("click", function (e) {
-    var b = e.target.closest && e.target.closest("[data-fa=logop],[data-fa=logor]");
+    var b =
+      e.target.closest && e.target.closest("[data-fa=logop],[data-fa=logor]");
     if (!b) return;
     if (b.dataset.fa === "logop") document.getElementById("logof").click();
     else save("");
@@ -183,14 +187,17 @@
     toast(v ? "Company name updated everywhere" : "Default name restored");
   }
   document.addEventListener("click", function (e) {
-    var b = e.target.closest && e.target.closest("[data-fa=conm],[data-fa=conr]");
+    var b =
+      e.target.closest && e.target.closest("[data-fa=conm],[data-fa=conr]");
     if (!b) return;
     if (b.dataset.fa === "conr") {
       var i = document.getElementById("co-name");
       if (i) i.value = "";
       return saveName("");
     }
-    saveName((document.getElementById("co-name").value || "").trim().slice(0, 60));
+    saveName(
+      (document.getElementById("co-name").value || "").trim().slice(0, 60),
+    );
   });
   document.addEventListener("keydown", function (e) {
     if (e.target.id === "co-name" && e.key === "Enter") {

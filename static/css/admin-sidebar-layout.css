@@ -127,13 +127,13 @@
     font-weight: 600;
   }
   [data-theme="light"] #atabs button.on {
-    color: #2f353b;
+    color: var(--s);
     background: rgba(var(--v-rgb), 0.1);
     border-left-color: var(--v);
     border-bottom-color: transparent;
   }
   [data-theme="light"] #atabs a.on {
-    color: #2f353b;
+    color: var(--s);
     background: rgba(var(--v-rgb), 0.1);
     border-left-color: var(--v);
     border-bottom-color: transparent;

@@ -4584,10 +4584,7 @@
           });
         });
     }
-    if (!Object.keys(M).length)
-      return {
-        err: "Enter how many each DCA registered.",
-      };
+    /* A visit where nobody registered is a real result, so all zeros is allowed. */
     return {
       o: {
         type: "multi",
@@ -10395,7 +10392,7 @@
                 "renderBackupView.1",
                 `<div class="card"><h3><span class="bx bx-image"></span> Logo &amp; company name</h3><p class="em" style="text-align:left">Choose a logo (PNG, JPG, SVG or WebP) and type your company name. They replace the logo and the name "BM Monitor" on the sign-in page, Switch view screen, top menu, admin sidebar and report covers (the logo also replaces the browser tab icon).</p><div class="flt" style="align-items:end"><label style="flex:1 1 100%;min-width:260px">Company name<input style="width:100%!important;min-width:260px!important;max-width:none!important" id="co-name" maxlength="60" placeholder="BM Monitor" value="{{s1: escapeHtml((localStorage.getItem(…}}"></label><button class="btn pri" data-fa="conm" type="button"><span class="bx bx-save"></span> Save name</button><button class="btn" data-fa="conr" type="button"><span class="bx bx-reset"></span> Use default name</button></div><div class="flt" style="align-items:center"><span class="logo" id="logo-prev" style="width:56px;height:56px;flex:none"></span><button class="btn pri" data-fa="logop" type="button"><span class="bx bx-upload"></span> Choose logo file</button><button class="btn" data-fa="logor" type="button"><span class="bx bx-reset"></span> Use default logo</button><input type="file" id="logof" accept="image/png,image/jpeg,image/svg+xml,image/webp" hidden></div></div>`,
                 [() => escapeHtml((localStorage.getItem("bioreg.company") || "").trim())],
-              )
+              ) + '<div class="card" id="pal-card"></div>'
             : "",
       ],
     );

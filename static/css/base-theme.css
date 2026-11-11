@@ -4,8 +4,10 @@
  */
 
 :root {
+  --s: #000000; /* third colour: black, behind panels, dark bars and borders */
+  --s-rgb: 0, 0, 0;
   --bg: #000000;
-  --panel: rgba(47, 53, 59, 0.62);
+  --panel: rgba(var(--s-rgb), 0.62);
   --line: rgba(var(--v-rgb), 0.22);
   --tx: #ffffff;
   --mu: #aab0b6;
@@ -13,10 +15,11 @@
   --a: #d9a441;
   --r: #e5594f;
   --b: #8fa1b3;
-  --c: #c9744a;
-  --v: #c5a059;
-  --v-rgb: 197, 160, 89;
-  --vt: #c5a059; /* accent used for text; gold on dark pages */
+  --c: #ffffff; /* second colour: white on dark pages, black on light pages */
+  --v: #a0522d; /* main colour: Earth Terracotta */
+  --v-rgb: 160, 82, 45;
+  --on-v: #ffffff; /* text on the main colour */
+  --vt: #d9895f; /* accent used for text; light terracotta on dark pages */
 }
 * {
   box-sizing: border-box;
@@ -27,8 +30,17 @@ body {
   color: var(--tx);
   min-height: 100vh;
   padding: 18px;
-  background: radial-gradient(900px 600px at 15% 0%, rgba(var(--v-rgb), 0.28), transparent 60%),
-    radial-gradient(900px 600px at 95% 90%, rgba(47, 53, 59, 0.16), transparent 60%), var(--bg);
+  background: radial-gradient(
+      900px 600px at 15% 0%,
+      rgba(var(--v-rgb), 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 600px at 95% 90%,
+      rgba(var(--s-rgb), 0.16),
+      transparent 60%
+    ),
+    var(--bg);
 }
 header {
   display: flex;
@@ -80,7 +92,7 @@ h1 small {
   }
 }
 .panel {
-  background: linear-gradient(160deg, rgba(47, 53, 59, 0.55), var(--panel));
+  background: linear-gradient(160deg, rgba(var(--s-rgb), 0.55), var(--panel));
   border: 1px solid var(--line);
   border-radius: 18px;
   box-shadow:
@@ -628,8 +640,8 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Inter", "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", system-ui,
-    sans-serif;
+  font-family: "Inter", "SF Pro Display", "Segoe UI Variable Display",
+    "Segoe UI", system-ui, sans-serif;
   max-width: 1680px;
   margin: 0 auto;
   padding: 14px 22px 40px;
@@ -647,7 +659,11 @@ body {
   position: relative;
   border: 1px solid transparent;
   border-radius: 22px;
-  background: linear-gradient(160deg, rgba(47, 53, 59, 0.5), rgba(0, 0, 0, 0.72));
+  background: linear-gradient(
+    160deg,
+    rgba(var(--s-rgb), 0.5),
+    rgba(0, 0, 0, 0.72)
+  );
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
 }
 .panel::before {
@@ -751,7 +767,7 @@ body {
   letter-spacing: -0.035em;
   margin: 18px 0 14px;
   font-weight: 700;
-  background: linear-gradient(95deg, #fff 10%, #c4b5fd 50%, var(--c));
+  background: linear-gradient(95deg, #fff 10%, var(--vt) 50%, var(--c));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -824,7 +840,11 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(var(--v-rgb), 0.35), rgba(94, 231, 255, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(var(--v-rgb), 0.35),
+    rgba(94, 231, 255, 0.2)
+  );
 }
 .kpi .s {
   color: var(--mu);
@@ -838,15 +858,22 @@ body {
 }
 .mapbox {
   padding: 14px;
-  background: radial-gradient(ellipse at 50% 40%, rgba(var(--v-rgb), 0.16), transparent 65%),
-    linear-gradient(160deg, rgba(47, 53, 59, 0.7), rgba(12, 10, 20, 0.85));
+  background: radial-gradient(
+      ellipse at 50% 40%,
+      rgba(var(--v-rgb), 0.16),
+      transparent 65%
+    ),
+    linear-gradient(160deg, rgba(var(--s-rgb), 0.7), rgba(12, 10, 20, 0.85));
   overflow: hidden;
 }
 .mapbox::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(var(--v-rgb), 0.22) 1px, transparent 1.2px);
+  background-image: radial-gradient(
+    rgba(var(--v-rgb), 0.22) 1px,
+    transparent 1.2px
+  );
   background-size: 24px 24px;
   -webkit-mask: radial-gradient(ellipse at center, #000 30%, transparent 75%);
   mask: radial-gradient(ellipse at center, #000 30%, transparent 75%);
@@ -895,7 +922,7 @@ body {
   height: 38px;
   border-radius: 12px;
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.8);
+  background: rgba(var(--s-rgb), 0.8);
   color: var(--tx);
   font-size: 1.1rem;
   cursor: pointer;
@@ -916,7 +943,7 @@ body {
   font-size: 0.78rem;
   color: var(--mu);
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.8);
+  background: rgba(var(--s-rgb), 0.8);
   backdrop-filter: blur(10px);
 }
 .mchip b {
@@ -969,7 +996,11 @@ h2 {
 }
 .chips button.on,
 .chips button:hover {
-  background: linear-gradient(95deg, rgba(var(--v-rgb), 0.35), rgba(94, 231, 255, 0.2));
+  background: linear-gradient(
+    95deg,
+    rgba(var(--v-rgb), 0.35),
+    rgba(94, 231, 255, 0.2)
+  );
   color: #fff;
 }
 #list .row {
@@ -1255,7 +1286,7 @@ h2 {
   padding: 4px;
   border-radius: 30px;
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.88);
+  background: rgba(var(--s-rgb), 0.88);
   backdrop-filter: blur(10px);
 }
 .mtabs button {
@@ -1336,4 +1367,38 @@ h2 {
   color: var(--a);
   font-size: 0.76rem;
   padding: 0 12px;
+}
+
+/*
+ * System logo: the AfroPortal wordmark (img/afroportal-logo.png, white on transparent) is the logo
+ * until an admin uploads another one (logo-and-company-name.js adds class "has-logo" to <html>).
+ * The wordmark is white, so on light pages it is drawn black.
+ */
+html:not(.has-logo) .logo {
+  width: 196px;
+  height: 36px;
+  border-radius: 0;
+  background: url("../img/afroportal-logo.png") left center / contain no-repeat;
+  box-shadow: none;
+}
+html:not(.has-logo) .logo::after {
+  display: none;
+}
+html:not(.has-logo)[data-theme="light"] .logo {
+  filter: brightness(0);
+}
+html:not(.has-logo) .sn-brand,
+html:not(.has-logo) .brand {
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+html:not(.has-logo) .brand .logo {
+  width: 130px;
+  height: 24px;
+}
+html:not(.has-logo) .lg-side .logo {
+  width: min(340px, 80%);
+  height: 62px;
+  margin-bottom: 14px;
+  filter: none;
 }

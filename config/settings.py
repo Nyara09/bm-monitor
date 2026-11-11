@@ -10,11 +10,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read DJANGO_* values from the .env file next to manage.py (if there is one)
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY","o*vd6gj73)no&=--qmfo(%hyf8&b9__)xo2%7ff+5-@*8eq_5d")
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
-ALLOWED_HOSTS = os.environ.get(
-    "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
-).split(",")
+
+# ALLOWED_HOSTS = os.environ.get(
+#     "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
+# ).split(",")
+
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",

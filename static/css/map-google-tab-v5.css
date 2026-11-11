@@ -40,7 +40,7 @@
   overflow: auto;
   border-radius: 12px;
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.98);
+  background: rgba(var(--s-rgb), 0.98);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 .gres[hidden] {
@@ -89,7 +89,7 @@
   padding: 10px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.95);
+  background: rgba(var(--s-rgb), 0.95);
 }
 .gsl[hidden] {
   display: none;
@@ -185,7 +185,7 @@
   background: #fff;
 }
 [data-theme="light"] .sct {
-  stroke: rgba(47, 53, 59, 0.55);
+  stroke: rgba(var(--s-rgb), 0.55);
 }
 [data-theme="light"] .scl {
   fill: #000000;

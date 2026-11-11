@@ -6,7 +6,8 @@
 
 (function () {
   var PAGE = window.PAGE || "map";
-  var SCREEN = window.SCREEN || ""; /* set by the screen template, e.g. "dashboard" */
+  var SCREEN =
+    window.SCREEN || ""; /* set by the screen template, e.g. "dashboard" */
   var ROUTES = {
     overview: ["nat"],
     admin: ["adm"],
@@ -131,11 +132,51 @@
   window.locate = function (lon, lat) {
     if (fromMapButton) {
       leaving = true;
-      location.href = window.URLS.map + "?map=locate&lon=" + lon + "&lat=" + lat;
+      location.href =
+        window.URLS.map + "?map=locate&lon=" + lon + "&lat=" + lat;
       return;
     }
     return locateHere.apply(this, arguments);
   };
+  /* buttons that mean "do this on the map": Draw a new road, Pick on map (new county, city, town,
+     airport or site) and Reshape on map. The map is not on this page, so open the map page with
+     the action in the address; map-intent.js (map page) does it once the person is inside. */
+  document.addEventListener(
+    "click",
+    function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var url = null;
+      if (t.closest("[data-a='draw']")) {
+        url = "?map=road";
+      } else if (t.closest("#amod [data-m='pick']")) {
+        var kinds = { cty: "county", site: "site", ap: "airport" };
+        var type = document.getElementById("am-t");
+        var name = document.getElementById("am-n");
+        var kind = "town";
+        try {
+          kind =
+            kinds[AM.kind] || (type && type.value === "c" ? "city" : "town");
+        } catch (err) {}
+        url = "?map=add&kind=" + kind;
+        if (name && name.value.trim())
+          url += "&name=" + encodeURIComponent(name.value.trim());
+      } else if (t.closest("#amod [data-m='reshape']")) {
+        var road = null;
+        try {
+          road = AM.ref && AM.ref.id;
+        } catch (err) {}
+        if (road) url = "?map=reshape&road=" + encodeURIComponent(road);
+      }
+      if (!url) return;
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      leaving = true;
+      location.href = window.URLS.map + url;
+    },
+    true,
+  );
   /* screen pages: the sidebar tabs open the matching screen URL instead of switching in place */
   if (SCREEN) {
     var PAGE_OF = {};
@@ -161,7 +202,8 @@
   setInterval(function () {
     if (leaving) return;
     var gate = document.getElementById("gate");
-    if (!gate || gate.hidden) return; /* still signing in, or already inside a view */
+    if (!gate || gate.hidden)
+      return; /* still signing in, or already inside a view */
     var cards = cardsOf(r),
       tab = tabOf(r),
       btn = null;

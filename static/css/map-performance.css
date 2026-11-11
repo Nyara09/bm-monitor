@@ -62,7 +62,7 @@
 .tools button,
 .mchip,
 .mtabs {
-  background: rgba(47, 53, 59, 0.94);
+  background: rgba(var(--s-rgb), 0.94);
 }
 [data-theme="light"] .tools button,
 [data-theme="light"] .mchip,

@@ -140,7 +140,7 @@ nav.top .pf-btn > .bx {
     width: 240px;
   }
   body.nv-off {
-    padding-left: 0 !important;
+    padding-left: 22px !important; /* same left gutter as the page has everywhere else */
     padding-top: 60px;
   }
   body.nv-off nav.top {

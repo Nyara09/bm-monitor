@@ -1,0 +1,10 @@
+# /etc/systemd/system/forex-backup.timer  ->  systemctl enable --now forex-backup.timer
+[Unit]
+Description=Run the Forex Agent backup every evening
+
+[Timer]
+OnCalendar=*-*-* 21:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

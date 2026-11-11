@@ -45,7 +45,7 @@ body.noscroll {
   padding: 8px 12px;
   border-radius: 14px;
   border: 1px solid var(--c);
-  background: rgba(47, 53, 59, 0.92);
+  background: rgba(var(--s-rgb), 0.92);
   backdrop-filter: blur(10px);
   font-size: 0.78rem;
   line-height: 1.4;
@@ -73,7 +73,7 @@ body.noscroll {
   padding: 6px;
   border-radius: 14px;
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.96);
+  background: rgba(var(--s-rgb), 0.96);
   backdrop-filter: blur(10px);
   min-width: 190px;
 }
@@ -105,7 +105,7 @@ body.noscroll {
   padding: 6px 12px 6px 6px;
   border-radius: 40px;
   border: 1px solid var(--line);
-  background: rgba(47, 53, 59, 0.82);
+  background: rgba(var(--s-rgb), 0.82);
   backdrop-filter: blur(10px);
   pointer-events: none;
   font-size: 0.74rem;
@@ -320,7 +320,7 @@ body.noscroll {
   padding: 14px;
   border-radius: 16px;
   border: 1px solid var(--c);
-  background: rgba(47, 53, 59, 0.98);
+  background: rgba(var(--s-rgb), 0.98);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
   font-size: 0.8rem;
 }
@@ -657,7 +657,7 @@ body.noscroll {
   z-index: 120;
   background: #dde0e4;
   overflow: auto;
-  color: #2f353b;
+  color: var(--s);
   font:
     12.5px/1.55 "Inter",
     "Segoe UI",
@@ -675,7 +675,7 @@ body.noscroll {
   gap: 8px;
   align-items: center;
   padding: 10px 20px;
-  background: #2f353b;
+  background: var(--s);
   color: #fff;
 }
 #rep .rbar b {
@@ -714,7 +714,7 @@ body.noscroll {
   align-items: center;
   gap: 12px;
   padding-bottom: 14px;
-  border-bottom: 3px solid #2f353b;
+  border-bottom: 3px solid var(--s);
 }
 .r-band b {
   display: block;
@@ -757,9 +757,9 @@ body.noscroll {
   line-height: 1.1;
   margin: 16px 0 10px;
   letter-spacing: -0.03em;
-  color: #2f353b;
+  color: var(--s);
   background: none;
-  -webkit-text-fill-color: #2f353b;
+  -webkit-text-fill-color: var(--s);
 }
 .r-ct p {
   font-size: 1.05rem;
@@ -797,10 +797,10 @@ body.noscroll {
   font-size: 1.7rem;
   letter-spacing: -0.02em;
   margin: 0 0 4px;
-  color: #2f353b;
+  color: var(--s);
   padding-bottom: 8px;
   border-bottom: 3px solid var(--c);
-  -webkit-text-fill-color: #2f353b;
+  -webkit-text-fill-color: var(--s);
   text-transform: none;
 }
 .r-sec h3 {
@@ -814,7 +814,7 @@ body.noscroll {
 .r-sec h4 {
   font-size: 0.8rem;
   margin: 10px 0 4px;
-  color: #2f353b;
+  color: var(--s);
 }
 .r-sub,
 .r-lead {
@@ -848,7 +848,7 @@ body.noscroll {
   display: block;
   font-size: 1.5rem;
   letter-spacing: -0.02em;
-  color: #2f353b;
+  color: var(--s);
 }
 .r-k em {
   font-style: normal;
@@ -910,7 +910,7 @@ body.noscroll {
 }
 .r-t th {
   text-align: left;
-  background: #2f353b;
+  background: var(--s);
   color: #fff;
   padding: 7px 8px;
   font-size: 0.66rem;
@@ -931,7 +931,7 @@ body.noscroll {
 }
 .r-t tfoot td {
   font-weight: 700;
-  border-top: 2px solid #2f353b;
+  border-top: 2px solid var(--s);
   background: #f2f3f4;
 }
 .r-t.sm {
@@ -1035,21 +1035,22 @@ body.noscroll {
 :root[data-theme="light"] {
   --bg: #f4f3f0;
   --panel: rgba(255, 255, 255, 0.85);
-  --line: rgba(47, 53, 59, 0.22);
+  --line: rgba(var(--s-rgb), 0.22);
   --tx: #000000;
   --mu: #4a5158;
   --g: #2e7d57;
   --a: #8c6a2b;
   --r: #b3261e;
   --b: #2f353b;
-  --c: #a0522d;
-  --v: #c5a059;
-  --v-rgb: 197, 160, 89;
-  --vt: #a0522d; /* terracotta reads better than gold as text on light pages */
+  --c: #000000;
+  --v: #a0522d;
+  --v-rgb: 160, 82, 45;
+  --on-v: #ffffff;
+  --vt: #a0522d; /* terracotta text on light pages */
 }
 [data-theme="light"] body {
   background: radial-gradient(900px 600px at 15% 0%, rgba(var(--v-rgb), 0.13), transparent 60%),
-    radial-gradient(900px 600px at 95% 90%, rgba(47, 53, 59, 0.12), transparent 60%), var(--bg);
+    radial-gradient(900px 600px at 95% 90%, rgba(var(--s-rgb), 0.12), transparent 60%), var(--bg);
 }
 [data-theme="light"] .panel {
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(247, 248, 248, 0.92));
@@ -1082,10 +1083,10 @@ body.noscroll {
 [data-theme="light"] .tip,
 [data-theme="light"] .pop {
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 18px 50px rgba(47, 53, 59, 0.25);
+  box-shadow: 0 18px 50px rgba(var(--s-rgb), 0.25);
 }
 [data-theme="light"] .tip {
-  border-color: rgba(47, 53, 59, 0.3);
+  border-color: rgba(var(--s-rgb), 0.3);
 }
 [data-theme="light"] .hero h1,
 [data-theme="light"] h1 {
@@ -1125,10 +1126,10 @@ body.noscroll {
   fill: #7a4300;
 }
 [data-theme="light"] #gy .cty {
-  stroke: rgba(47, 53, 59, 0.32);
+  stroke: rgba(var(--s-rgb), 0.32);
 }
 [data-theme="light"] #map.zs #gy .cty {
-  stroke: rgba(47, 53, 59, 0.6);
+  stroke: rgba(var(--s-rgb), 0.6);
 }
 [data-theme="light"] #gy .cty.p1 {
   fill: rgba(15, 157, 107, 0.16);
@@ -1144,7 +1145,7 @@ body.noscroll {
 }
 [data-theme="light"] #map #gy .cty:hover,
 [data-theme="light"] #map #gy .cty.on {
-  fill: rgba(47, 53, 59, 0.25);
+  fill: rgba(var(--s-rgb), 0.25);
   stroke: var(--c);
 }
 [data-theme="light"] .rv {
@@ -1172,7 +1173,7 @@ body.noscroll {
   stroke: #fff;
 }
 [data-theme="light"] .mesh {
-  stroke: rgba(47, 53, 59, 0.4);
+  stroke: rgba(var(--s-rgb), 0.4);
 }
 [data-theme="light"] .pulse {
   stroke: #000000;
@@ -1187,14 +1188,14 @@ body.noscroll {
 [data-theme="light"] .bar,
 [data-theme="light"] .stk,
 [data-theme="light"] .dots i {
-  background: rgba(47, 53, 59, 0.12);
+  background: rgba(var(--s-rgb), 0.12);
 }
 [data-theme="light"] .det div,
 [data-theme="light"] .fg div,
 [data-theme="light"] .sc .k div,
 [data-theme="light"] #dv details {
-  background: rgba(47, 53, 59, 0.04);
-  border-color: rgba(47, 53, 59, 0.1);
+  background: rgba(var(--s-rgb), 0.04);
+  border-color: rgba(var(--s-rgb), 0.1);
 }
 [data-theme="light"] #gm {
   background: var(--bg);
@@ -1211,7 +1212,7 @@ body.noscroll {
   background: #fff;
 }
 [data-theme="light"] #ged .hnd {
-  fill: rgba(47, 53, 59, 0.2);
+  fill: rgba(var(--s-rgb), 0.2);
   stroke: var(--c);
 }
 [data-theme="light"] #ged .rdprev {

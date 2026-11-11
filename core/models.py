@@ -39,6 +39,16 @@ class CompanySetting(TimeStampedModel):
     backdate_mode = models.CharField(
         max_length=10, choices=BackdateMode.choices, default=BackdateMode.REASON
     )
+    colour_theme = models.CharField(
+        max_length=60,
+        default="system",
+        help_text='Colour theme for everybody: "system" or "custom:#main:#second:#third"',
+    )
+    system_colours = models.CharField(
+        max_length=40,
+        blank=True,
+        help_text='Edited System colours "#main:#second:#third"; empty means the BM defaults',
+    )
     map_dirty = models.BooleanField(
         default=False, help_text="Map data was edited after the original import"
     )

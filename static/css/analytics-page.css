@@ -13,7 +13,7 @@ body.noscroll {
   display: flex;
   flex-direction: column;
   background: radial-gradient(900px 600px at 10% 0%, rgba(var(--v-rgb), 0.22), transparent 60%),
-    radial-gradient(900px 600px at 95% 100%, rgba(47, 53, 59, 0.12), transparent 60%), var(--bg);
+    radial-gradient(900px 600px at 95% 100%, rgba(var(--s-rgb), 0.12), transparent 60%), var(--bg);
   color: var(--tx);
   font-family: Roboto, "Segoe UI", system-ui, sans-serif;
 }

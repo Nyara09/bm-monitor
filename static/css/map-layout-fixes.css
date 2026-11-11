@@ -98,7 +98,7 @@
   border-color: #dce0e3;
 }
 [data-theme="light"] #atabs button.on {
-  color: #2f353b;
+  color: var(--s);
   border-bottom-color: var(--v);
 }
 [data-theme="light"] .at th {
@@ -108,15 +108,15 @@
 [data-theme="light"] .gsl,
 [data-theme="light"] .glm,
 [data-theme="light"] .gres {
-  color: #2f353b;
+  color: var(--s);
 }
 [data-theme="light"] .gsl button,
 [data-theme="light"] .glm button,
 [data-theme="light"] .gres button {
-  color: #2f353b;
+  color: var(--s);
 }
 [data-theme="light"] .gsearch input {
-  color: #2f353b;
+  color: var(--s);
   border-color: #b5b8d7;
 }
 #overview,

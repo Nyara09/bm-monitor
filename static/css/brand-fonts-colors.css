@@ -54,17 +54,18 @@
 [data-theme="light"] {
   --bg: #f4f3f0;
   --panel: rgba(255, 255, 255, 0.85);
-  --line: rgba(47, 53, 59, 0.22);
+  --line: rgba(var(--s-rgb), 0.22);
   --tx: #000000;
   --mu: #4a5158;
   --g: #2e7d57;
   --a: #8c6a2b;
   --r: #b3261e;
   --b: #2f353b;
-  --c: #a0522d;
-  --v: #c5a059;
-  --v-rgb: 197, 160, 89;
-  --vt: #a0522d; /* terracotta reads better than gold as text on light pages */
+  --c: #000000;
+  --v: #a0522d;
+  --v-rgb: 160, 82, 45;
+  --on-v: #ffffff;
+  --vt: #a0522d; /* terracotta text on light pages */
 }
 html body,
 html body button,

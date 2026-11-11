@@ -1,0 +1,10 @@
+# /etc/systemd/system/forex-backup.service
+[Unit]
+Description=Forex Agent daily backup
+
+[Service]
+Type=oneshot
+User=forex
+WorkingDirectory=/opt/forex
+EnvironmentFile=/etc/forex/forex.env
+ExecStart=/opt/forex/venv/bin/python manage.py backup_db
