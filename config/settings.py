@@ -11,8 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 
+DEBUG = True
 
 ALLOWED_HOSTS = ['bm-monitor.onrender.com']
 
