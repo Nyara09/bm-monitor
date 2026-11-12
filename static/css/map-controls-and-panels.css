@@ -738,6 +738,23 @@ body.noscroll {
   border-radius: 50%;
   background: #fff;
 }
+/* Report cover: the AfroPortal wordmark in black on the white page (an uploaded logo replaces it). */
+html:not(.has-logo) .r-logo {
+  width: 190px;
+  height: 34px;
+  border-radius: 0;
+  background: url("../img/afroportal-logo.png") left center / contain no-repeat;
+  filter: brightness(0);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+html:not(.has-logo) .r-logo::after {
+  display: none;
+}
+html:not(.has-logo) .r-band {
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
 .r-ct {
   margin-top: 60px;
 }
