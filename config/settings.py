@@ -101,7 +101,6 @@ STORAGES = {
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
 
-WHITENOISE_MAX_AGE = 31536000 if not DEBUG else 0
 
 CSRF_TRUSTED_ORIGINS = [
     "https://" + h for h in ALLOWED_HOSTS if h and h not in ("localhost", "127.0.0.1")
