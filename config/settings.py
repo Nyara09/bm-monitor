@@ -13,9 +13,6 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 
-# ALLOWED_HOSTS = os.environ.get(
-#     "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
-# ).split(",")
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
 
