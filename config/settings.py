@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY","o*vd6gj73)no&=--qmfo(%hyf8&b9__)xo2%7ff+5-@*8eq_5d")
-DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 
 # ALLOWED_HOSTS = os.environ.get(
 #     "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
@@ -100,6 +100,8 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
+
+WHITENOISE_MAX_AGE = 31536000 if not DEBUG else 0
 
 CSRF_TRUSTED_ORIGINS = [
     "https://" + h for h in ALLOWED_HOSTS if h and h not in ("localhost", "127.0.0.1")
