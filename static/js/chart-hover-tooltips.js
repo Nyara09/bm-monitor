@@ -6,7 +6,7 @@
 (function () {
   var st = document.createElement("style");
   st.textContent =
-    ".ctip{position:fixed;z-index:99999;pointer-events:none;display:none;max-width:280px;padding:7px 10px;border-radius:9px;font-size:.78rem;line-height:1.45;white-space:pre-line;background:rgba(18,16,40,.96);color:#f3f1ff;border:1px solid rgba(197, 160, 89,.45);box-shadow:0 10px 30px rgba(0,0,0,.35)}" +
+    ".ctip{position:fixed;z-index:99999;pointer-events:none;display:none;max-width:280px;padding:7px 10px;border-radius:9px;font-size:.78rem;line-height:1.45;white-space:pre-line;background:rgba(0,0,0,.94);color:#ffffff;border:1px solid rgba(var(--v-rgb),.55);box-shadow:0 10px 30px rgba(0,0,0,.35)}" +
     ".card svg:not(#map):not(#smap) text,.panel svg:not(#map):not(#smap) text,.kpi svg text{pointer-events:none}" +
     "svg [data-ct]:hover,svg path[data-dn]:hover{filter:brightness(1.18);cursor:pointer}svg circle.lp{opacity:0;transition:opacity .1s}svg circle.lp:hover{opacity:1}" +
     ".hb[title]:hover,.hb[data-ct]:hover{background:rgba(127,127,160,.12);border-radius:6px}.kpi [data-ct]:hover{opacity:.8}";
