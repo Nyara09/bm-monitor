@@ -10,14 +10,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read DJANGO_* values from the .env file next to manage.py (if there is one)
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY","o*vd6gj73)no&=--qmfo(%hyf8&b9__)xo2%7ff+5-@*8eq_5d")
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
 
 # ALLOWED_HOSTS = os.environ.get(
 #     "DJANGO_ALLOWED_HOSTS", "bm-monitor.onrender.com,localhost,127.0.0.1"
 # ).split(",")
 
-ALLOWED_HOSTS = ["127.0.0.1","bm-monitor.onrender.com"] 
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
 
 
 INSTALLED_APPS = [
@@ -100,7 +100,6 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
 }
-
 
 CSRF_TRUSTED_ORIGINS = [
     "https://" + h for h in ALLOWED_HOSTS if h and h not in ("localhost", "127.0.0.1")
