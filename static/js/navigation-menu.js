@@ -18,6 +18,45 @@
   o.id = "nvb";
   b.appendChild(o);
   b.appendChild(t);
+  /* Keep the toggle hidden while a screen is still loading, so an empty page never shows a lone
+     round button. It appears as soon as something is on screen (screen content, the Administrator
+     or report panel, or the map once the view chooser is closed), and after 3 seconds at most. */
+  t.style.visibility = "hidden";
+  (function () {
+    var done = false,
+      mo = null;
+    function shown(sel) {
+      var e = document.querySelector(sel);
+      return !!e && !e.hidden && getComputedStyle(e).display != "none";
+    }
+    function ready() {
+      var ab = document.getElementById("abody");
+      if (ab && ab.children.length) return true;
+      if (shown("#adm") || shown("#rep")) return true;
+      var g = document.getElementById("gate");
+      if (g && !ab) return !shown("#gate") && document.readyState === "complete";
+      return !ab && !g && document.readyState === "complete";
+    }
+    function reveal() {
+      if (done) return;
+      done = true;
+      t.style.visibility = "";
+      if (mo) mo.disconnect();
+    }
+    function check() {
+      if (ready()) reveal();
+    }
+    mo = new MutationObserver(check);
+    mo.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["hidden"],
+    });
+    addEventListener("load", check);
+    setTimeout(reveal, 3000);
+    check();
+  })();
   try {
     if (localStorage.getItem("bioreg.nv") == "off") b.classList.add("nv-off");
   } catch (e) {}

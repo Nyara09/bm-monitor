@@ -659,3 +659,9 @@ body {
     border-radius: 14px;
   }
 }
+
+/* No menu toggle while the Administrator / Map / Supervisor chooser or the sign-in is on screen */
+body:has(#gate:not([hidden])) #nvt,
+body:has(#login:not([hidden])) #nvt {
+  display: none !important;
+}
