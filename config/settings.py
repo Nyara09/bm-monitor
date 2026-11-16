@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['bm-monitor.onrender.com',"*"]
+ALLOWED_HOSTS = ['bm-monitor.onrender.com']
 
 
 INSTALLED_APPS = [
